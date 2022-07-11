@@ -4,10 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JFrame {  //posso ereditare tutti i metodi della classe JFrame che non sono private
+    // JLayeredPane per sovrapporre più pannelli (stratificati)
     private JLayeredPane layeredPane;
 
     public MainView() throws HeadlessException {
+        //creo un oggetto JLayeredPane
         this.layeredPane=new JLayeredPane();
+        //inizializzo le caratteristiche del layeredPane
         this.initializeView();
     }
 

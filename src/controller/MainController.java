@@ -5,7 +5,9 @@ import view.MenuPanel;
 
 public class MainController {
 
+    //il MainView serve per creare il frame (la finestrella)
     private MainView mainView;
+    // 
     private MenuPanel menuPanel;
 
 
