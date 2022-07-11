@@ -28,4 +28,9 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.setResizable(false);
     }
 
+    public void addMenuPanel(MenuPanel mp){
+        this.layeredPane.add(mp, JLayeredPane.DEFAULT_LAYER);
+        this.layeredPane.setPreferredSize( new Dimension(800,600));
+    }
+
 }
