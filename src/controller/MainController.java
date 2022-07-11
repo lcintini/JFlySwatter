@@ -12,6 +12,7 @@ public class MainController {
     public MainController() {
         this.mainView = new MainView();
         this.menuPanel=new MenuPanel();
+        this.mainView.addMenuPanel(this.menuPanel);
     }
 
 
