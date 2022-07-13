@@ -1,6 +1,8 @@
 package controller;
 
 import constants.Constants;
+import model.Direction;
+import model.Fly;
 import view.GamePanel;
 
 import javax.swing.*;
@@ -11,6 +13,7 @@ public class GameController {
     private GamePanel gamePanel;
     // primo oggetto di Java Swing utilizzato per scandire i cicli ( update-repaint) di chiamata al paint component
     private Timer timer;
+    private Fly fly;
 
     public GameController(MainController mainController, GamePanel gamePanel) {
 
@@ -21,7 +24,10 @@ public class GameController {
 
     private void initializeGame() {
         this.timer = new Timer(Constants.GAME_SPEED, new GameLoop(this));
+        this.fly = new Fly(20,20, Direction.SOUTH);
+        this.gamePanel.addBug(fly);
         this.timer.start();
+
     }
 
     // start update-repaint
@@ -32,6 +38,7 @@ public class GameController {
     }
 
     private void update() {
+        this.fly.move();
     }
 
 }

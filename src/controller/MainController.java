@@ -11,6 +11,7 @@ public class MainController {
     private MenuController menuController;
 
     private GamePanel gamePanel;
+    private GameController gameController;
 
 
     public MainController() {
@@ -24,5 +25,6 @@ public class MainController {
     public void startGame() {
         this.gamePanel = new GamePanel();
         this.mainView.addGamePanel(this.gamePanel);
+        this.gameController = new GameController(this, this.gamePanel);
     }
 }
