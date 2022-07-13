@@ -1,11 +1,44 @@
 package view;
 
+import constants.Constants;
+
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 
 public class MenuPanel extends JPanel {
-    public MenuPanel() {
-        this.setBounds(0,0,800, 600);
-        this.setLayout(null);
 
+    private JButton startButton;
+
+    public MenuPanel() {
+        this.setBounds(0,0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
+        this.setLayout(null);
+        this.drawMenu();
+    }
+
+/*    public void paintComponent(Graphics g){
+        super.paintComponent(g); //override
+        doDrawing();
+    }
+
+    public void doDrawing() {
+        // Creiamo il menù
+        this.drawMenu();
+        // Metodo che sincronizza tutte le componenti grafiche
+        Toolkit.getDefaultToolkit().sync();
+    }*/
+
+    private void drawMenu() {
+        this.startButton = new JButton("Start Normal Mode");
+        this.startButton.setBackground(Color.WHITE);
+        this.startButton.setForeground(Color.BLACK);
+        this.startButton.setBorder(new LineBorder(Color.BLACK));
+        this.startButton.setBounds(100, 200, 440, 80 );
+        this.startButton.setFocusPainted(false);
+        this.add(this.startButton);
+    }
+
+    public JButton getStartButton() {
+        return this.startButton;
     }
 }

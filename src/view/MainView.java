@@ -1,5 +1,7 @@
 package view;
 
+import constants.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -30,7 +32,8 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
 
     public void addMenuPanel(MenuPanel mp){
         this.layeredPane.add(mp, JLayeredPane.DEFAULT_LAYER);
-        this.layeredPane.setPreferredSize( new Dimension(800,600));
+        this.layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
+        this.pack();
     }
 
 }
