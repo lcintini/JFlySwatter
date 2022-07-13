@@ -16,18 +16,6 @@ public class MenuPanel extends JPanel {
         this.drawMenu();
     }
 
-/*    public void paintComponent(Graphics g){
-        super.paintComponent(g); //override
-        doDrawing();
-    }
-
-    public void doDrawing() {
-        // Creiamo il menù
-        this.drawMenu();
-        // Metodo che sincronizza tutte le componenti grafiche
-        Toolkit.getDefaultToolkit().sync();
-    }*/
-
     private void drawMenu() {
         this.startButton = new JButton("Start Normal Mode");
         this.startButton.setBackground(Color.WHITE);

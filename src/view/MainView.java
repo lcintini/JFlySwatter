@@ -31,9 +31,21 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     }
 
     public void addMenuPanel(MenuPanel mp){
+        //quando aggiungo il pannello del menu, prima devo togliere tutti i pannelli precedentemente inseriti
+        this.layeredPane.removeAll();
         this.layeredPane.add(mp, JLayeredPane.DEFAULT_LAYER);
         this.layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         this.pack();
     }
+
+    public void addGamePanel(GamePanel gp){
+        this.layeredPane.removeAll();
+        this.layeredPane.add(gp, JLayeredPane.PALETTE_LAYER);
+        this.layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
+        this.pack();
+    }
+
+
+
 
 }
