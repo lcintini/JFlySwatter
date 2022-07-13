@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JFrame {  //posso ereditare tutti i metodi della classe JFrame che non sono private
+    //gestisce la sovrapposizione di pannelli
     private JLayeredPane layeredPane;
 
     public MainView() throws HeadlessException {
@@ -13,6 +14,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.initializeView();
     }
 
+    // la finestra
     private void initializeView() {
         //inserisco nel JFrame un nuovo elemento di tipo JPanel
         this.setContentPane(this.layeredPane);

@@ -14,7 +14,7 @@ public class GamePanel extends JPanel {
         this.setLayout(null);
     }
 
-    //viene richiamato molte volte al secondo dal thread di java che si occupa della grafica non da noi e fa apparire sullo schermo le varie componenti grafiche(come un libricino che sfogli velocemnete)
+    //viene richiamato molte volte al secondo dal thread di java che si occupa della grafica (non da noi) e fa apparire sullo schermo le varie componenti grafiche(come un libricino che sfogli velocemnete)
     public void paintComponent(Graphics g) {
         super.paintComponent(g); //override
         doDrawing(g);
