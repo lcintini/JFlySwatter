@@ -17,6 +17,8 @@ public class MenuPanel extends JPanel {
 
 
     public MenuPanel() {
+        Color celeste= new Color(0,170,220);
+        this.setBackground(celeste);
         this.setBounds(0,0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
         this.drawMenu();
