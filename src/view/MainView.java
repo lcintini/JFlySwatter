@@ -30,6 +30,10 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.setLocationRelativeTo(null);
         //non posso ridimenzionarla
         this.setResizable(false);
+        this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+                new ImageIcon("resources/images/swap1.png").getImage(),
+                new Point(0,0),"custom cursor"));
+        this.pack();
     }
 
     public void addMenuPanel(MenuPanel mp){

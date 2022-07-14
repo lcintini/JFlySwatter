@@ -21,6 +21,7 @@ public class GamePanel extends JPanel {
                 gameController.handleClick(me.getX(),me.getY());
             }
         });
+
     }
 
     //viene richiamato molte volte al secondo dal thread di java che si occupa della grafica (non da noi) e fa apparire sullo schermo le varie componenti grafiche(come un libricino che sfogli velocemnete)
