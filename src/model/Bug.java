@@ -1,5 +1,7 @@
 package model;
 
+import constants.Constants;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -20,8 +22,64 @@ public abstract class Bug {
         this.imgIndex = 1;
     }
 
-    public abstract void move();
+    public void move(){
+        int speed = this.dx;
 
+        switch(this.direction){
+            case NORTH:
+                y -= speed;
+                break;
+            case SOUTH:
+                y += speed;
+                break;
+            case WEST:
+                x -= speed;
+                break;
+            case EAST:
+                x += speed;
+                break;
+            case NORTHEAST:
+                y-= speed;
+                x+= speed;
+                break;
+            case NORTHWEST:
+                y-= speed;
+                x-= speed;
+                break;
+            case SOUTHEAST:
+                y+= speed;
+                x+= speed;
+                break;
+            case SOUTHWEST:
+                y+= speed;
+                x-= speed;
+                break;
+        }
+        if(this.isInBorderX1() || this.isInBorderX2() || this.isInBorderY1() || this.isInBorderY2()){
+            this.changeDirectionBorder();
+        } else {
+            this.changeDirection();
+        }
+    }
+
+    public abstract void changeDirectionBorder();
+
+    public abstract void changeDirection();
+
+    public boolean isInBorderX1(){
+        return (x>0 && x <= Constants.BORDER_X1);
+    }
+
+    public boolean isInBorderX2(){
+        return (x+Constants.BORDER_X1>= Constants.BORDER_X2 && x<= Constants.BOARD_WIDTH);
+    }
+
+    public boolean isInBorderY1(){
+        return (y>0 && y <= Constants.BORDER_Y1);
+    }
+    public boolean isInBorderY2(){
+        return (y+Constants.BORDER_X1>= Constants.BORDER_Y2 && y<= Constants.BOARD_HEIGHT);
+    }
     public Image getImg() {
         imgIndex+=0.5;
         if(imgIndex >= images.size()){

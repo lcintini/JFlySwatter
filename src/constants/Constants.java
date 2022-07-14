@@ -8,5 +8,9 @@ public class Constants {
     public static final int GAME_SPEED = 10;
 
     public static final int POINTS_FLY = 1;
+    public static final int BORDER_X1 = 30;
+    public static final int BORDER_X2 = 610;
+    public static final int BORDER_Y1 = 30;
+    public static final int BORDER_Y2 = 350;
 
 }

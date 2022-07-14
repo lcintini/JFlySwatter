@@ -1,6 +1,7 @@
 package controller;
 
 import view.GamePanel;
+import view.HUDPanel;
 import view.MainView;
 import view.MenuPanel;
 
@@ -13,6 +14,8 @@ public class MainController {
     private GamePanel gamePanel;
     private GameController gameController;
 
+    private HUDPanel hudPanel;
+
 
     public MainController() {
         this.mainView = new MainView();
@@ -24,7 +27,9 @@ public class MainController {
 
     public void startGame() {
         this.gamePanel = new GamePanel();
-        this.mainView.addGamePanel(this.gamePanel);
-        this.gameController = new GameController(this, this.gamePanel);
+        this.hudPanel = new HUDPanel();
+        this.mainView.addGamePanel(this.gamePanel,this.hudPanel);
+        this.gameController = new GameController(this, this.gamePanel,this.hudPanel);
+
     }
 }

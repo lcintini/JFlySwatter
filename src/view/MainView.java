@@ -40,9 +40,11 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.pack();
     }
 
-    public void addGamePanel(GamePanel gp){
+    public void addGamePanel(GamePanel gp, HUDPanel hp){
         this.layeredPane.removeAll();
-        this.layeredPane.add(gp, JLayeredPane.PALETTE_LAYER);
+        this.layeredPane.add(gp, JLayeredPane.DEFAULT_LAYER);
+        hp.setOpaque(false);
+        this.layeredPane.add(hp, JLayeredPane.PALETTE_LAYER);
         this.layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         this.pack();
     }
