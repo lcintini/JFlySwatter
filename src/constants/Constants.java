@@ -13,4 +13,6 @@ public class Constants {
     public static final int BORDER_Y1 = 30;
     public static final int BORDER_Y2 = 350;
 
+    public static final int FLY_HEIGHT = 20;
+    public static final int FLY_WIDTH = 34;
 }

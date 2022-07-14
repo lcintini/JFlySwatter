@@ -16,12 +16,15 @@ public class GameController {
     // primo oggetto di Java Swing utilizzato per scandire i cicli ( update-repaint) di chiamata al paint component
     private Timer timer;
     private Fly fly;
+    private int count;
 
     public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel) {
 
         this.mainController = mainController;
         this.gamePanel = gamePanel;
         this.hudPanel = hudPanel;
+        this.gamePanel.setGameController(this);
+        this.count = 30;
         this.initializeGame();
     }
 
@@ -45,5 +48,13 @@ public class GameController {
 
         this.fly.move();
     }
-
+    //tiene la posizione del mouse
+    public void handleClick( int x, int y){
+        if (this.fly.isClicked(x,y)){
+            this.fly.die();
+            this.count--;
+            this.fly = new Fly(640,0, Direction.SOUTH);
+            this.gamePanel.addBug(fly);
+        }
+    }
 }

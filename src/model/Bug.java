@@ -15,6 +15,9 @@ public abstract class Bug {
     protected int points;
     protected Direction direction;
 
+    protected int height;
+    protected int width;
+
     public Bug(int x, int y, Direction direction) {
         this.x = x;
         this.y = y;
@@ -87,7 +90,12 @@ public abstract class Bug {
         }
         return images.get(((int) Math.floor(imgIndex))-1);
     }
+    public abstract void die();
 
+    public boolean isClicked(int x, int y){
+        return (x>=this.x && x<=this.x+this.width && y>=this.y && y<=this.y+this.height);
+
+    }
     public int getX() {
         return x;
     }
