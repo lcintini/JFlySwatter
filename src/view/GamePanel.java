@@ -39,6 +39,7 @@ public class GamePanel extends JPanel {
 
     private void drawGame(Graphics g) {
         if(this.simpleBug != null){
+            //momento esatto in cui controlliamo il model
             g.drawImage(this.simpleBug.getImg(), this.simpleBug.getX(), this.simpleBug.getY(), this);
         }
     }
