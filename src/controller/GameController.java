@@ -47,6 +47,16 @@ public class GameController {
         System.out.println(this.timerLeft);
         this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
         //viene creato un thread specifico per la creazione di mosche e viene gestito con i semafori di java l'accesso all'array list per evitare collisioni (accesso concorrenziale)
+        this.createThreads();
+        this.startTime = System.currentTimeMillis();
+        this.timer.start();
+        this.flyCreator.start();
+        /*if(this.level > 1){
+            this.butterflyCreator.start();
+        }*/
+    }
+
+    public void createThreads(){
         this.flyCreator = new Thread(() -> {
             try {
                 Bug b = null;
@@ -79,9 +89,8 @@ public class GameController {
                 //
             }
         });
-        this.startTime = System.currentTimeMillis();
-        this.timer.start();
-        this.flyCreator.start();
+        // TODO Vespa
+        // TODO Farfalla
     }
 
     // start update-repaint
