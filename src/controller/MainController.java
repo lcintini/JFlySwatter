@@ -20,6 +20,10 @@ public class MainController {
 
     public MainController() {
         this.mainView = new MainView();
+        this.startMenu();
+    }
+
+    public void startMenu(){
         this.menuPanel = new MenuPanel();
         this.mainView.addMenuPanel(this.menuPanel);
         this.menuController = new MenuController(this, this.menuPanel);

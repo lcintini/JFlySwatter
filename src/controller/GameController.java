@@ -22,6 +22,10 @@ public class GameController {
     private int count;
     private int difficulty;
     private int level;
+    private Thread flyCreator;
+    private int timerLeft;
+    private long startTime;
+
 
     public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel, int difficulty, int firstLevel) {
 
@@ -31,15 +35,19 @@ public class GameController {
         this.gamePanel.setGameController(this);
         this.difficulty = difficulty;
         this.level = firstLevel;
-        this.count = (this.difficulty+1) * Constants.LOWER_BOUNDS_BUGS;
-        this.bugs = new ArrayList<>();
+        this.timer = new Timer(Constants.GAME_SPEED, new GameLoop(this));
         this.initializeGame();
     }
 
     private void initializeGame() {
-        this.timer = new Timer(Constants.GAME_SPEED, new GameLoop(this));
+        this.count = (this.difficulty+1) * Constants.LOWER_BOUNDS_BUGS;
+        this.bugs = new ArrayList<>();
+        this.hudPanel.getCount().setText("Count: "+ this.count);
+        this.timerLeft = (int)((1/((double)(this.difficulty+1)))* Constants.LOWER_BOUNDS_TIMER);
+        System.out.println(this.timerLeft);
+        this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
         //viene creato un thread specifico per la creazione di mosche e viene gestito con i semafori di java l'accesso all'array list per evitare collisioni (accesso concorrenziale)
-        Thread flyCreator = new Thread(() -> {
+        this.flyCreator = new Thread(() -> {
             try {
                 Bug b = null;
                 Random r=new Random();
@@ -64,14 +72,16 @@ public class GameController {
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
+                        Thread.sleep(500);
                     }
                 }
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                //
             }
         });
+        this.startTime = System.currentTimeMillis();
         this.timer.start();
-        flyCreator.start();
+        this.flyCreator.start();
     }
 
     // start update-repaint
@@ -88,7 +98,26 @@ public class GameController {
                 b.move();
             }
         }
+        this.handleTimer();
     }
+
+    private void handleTimer() {
+        if(System.currentTimeMillis() >= this.startTime +1000){
+            this.timerLeft--;
+            this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
+            this.startTime = System.currentTimeMillis();
+        }
+        if(this.timerLeft == 0){
+            this.timer.stop();
+            System.out.println("il gioco è finito");
+            // ferma il thread di creazione mosche
+            this.flyCreator.interrupt();
+            this.bugs = new ArrayList<>();
+            this.gamePanel.removeAllBugs();
+            this.mainController.startMenu();
+        }
+    }
+
     //tiene la posizione del mouse
     public void handleClick( int x, int y){
         Bug deadBug = null;
@@ -96,7 +125,8 @@ public class GameController {
             for (Bug b : this.bugs) {
                 if (b.isClicked(x, y)) {
                     b.die();
-                    this.count--;
+                    this.count-=b.getPoints();
+                    this.hudPanel.getCount().setText("Count: "+ this.count);
                     deadBug = b;
                 }
             }
@@ -104,6 +134,15 @@ public class GameController {
         if(deadBug != null){
             this.bugs.remove(deadBug);
             this.gamePanel.removeBug(deadBug);
+        }
+        if(this.count <= 0){
+            this.timer.stop();
+            this.level++;
+            // ferma il thread di creazione mosche
+            this.flyCreator.interrupt();
+            this.bugs = new ArrayList<>();
+            this.gamePanel.removeAllBugs();
+            this.initializeGame();
         }
     }
 }

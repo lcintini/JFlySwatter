@@ -40,17 +40,29 @@ public class GamePanel extends JPanel {
     }
 
     private void drawGame(Graphics g) {
-        for (Bug b:this.bugs) {
-            //momento esatto in cui controlliamo il model
-            g.drawImage(b.getImg(), b.getX(), b.getY(), this);
+        synchronized (this.bugs){
+            for (Bug b:this.bugs) {
+                //momento esatto in cui controlliamo il model
+                g.drawImage(b.getImg(), b.getX(), b.getY(), this);
+            }
         }
     }
 
     public void addBug(Bug bug) {
-        this.bugs.add(bug);
+        synchronized (this.bugs){
+            this.bugs.add(bug);
+        }
     }
     public void removeBug(Bug bug) {
-        this.bugs.remove(bug);
+        synchronized (this.bugs){
+            this.bugs.remove(bug);
+        };
+    }
+
+    public void removeAllBugs(){
+        synchronized (this.bugs){
+            this.bugs = new ArrayList<>();
+        }
     }
 
     public void setGameController(GameController gameController) {

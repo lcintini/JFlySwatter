@@ -18,4 +18,5 @@ public class Constants {
     public static final int FIRST_LEVEL= 1;
     public static final int LOWER_BOUNDS_BUGS = 15;
     public static final int FLY_SPEED = 1;
+    public static final int LOWER_BOUNDS_TIMER = 60;
 }
