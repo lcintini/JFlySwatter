@@ -4,6 +4,10 @@ import constants.Constants;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
+
+import static model.Direction.*;
+import static model.Direction.NORTH;
 
 public abstract class Bug {
     protected ArrayList<Image> images;
@@ -18,9 +22,11 @@ public abstract class Bug {
     protected int height;
     protected int width;
 
-    public Bug(int x, int y, Direction direction) {
+    public Bug(int x, int y, int dx, int dy, Direction direction) {
         this.x = x;
         this.y = y;
+        this.dx = dx;
+        this.dy = dy;
         this.direction = direction;
         this.imgIndex = 1;
     }
@@ -64,11 +70,67 @@ public abstract class Bug {
             this.changeDirection();
         }
     }
+    public void changeDirection(){
+        Direction[] nextDir = new Direction[3];
 
-    public abstract void changeDirectionBorder();
+        switch(this.direction){
+            case NORTH:
+                nextDir= new Direction[]{NORTH, NORTHEAST, NORTHWEST};
+                break;
+            case SOUTH:
+                nextDir= new Direction[]{SOUTH, SOUTHEAST, SOUTHWEST};
+                break;
+            case WEST:
+                nextDir= new Direction[]{WEST, NORTHWEST, SOUTHWEST};
+                break;
+            case EAST:
+                nextDir= new Direction[]{EAST, NORTHEAST, SOUTHEAST};
+                break;
+            case NORTHEAST:
+                nextDir= new Direction[]{NORTHEAST, NORTH, EAST};
+                break;
+            case NORTHWEST:
+                nextDir= new Direction[]{NORTHWEST, NORTH, WEST};
+                break;
+            case SOUTHEAST:
+                nextDir= new Direction[]{SOUTHEAST, SOUTH, EAST};
+                break;
+            case SOUTHWEST:
+                nextDir= new Direction[]{SOUTHWEST, SOUTH, WEST};
+                break;
+        }
+        Random r=new Random();
+        int randomNumber=r.nextInt(nextDir.length);
+        this.direction = nextDir[randomNumber];
 
-    public abstract void changeDirection();
-
+    }
+    public void changeDirectionBorder(){
+        if(this.isInBorderX1()){
+            if(this.isInBorderY1()){
+                this.direction = SOUTHEAST;
+            } else {
+                this.direction = EAST;
+            }
+        } else if(this.isInBorderX2()) {
+            if(this.isInBorderY2()){
+                this.direction = NORTHWEST;
+            } else {
+                this.direction = WEST;
+            }
+        } else if(this.isInBorderY1()){
+            if(this.isInBorderX2()){
+                this.direction = SOUTHWEST;
+            } else {
+                this.direction = SOUTH;
+            }
+        } else if(this.isInBorderY2()){
+            if(this.isInBorderX1()){
+                this.direction = NORTHEAST;
+            } else {
+                this.direction = NORTH;
+            }
+        }
+    }
     public boolean isInBorderX1(){
         return (x>0 && x <= Constants.BORDER_X1);
     }

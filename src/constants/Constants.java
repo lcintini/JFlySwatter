@@ -15,4 +15,7 @@ public class Constants {
 
     public static final int FLY_HEIGHT = 20;
     public static final int FLY_WIDTH = 34;
+    public static final int FIRST_LEVEL= 1;
+    public static final int LOWER_BOUNDS_BUGS = 15;
+    public static final int FLY_SPEED = 1;
 }

@@ -17,20 +17,24 @@ public class GameController {
     private Timer timer;
     private Fly fly;
     private int count;
+    private int difficulty;
+    private int level;
 
-    public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel) {
+    public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel, int difficulty, int firstLevel) {
 
         this.mainController = mainController;
         this.gamePanel = gamePanel;
         this.hudPanel = hudPanel;
         this.gamePanel.setGameController(this);
-        this.count = 30;
+        this.difficulty = difficulty;
+        this.level = firstLevel;
+        this.count = (this.difficulty+1) * Constants.LOWER_BOUNDS_BUGS;
         this.initializeGame();
     }
 
     private void initializeGame() {
         this.timer = new Timer(Constants.GAME_SPEED, new GameLoop(this));
-        this.fly = new Fly(640,0, Direction.SOUTH);
+        this.fly = new Fly(640,0, Direction.SOUTH, this.difficulty);
         this.gamePanel.addBug(fly);
         this.timer.start();
 
@@ -53,7 +57,7 @@ public class GameController {
         if (this.fly.isClicked(x,y)){
             this.fly.die();
             this.count--;
-            this.fly = new Fly(640,0, Direction.SOUTH);
+            this.fly = new Fly(640,0, Direction.SOUTH, this.difficulty);
             this.gamePanel.addBug(fly);
         }
     }

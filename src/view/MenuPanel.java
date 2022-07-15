@@ -65,4 +65,20 @@ public class MenuPanel extends JPanel {
     public JButton getStartButton() {
         return this.startButton;
     }
+
+    public JButton getRightArrowButton() {
+        return this.rightArrowButton;
+    }
+
+    public JButton getLeftArrowButton() {
+        return this.leftArrowButton;
+    }
+
+    public JButton getMusicButton() {
+        return this.musicButton;
+    }
+
+    public JButton getEffectsButton() {
+        return this.effectsButton;
+    }
 }
