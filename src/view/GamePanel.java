@@ -8,14 +8,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
-    private Bug simpleBug;
+    private ArrayList<Bug> bugs;
     private GameController gameController;
 
     public GamePanel() {
         this.setBounds(0, 0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
+        this.bugs = new ArrayList<>();
         this.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me){
                 gameController.handleClick(me.getX(),me.getY());
@@ -38,15 +40,17 @@ public class GamePanel extends JPanel {
     }
 
     private void drawGame(Graphics g) {
-        if(this.simpleBug != null){
+        for (Bug b:this.bugs) {
             //momento esatto in cui controlliamo il model
-            g.drawImage(this.simpleBug.getImg(), this.simpleBug.getX(), this.simpleBug.getY(), this);
+            g.drawImage(b.getImg(), b.getX(), b.getY(), this);
         }
     }
 
     public void addBug(Bug bug) {
-
-        this.simpleBug = bug;
+        this.bugs.add(bug);
+    }
+    public void removeBug(Bug bug) {
+        this.bugs.remove(bug);
     }
 
     public void setGameController(GameController gameController) {
