@@ -1,10 +1,7 @@
 package controller;
 
 import constants.Constants;
-import model.Bug;
-import model.Direction;
-import model.Fly;
-import model.Wasp;
+import model.*;
 import view.GamePanel;
 import view.HUDPanel;
 import view.PausePanel;
@@ -30,6 +27,7 @@ public class GameController {
     private int level;
     private Thread flyCreator;
     private Thread waspCreator;
+    private Thread butterflyCreator;
     private int timerLeft;
     private long startTime;
     private boolean musicEnable;
@@ -64,6 +62,7 @@ public class GameController {
         this.timer.start();
         this.flyCreator.start();
         this.waspCreator.start();
+        this.butterflyCreator.start();
         /*if(this.level > 1){
             this.butterflyCreator.start();
         }*/
@@ -131,7 +130,39 @@ public class GameController {
                 //
             }
         });
-        // TODO Farfalla
+        this.butterflyCreator = new Thread(() -> {
+            try {
+                Bug b = null;
+                Random r=new Random();
+                Thread.sleep(5000);
+                while(true){
+                    int size = 0;
+                    synchronized (this.bugs) {
+                        size = this.bugs.size();
+                    }
+                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                        int randX = r.nextInt(640);
+                        int randY = r.nextInt(30);
+                        synchronized (this.bugs) {
+                            b = new Butterfly(randX, randY, Direction.SOUTH, difficulty);
+                            bugs.add(b);
+                            gamePanel.addBug(b);
+                        }
+                        Thread.sleep(5000);
+                        randX = r.nextInt(640);
+                        randY = r.nextInt(30);
+                        synchronized (this.bugs) {
+                            b = new Butterfly(randX, 350 + randY, Direction.NORTH, difficulty);
+                            bugs.add(b);
+                            gamePanel.addBug(b);
+                        }
+                        Thread.sleep(5000);
+                    }
+                }
+            } catch (InterruptedException e) {
+                //
+            }
+        });
     }
 
     // start update-repaint
@@ -191,6 +222,7 @@ public class GameController {
             // ferma il thread di creazione mosche
             this.flyCreator.interrupt();
             this.waspCreator.interrupt();
+            this.butterflyCreator.interrupt();
             this.bugs = new ArrayList<>();
             this.gamePanel.removeAllBugs();
             this.initializeGame();
@@ -242,6 +274,7 @@ public class GameController {
     private void exitGame() {
         this.flyCreator.interrupt();
         this.waspCreator.interrupt();
+        this.butterflyCreator.interrupt();
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
         this.mainController.startMenu();

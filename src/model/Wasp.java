@@ -12,7 +12,7 @@ public class Wasp extends Bug{
 
     public Wasp(int x, int y, Direction direction, int difficulty) {
         super(x, y, Constants.WASP_SPEED * (difficulty +1), Constants.WASP_SPEED * (difficulty +1), direction);
-        this.points = Constants.POINTS_FLY;
+        this.points = Constants.POINTS_WASP;
         this.images = new ArrayList<>();
         ImageIcon imageIcon1 = new ImageIcon("resources/images/wasp1.png");
         ImageIcon imageIcon2 = new ImageIcon("resources/images/wasp2.png");
