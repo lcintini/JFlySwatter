@@ -15,9 +15,13 @@ public class Wasp extends Bug{
         this.points = Constants.POINTS_WASP;
         this.images = new ArrayList<>();
         ImageIcon imageIcon1 = new ImageIcon("resources/images/wasp1.png");
-        ImageIcon imageIcon2 = new ImageIcon("resources/images/wasp2.png");
+        ImageIcon imageIcon2 = new ImageIcon("resources/images/wasp1.png");
+        ImageIcon imageIcon3 = new ImageIcon("resources/images/wasp2.png");
+        ImageIcon imageIcon4 = new ImageIcon("resources/images/wasp2.png");
         this.images.add(imageIcon1.getImage());
         this.images.add(imageIcon2.getImage());
+        this.images.add(imageIcon3.getImage());
+        this.images.add(imageIcon4.getImage());
         this.height = Constants.WASP_HEIGHT;
         this.width = Constants.WASP_WIDTH;
     }
@@ -31,15 +35,13 @@ public class Wasp extends Bug{
     public void changeDirectionBorder() {
         if (this.isInBorderX1() && this.direction == WEST) {
             this.direction = EAST;
-            this.x -= 5;
-            this.y += 7;
-            System.out.println("la vespa sta in x1");
+            this.x -= 50;
+            this.y += 70;
         }
         else if (this.isInBorderX2() && this.direction == EAST){
             this.direction = WEST;
-            this.x += 5;
-            this.y -= 7;
-            System.out.println("la vespa sta in x2");
+            this.x += 50;
+            this.y += 70;
         }
     }
 

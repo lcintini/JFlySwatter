@@ -24,7 +24,7 @@ public class Constants {
     public static final int FIRST_LEVEL= 1;
     public static final int LOWER_BOUNDS_BUGS = 15;
     public static final int FLY_SPEED = 1;
-    public static final int WASP_SPEED = 4;
+    public static final int WASP_SPEED = 6;
     public static final int BUTTERFLY_SPEED = 3;
     public static final int LOWER_BOUNDS_TIMER = 60;
 

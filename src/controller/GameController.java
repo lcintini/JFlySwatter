@@ -113,13 +113,13 @@ public class GameController {
                     }
                     if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
                         synchronized (this.bugs) {
-                            b = new Wasp(0, 0, Direction.EAST, difficulty);
+                            b = new Wasp(0, Constants.BORDER_Y1, Direction.EAST, difficulty);
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
                         Thread.sleep(5000);
                         synchronized (this.bugs) {
-                            b = new Wasp(Constants.BOARD_WIDTH, 350, Direction.WEST, difficulty);
+                            b = new Wasp(Constants.BOARD_WIDTH, Constants.BORDER_Y2-Constants.WASP_HEIGHT, Direction.WEST, difficulty);
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
