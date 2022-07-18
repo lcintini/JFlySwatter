@@ -6,8 +6,11 @@ import model.Direction;
 import model.Fly;
 import view.GamePanel;
 import view.HUDPanel;
+import view.PausePanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,6 +19,7 @@ public class GameController {
     private MainController mainController;
     private GamePanel gamePanel;
     private HUDPanel hudPanel;
+    private PausePanel pausePanel;
     // primo oggetto di Java Swing utilizzato per scandire i cicli ( update-repaint) di chiamata al paint component
     private Timer timer;
     private ArrayList<Bug> bugs;
@@ -25,6 +29,8 @@ public class GameController {
     private Thread flyCreator;
     private int timerLeft;
     private long startTime;
+    private boolean musicEnable;
+    private boolean effectEnable;
 
 
     public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel, int difficulty, int firstLevel) {
@@ -36,6 +42,8 @@ public class GameController {
         this.difficulty = difficulty;
         this.level = firstLevel;
         this.timer = new Timer(Constants.GAME_SPEED, new GameLoop(this));
+        this.musicEnable = true;
+        this.effectEnable = true;
         this.initializeGame();
     }
 
@@ -66,7 +74,7 @@ public class GameController {
                     synchronized (this.bugs) {
                         size = this.bugs.size();
                     }
-                    if (size <= 10 * (difficulty + 1)-2) {
+                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
                         int randX = r.nextInt(640);
                         int randY = r.nextInt(30);
                         synchronized (this.bugs) {
@@ -120,10 +128,7 @@ public class GameController {
             this.timer.stop();
             System.out.println("il gioco è finito");
             // ferma il thread di creazione mosche
-            this.flyCreator.interrupt();
-            this.bugs = new ArrayList<>();
-            this.gamePanel.removeAllBugs();
-            this.mainController.startMenu();
+            this.exitGame();
         }
     }
 
@@ -153,5 +158,54 @@ public class GameController {
             this.gamePanel.removeAllBugs();
             this.initializeGame();
         }
+    }
+
+    public void pauseGame(){
+        this.timer.stop();
+        this.pausePanel = new PausePanel(musicEnable, effectEnable);
+        JButton resumeButton= this.pausePanel.getResumeButton();
+        resumeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resumeGame();
+            }
+        });
+        JButton exitButton= this.pausePanel.getExitButton();
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exitGame();
+            }
+        });
+        JButton musicButton= this.pausePanel.getMusicButton();
+        musicButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                musicEnable = !musicEnable;
+                pausePanel.setMusicEnable(musicEnable);
+            }
+        });
+        JButton effectsButton= this.pausePanel.getEffectsButton();
+        effectsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                effectEnable = !effectEnable;
+                pausePanel.setEffectEnable(effectEnable);
+            }
+        });
+        this.mainController.pauseGame(this.pausePanel);
+    }
+
+
+    private void resumeGame() {
+        this.mainController.resumeGame(this.pausePanel);
+        this.timer.start();
+
+    }
+    private void exitGame() {
+        this.flyCreator.interrupt();
+        this.bugs = new ArrayList<>();
+        this.gamePanel.removeAllBugs();
+        this.mainController.startMenu();
     }
 }

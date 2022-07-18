@@ -1,10 +1,7 @@
 package controller;
 
 import constants.Constants;
-import view.GamePanel;
-import view.HUDPanel;
-import view.MainView;
-import view.MenuPanel;
+import view.*;
 
 public class MainController {
 
@@ -36,5 +33,13 @@ public class MainController {
         this.mainView.addGamePanel(this.gamePanel,this.hudPanel);
         this.gameController = new GameController(this, this.gamePanel,this.hudPanel, difficulty, Constants.FIRST_LEVEL);
 
+    }
+
+    public void pauseGame(PausePanel pausePanel) {
+        this.mainView.addPausePanel(pausePanel);
+    }
+
+    public void resumeGame(PausePanel pausePanel) {
+        this.mainView.removePausePanel(pausePanel);
     }
 }

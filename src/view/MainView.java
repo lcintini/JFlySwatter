@@ -54,6 +54,12 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     }
 
 
-
-
+    public void addPausePanel(PausePanel pausePanel) {
+        this.layeredPane.add(pausePanel, JLayeredPane.MODAL_LAYER);
+        this.pack();
+    }
+    public void removePausePanel(PausePanel pausePanel){
+        this.layeredPane.remove(pausePanel);
+        this.pack();
+    }
 }

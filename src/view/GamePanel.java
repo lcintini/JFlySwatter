@@ -6,6 +6,8 @@ import model.Bug;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -21,6 +23,12 @@ public class GamePanel extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me){
                 gameController.handleClick(me.getX(),me.getY());
+            }
+        });
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                enterPressed(e);
             }
         });
 
@@ -67,5 +75,10 @@ public class GamePanel extends JPanel {
 
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
+    }
+    public void enterPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.gameController.pauseGame();
+        }
     }
 }
