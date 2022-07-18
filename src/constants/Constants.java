@@ -11,6 +11,7 @@ public class Constants {
     public static final int POINTS_WASP = 3;
     public static final int POINTS_BUTTERFLY = 2;
     public static final int POINTS_LADYBUG = 5;
+    public static final int POINTS_COCKROACH = 10;
     public static final int BORDER_X1 = 30;
     public static final int BORDER_X2 = 610;
     public static final int BORDER_Y1 = 30;
@@ -24,12 +25,14 @@ public class Constants {
     public static final int BUTTERFLY_WIDTH = 50;
     public static final int LADYBUG_HEIGHT = 50;
     public static final int LADYBUG_WIDTH = 50;
+    public static final int COCKROACH_HEIGHT = 55;
+    public static final int COCKROACH_WIDTH = 55;
     public static final int FIRST_LEVEL= 1;
     public static final int LOWER_BOUNDS_BUGS = 15;
     public static final int FLY_SPEED = 1;
     public static final int WASP_SPEED = 6;
     public static final int BUTTERFLY_SPEED = 3;
     public static final int LADYBUG_SPEED = 2;
+    public static final int COCKROACH_SPEED = 1;
     public static final int LOWER_BOUNDS_TIMER = 60;
-
 }

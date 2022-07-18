@@ -29,6 +29,7 @@ public class GameController {
     private Thread waspCreator;
     private Thread butterflyCreator;
     private Thread ladybugCreator;
+    private Thread cockroachCreator;
     private int timerLeft;
     private long startTime;
     private boolean musicEnable;
@@ -65,6 +66,7 @@ public class GameController {
         this.waspCreator.start();
         this.butterflyCreator.start();
         this.ladybugCreator.start();
+        this.cockroachCreator.start();
         /*if(this.level > 1){
             this.butterflyCreator.start();
         }*/
@@ -198,6 +200,39 @@ public class GameController {
                 //
             }
         });
+        this.cockroachCreator = new Thread(() -> {
+            try {
+                Bug b = null;
+                Random r=new Random();
+                Thread.sleep(5000);
+                while(true){
+                    int size = 0;
+                    synchronized (this.bugs) {
+                        size = this.bugs.size();
+                    }
+                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                        int randX = r.nextInt(640);
+                        int randY = r.nextInt(30);
+                        synchronized (this.bugs) {
+                            b = new Cockroach(randX, randY, Direction.SOUTH, difficulty);
+                            bugs.add(b);
+                            gamePanel.addBug(b);
+                        }
+                        Thread.sleep(5000);
+                        randX = r.nextInt(640);
+                        randY = r.nextInt(30);
+                        synchronized (this.bugs) {
+                            b = new Cockroach(randX, 350 + randY, Direction.NORTH, difficulty);
+                            bugs.add(b);
+                            gamePanel.addBug(b);
+                        }
+                        Thread.sleep(5000);
+                    }
+                }
+            } catch (InterruptedException e) {
+                //
+            }
+        });
     }
 
     // start update-repaint
@@ -245,6 +280,16 @@ public class GameController {
                         this.timerLeft -= Constants.POINTS_LADYBUG;
                         this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
                     }
+                    else if(b.getPoints()==Constants.POINTS_COCKROACH){
+                        if(y < b.getY()+ Constants.COCKROACH_HEIGHT/2){
+                            this.count -= Constants.POINTS_COCKROACH/2;
+                            this.hudPanel.getCount().setText("Count: "+ this.count);
+                        }
+                        else{
+                            this.timerLeft -= Constants.POINTS_COCKROACH;
+                            this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
+                        }
+                    }
                     else{
                         this.count-=b.getPoints();
                         this.hudPanel.getCount().setText("Count: "+ this.count);
@@ -265,6 +310,7 @@ public class GameController {
             this.waspCreator.interrupt();
             this.butterflyCreator.interrupt();
             this.ladybugCreator.interrupt();
+            this.cockroachCreator.interrupt();
             this.bugs = new ArrayList<>();
             this.gamePanel.removeAllBugs();
             this.initializeGame();
@@ -318,6 +364,7 @@ public class GameController {
         this.waspCreator.interrupt();
         this.butterflyCreator.interrupt();
         this.ladybugCreator.interrupt();
+        this.cockroachCreator.interrupt();
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
         this.mainController.startMenu();
