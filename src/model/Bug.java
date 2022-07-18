@@ -31,7 +31,7 @@ public abstract class Bug {
         this.imgIndex = 1;
     }
 
-    public void move(){
+    public void move(int mouseX, int mouseY){
         int speed = this.dx;
 
         switch(this.direction){
@@ -67,10 +67,10 @@ public abstract class Bug {
         if(this.isInBorderX1() || this.isInBorderX2() || this.isInBorderY1() || this.isInBorderY2()){
             this.changeDirectionBorder();
         } else {
-            this.changeDirection();
+            this.changeDirection(mouseX, mouseY);
         }
     }
-    public void changeDirection(){
+    public void changeDirection(int mouseX, int mouseY){
         Direction[] nextDir = new Direction[3];
 
         switch(this.direction){

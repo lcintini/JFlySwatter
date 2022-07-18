@@ -4,11 +4,13 @@ import constants.Constants;
 import model.Bug;
 import model.Direction;
 import model.Fly;
+import model.Wasp;
 import view.GamePanel;
 import view.HUDPanel;
 import view.PausePanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -27,10 +29,12 @@ public class GameController {
     private int difficulty;
     private int level;
     private Thread flyCreator;
+    private Thread waspCreator;
     private int timerLeft;
     private long startTime;
     private boolean musicEnable;
     private boolean effectEnable;
+
 
 
     public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel, int difficulty, int firstLevel) {
@@ -59,6 +63,7 @@ public class GameController {
         this.startTime = System.currentTimeMillis();
         this.timer.start();
         this.flyCreator.start();
+        this.waspCreator.start();
         /*if(this.level > 1){
             this.butterflyCreator.start();
         }*/
@@ -97,7 +102,35 @@ public class GameController {
                 //
             }
         });
-        // TODO Vespa
+        this.waspCreator = new Thread(() -> {
+            try {
+                Bug b = null;
+                Random r=new Random();
+                Thread.sleep(8000);
+                while(true){
+                    int size = 0;
+                    synchronized (this.bugs) {
+                        size = this.bugs.size();
+                    }
+                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                        synchronized (this.bugs) {
+                            b = new Wasp(0, 0, Direction.EAST, difficulty);
+                            bugs.add(b);
+                            gamePanel.addBug(b);
+                        }
+                        Thread.sleep(5000);
+                        synchronized (this.bugs) {
+                            b = new Wasp(Constants.BOARD_WIDTH, 350, Direction.WEST, difficulty);
+                            bugs.add(b);
+                            gamePanel.addBug(b);
+                        }
+                        Thread.sleep(5000);
+                    }
+                }
+            } catch (InterruptedException e) {
+                //
+            }
+        });
         // TODO Farfalla
     }
 
@@ -110,9 +143,12 @@ public class GameController {
     }
 
     private void update() {
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        int mouseX = (int) p.getX();
+        int mouseY = (int) p.getY();
         synchronized (this.bugs){
             for (Bug b:this.bugs) {
-                b.move();
+                b.move(mouseX, mouseY);
             }
         }
         this.handleTimer();
@@ -154,6 +190,7 @@ public class GameController {
             this.level++;
             // ferma il thread di creazione mosche
             this.flyCreator.interrupt();
+            this.waspCreator.interrupt();
             this.bugs = new ArrayList<>();
             this.gamePanel.removeAllBugs();
             this.initializeGame();
@@ -204,6 +241,7 @@ public class GameController {
     }
     private void exitGame() {
         this.flyCreator.interrupt();
+        this.waspCreator.interrupt();
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
         this.mainController.startMenu();

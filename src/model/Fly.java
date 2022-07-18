@@ -26,8 +26,6 @@ public class Fly extends Bug{
         this.images.add(imageIcon4.getImage());
         this.images.add(imageIcon5.getImage());
         this.images.add(imageIcon6.getImage());
-        this.dx = 1;
-        this.dy = 1;
         this.height = Constants.FLY_HEIGHT;
         this.width = Constants.FLY_WIDTH;
     }
