@@ -28,6 +28,7 @@ public class GameController {
     private Thread flyCreator;
     private Thread waspCreator;
     private Thread butterflyCreator;
+    private Thread ladybugCreator;
     private int timerLeft;
     private long startTime;
     private boolean musicEnable;
@@ -63,6 +64,7 @@ public class GameController {
         this.flyCreator.start();
         this.waspCreator.start();
         this.butterflyCreator.start();
+        this.ladybugCreator.start();
         /*if(this.level > 1){
             this.butterflyCreator.start();
         }*/
@@ -163,6 +165,39 @@ public class GameController {
                 //
             }
         });
+        this.ladybugCreator = new Thread(() -> {
+            try {
+                Bug b = null;
+                Random r=new Random();
+                Thread.sleep(5000);
+                while(true){
+                    int size = 0;
+                    synchronized (this.bugs) {
+                        size = this.bugs.size();
+                    }
+                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                        int randX = r.nextInt(640);
+                        int randY = r.nextInt(30);
+                        synchronized (this.bugs) {
+                            b = new Ladybug(randX, randY, Direction.SOUTH, difficulty);
+                            bugs.add(b);
+                            gamePanel.addBug(b);
+                        }
+                        Thread.sleep(5000);
+                        randX = r.nextInt(640);
+                        randY = r.nextInt(30);
+                        synchronized (this.bugs) {
+                            b = new Ladybug(randX, 350 + randY, Direction.NORTH, difficulty);
+                            bugs.add(b);
+                            gamePanel.addBug(b);
+                        }
+                        Thread.sleep(5000);
+                    }
+                }
+            } catch (InterruptedException e) {
+                //
+            }
+        });
     }
 
     // start update-repaint
@@ -206,8 +241,14 @@ public class GameController {
             for (Bug b : this.bugs) {
                 if (b.isClicked(x, y)) {
                     b.die();
-                    this.count-=b.getPoints();
-                    this.hudPanel.getCount().setText("Count: "+ this.count);
+                    if(b.getPoints()==Constants.POINTS_LADYBUG){
+                        this.timerLeft -= Constants.POINTS_LADYBUG;
+                        this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
+                    }
+                    else{
+                        this.count-=b.getPoints();
+                        this.hudPanel.getCount().setText("Count: "+ this.count);
+                    }
                     deadBug = b;
                 }
             }
@@ -223,6 +264,7 @@ public class GameController {
             this.flyCreator.interrupt();
             this.waspCreator.interrupt();
             this.butterflyCreator.interrupt();
+            this.ladybugCreator.interrupt();
             this.bugs = new ArrayList<>();
             this.gamePanel.removeAllBugs();
             this.initializeGame();
@@ -275,6 +317,7 @@ public class GameController {
         this.flyCreator.interrupt();
         this.waspCreator.interrupt();
         this.butterflyCreator.interrupt();
+        this.ladybugCreator.interrupt();
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
         this.mainController.startMenu();

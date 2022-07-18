@@ -10,6 +10,7 @@ public class Butterfly extends Bug {
 
     public Butterfly(int x, int y, Direction direction, int difficulty) {
         super(x, y, Constants.BUTTERFLY_SPEED * (difficulty +1), Constants.BUTTERFLY_SPEED * (difficulty +1), direction);
+        System.out.println(this.dx);
         this.points = Constants.POINTS_BUTTERFLY;
         this.images = new ArrayList<>();
         ImageIcon imageIcon1 = new ImageIcon("resources/images/butterfly1.png");
@@ -26,17 +27,20 @@ public class Butterfly extends Bug {
         this.images.add(imageIcon6.getImage());
         this.height = Constants.BUTTERFLY_HEIGHT;
         this.width = Constants.BUTTERFLY_WIDTH;
+        this.scared = false;
     }
 
     @Override
     public void changeDirection(int mouseX, int mouseY) {
         //controlla se un punto è all'interno del cerchio
-        boolean checkCircle = Math.pow(this.x - mouseX,2) + Math.pow(this.y - mouseY,2) < Math.pow(50,2);
+        boolean checkCircle = Math.pow(this.x - mouseX,2) + Math.pow(this.y - mouseY,2) < Math.pow(100,2);
         if(checkCircle){
+            System.out.println(this.scared);
             if(!this.scared) {
                 this.scared = true;
                 this.dx *= 4;
                 this.dy *= 4;
+                System.out.println(this.dx);
             }
             this.changeDirButterfly(mouseX, mouseY);
         }
