@@ -33,7 +33,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         //non posso ridimenzionarla
         this.setResizable(false);
         this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-                new ImageIcon("resources/images/swap1.png").getImage(),
+                Swatter.getImg(),
                 new Point(0,0),"custom cursor"));
         this.pack();
     }

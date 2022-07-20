@@ -12,6 +12,7 @@ public class Swatter {
     private static boolean swatAnimation;
 
     public static void createSwatter() {
+        imgIndex=1;
         imgsNormal = new ArrayList<>();
         ImageIcon imageIcon1 = new ImageIcon("resources/images/swap1.png");
         ImageIcon imageIcon2 = new ImageIcon("resources/images/swap1.png");
@@ -56,7 +57,7 @@ public class Swatter {
 
     public static Image getImg() {
         if (swatAnimation) {
-            imgIndex += 0.25;
+            imgIndex += 0.5;
             if (imgIndex >= imgsSwat.size()) {
                 imgIndex = 1;
                 swatAnimation = false;
@@ -64,7 +65,7 @@ public class Swatter {
             }
             return imgsSwat.get(((int) Math.floor(imgIndex)) - 1);
         } else if (normalAnimation) {
-            imgIndex += 0.25;
+            imgIndex += 0.5;
             if (imgIndex >= imgsNormal.size()) {
                 imgIndex = 1;
                 normalAnimation = false;
@@ -75,10 +76,10 @@ public class Swatter {
         return imgsSwat.get(1);
     }
     public static void setNormalAnimation(boolean normalAnimation) {
-        normalAnimation = normalAnimation;
+        Swatter.normalAnimation = normalAnimation;
     }
 
     public static void setSwatAnimation(boolean swatAnimation) {
-        swatAnimation = swatAnimation;
+        Swatter.swatAnimation = swatAnimation;
     }
 }
