@@ -45,9 +45,4 @@ public class Ladybug extends Bug{
         this.height = Constants.LADYBUG_HEIGHT;
         this.width = Constants.LADYBUG_WIDTH;
     }
-
-    @Override
-    public void die() {
-
-    }
 }

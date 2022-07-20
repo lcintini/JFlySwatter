@@ -14,7 +14,6 @@ public class MenuController {
     private MainController mainController;
     private MenuPanel menuPanel;
     private int difficulty;
-    private Clip clip;
     private boolean musicEnable;
     private boolean effectsEnable;
 
@@ -30,36 +29,20 @@ public class MenuController {
 
     private void initializeMenu() {
         String[] difficulties = {"Easy","Normal","Hard"};
-        String soundName = "resources/sounds/slap.wav";
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-            this.clip = AudioSystem.getClip();
-            this.clip.open(audioInputStream);
-            //non supporta l'audio
-        } catch (UnsupportedAudioFileException | LineUnavailableException e) {
-            throw new RuntimeException(e);
-            //non legge il file
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         JButton startButton= this.menuPanel.getStartButton();
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(effectsEnable) {
-                    clip.start();
-                }
-                mainController.startGame(difficulty);
+                playEffects();
+                mainController.startGame(difficulty, effectsEnable, musicEnable);
             }
         });
         JButton rightArrowButton= this.menuPanel.getRightArrowButton();
         rightArrowButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(effectsEnable) {
-                    clip.start();
-                }
-                difficulty = (difficulty +1)%3; //modulo per gestire il livello circolarmente
+                playEffects();
+                difficulty = (Math.floorMod(difficulty+1, 3) + Math.abs(3)) % Math.abs(3); //modulo per gestire il livello circolarmente
                 startButton.setText("Start "+ difficulties[difficulty] + " Mode");
             }
         });
@@ -67,20 +50,16 @@ public class MenuController {
         leftArrowButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(effectsEnable) {
-                    clip.start();
-                }
-                difficulty = (difficulty -1)%3; //modulo per gestire il livello circolarmente
-                startButton.setText("Start "+ difficulties[difficulty] + " Mode");;
+                playEffects();
+                difficulty =(Math.floorMod(difficulty-1, 3) + Math.abs(3)) % Math.abs(3); //modulo per gestire il livello circolarmente
+                startButton.setText("Start "+ difficulties[difficulty] + " Mode");
             }
         });
         JButton musicButton= this.menuPanel.getMusicButton();
         musicButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(effectsEnable) {
-                    clip.start();
-                }
+                playEffects();
                 musicEnable = !musicEnable;
                 menuPanel.setMusicEnable(musicEnable);
             }
@@ -90,13 +69,28 @@ public class MenuController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 effectsEnable = !effectsEnable;
-                if(effectsEnable) {
-                    clip.start();
-                }
+                playEffects();
                 menuPanel.setEffectEnable(effectsEnable);
             }
         });
 
+    }
+    public void playEffects() {
+        if (this.effectsEnable) {
+            String soundName = "resources/sounds/slap.wav";
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+                //non supporta l'audio
+            } catch (UnsupportedAudioFileException | LineUnavailableException e) {
+                throw new RuntimeException(e);
+                //non legge il file
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 

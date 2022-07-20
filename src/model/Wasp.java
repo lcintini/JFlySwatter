@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import static model.Direction.EAST;
 import static model.Direction.WEST;
 
-public class Wasp extends Bug{
+public class Wasp extends Bug {
 
     public Wasp(int x, int y, Direction direction, int difficulty) {
-        super(x, y, Constants.WASP_SPEED * (difficulty +1), Constants.WASP_SPEED * (difficulty +1), direction);
+        super(x, y, Constants.WASP_SPEED * (difficulty + 1), Constants.WASP_SPEED * (difficulty + 1), direction);
         this.points = Constants.POINTS_WASP;
         this.images = new ArrayList<>();
         ImageIcon imageIcon1 = new ImageIcon("resources/images/wasp1.png");
@@ -37,16 +37,10 @@ public class Wasp extends Bug{
             this.direction = EAST;
             this.x -= 50;
             this.y += 70;
-        }
-        else if (this.isInBorderX2() && this.direction == EAST){
+        } else if (this.isInBorderX2() && this.direction == EAST) {
             this.direction = WEST;
             this.x += 50;
             this.y += 70;
         }
-    }
-
-    @Override
-    public void die() {
-
     }
 }

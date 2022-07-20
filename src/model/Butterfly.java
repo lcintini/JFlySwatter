@@ -69,8 +69,4 @@ public class Butterfly extends Bug {
         }
     }
 
-    @Override
-    public void die() {
-
-    }
 }

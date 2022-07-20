@@ -6,10 +6,13 @@ import view.GamePanel;
 import view.HUDPanel;
 import view.PausePanel;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -32,11 +35,12 @@ public class GameController {
     private int timerLeft;
     private long startTime;
     private boolean musicEnable;
-    private boolean effectEnable;
+    private boolean effectsEnable;
+    private Clip musicClip;
 
 
 
-    public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel, int difficulty, int firstLevel) {
+    public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel, int difficulty, int firstLevel, boolean effectsEnable, boolean musicEnable) {
 
         this.mainController = mainController;
         this.gamePanel = gamePanel;
@@ -45,8 +49,8 @@ public class GameController {
         this.difficulty = difficulty;
         this.level = firstLevel;
         this.timer = new Timer(Constants.GAME_SPEED, new GameLoop(this));
-        this.musicEnable = true;
-        this.effectEnable = true;
+        this.musicEnable = musicEnable;
+        this.effectsEnable = effectsEnable;
         this.initializeGame();
     }
 
@@ -64,6 +68,7 @@ public class GameController {
         for(Thread t: this.threadCreators){
             t.start();
         }
+        this.playMusic("bumblebee");
     }
 
     public void createThreads(){
@@ -266,9 +271,11 @@ public class GameController {
             this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
             this.startTime = System.currentTimeMillis();
         }
+        //sconfitta
         if(this.timerLeft <= 0){
             this.timer.stop();
             System.out.println("il gioco è finito");
+            this.stopMusic();
             // ferma il thread di creazione mosche
             this.hudPanel.printGameOver();
             try {
@@ -288,6 +295,7 @@ public class GameController {
             for (Bug b : this.bugs) {
                 if (b.isClicked(x, y)) {
                     b.die();
+                    this.playEffects("slap");
                     if(b.getPoints()==Constants.POINTS_LADYBUG){
                         this.timerLeft -= Constants.POINTS_LADYBUG;
                         this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
@@ -314,7 +322,9 @@ public class GameController {
             this.bugs.remove(deadBug);
             this.gamePanel.removeBug(deadBug);
         }
+        //vincita
         if(this.count <= 0) {
+            this.stopMusic();
             this.timer.stop();
             this.level++;
             // ferma il thread di creazione mosche
@@ -335,12 +345,14 @@ public class GameController {
     }
 
     public void pauseGame(){
+        this.stopMusic();
         this.timer.stop();
-        this.pausePanel = new PausePanel(musicEnable, effectEnable);
+        this.pausePanel = new PausePanel(musicEnable, effectsEnable);
         JButton resumeButton= this.pausePanel.getResumeButton();
         resumeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                playEffects("slap");
                 resumeGame();
             }
         });
@@ -348,6 +360,7 @@ public class GameController {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                playEffects("slap");
                 exitGame();
             }
         });
@@ -355,6 +368,7 @@ public class GameController {
         musicButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                playEffects("slap");
                 musicEnable = !musicEnable;
                 pausePanel.setMusicEnable(musicEnable);
             }
@@ -363,8 +377,9 @@ public class GameController {
         effectsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                effectEnable = !effectEnable;
-                pausePanel.setEffectEnable(effectEnable);
+                effectsEnable = !effectsEnable;
+                playEffects("slap");
+                pausePanel.setEffectEnable(effectsEnable);
             }
         });
         this.mainController.pauseGame(this.pausePanel);
@@ -373,6 +388,7 @@ public class GameController {
 
     private void resumeGame() {
         this.mainController.resumeGame(this.pausePanel);
+        this.playMusic("bumblebee");
         this.timer.start();
 
     }
@@ -383,5 +399,45 @@ public class GameController {
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
         this.mainController.startMenu();
+    }
+    public void playEffects(String sound) {
+        if (this.effectsEnable) {
+            String soundName = "resources/sounds/"+sound+".wav";
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+                //non supporta l'audio
+            } catch (UnsupportedAudioFileException | LineUnavailableException e) {
+                throw new RuntimeException(e);
+                //non legge il file
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    public void playMusic(String music) {
+        this.musicClip = null;
+        if (this.musicEnable) {
+            String soundName = "resources/music/"+music+".wav";
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+                this.musicClip = AudioSystem.getClip();
+                this.musicClip.open(audioInputStream);
+                this.musicClip.start();
+                //non supporta l'audio
+            } catch (UnsupportedAudioFileException | LineUnavailableException e) {
+                throw new RuntimeException(e);
+                //non legge il file
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    public void stopMusic(){
+        if(this.musicClip!= null) {
+            this.musicClip.stop();
+        }
     }
 }

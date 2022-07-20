@@ -29,9 +29,4 @@ public class Fly extends Bug{
         this.height = Constants.FLY_HEIGHT;
         this.width = Constants.FLY_WIDTH;
     }
-
-   public void die(){
-
-   }
-
 }

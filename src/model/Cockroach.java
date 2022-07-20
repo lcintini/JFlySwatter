@@ -54,9 +54,4 @@ public class Cockroach extends Bug{
         this.height = Constants.COCKROACH_HEIGHT;
         this.width = Constants.COCKROACH_WIDTH;
     }
-
-    @Override
-    public void die() {
-
-    }
 }

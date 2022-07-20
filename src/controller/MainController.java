@@ -27,11 +27,11 @@ public class MainController {
     }
 
 
-    public void startGame(int difficulty) {
+    public void startGame(int difficulty, boolean effectsEnable, boolean musicEnable) {
         this.gamePanel = new GamePanel();
         this.hudPanel = new HUDPanel();
         this.mainView.addGamePanel(this.gamePanel,this.hudPanel);
-        this.gameController = new GameController(this, this.gamePanel,this.hudPanel, difficulty, Constants.FIRST_LEVEL);
+        this.gameController = new GameController(this, this.gamePanel,this.hudPanel, difficulty, Constants.FIRST_LEVEL, effectsEnable, musicEnable);
 
     }
 
