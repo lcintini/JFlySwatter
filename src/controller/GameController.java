@@ -249,6 +249,7 @@ public class GameController {
     public void doOneLoop() {
         this.gamePanel.requestFocus();
         this.update();
+        this.mainController.nextCursor();
         this.gamePanel.repaint();
         this.hudPanel.repaint();
     }
@@ -291,10 +292,11 @@ public class GameController {
     //tiene la posizione del mouse
     public void handleClick( int x, int y){
         Bug deadBug = null;
+        Swatter.setNormalAnimation(true);
         synchronized (this.bugs) {
             for (Bug b : this.bugs) {
                 if (b.isClicked(x, y)) {
-                    b.die();
+                    Swatter.setSwatAnimation(true);
                     this.playEffects("slap");
                     if(b.getPoints()==Constants.POINTS_LADYBUG){
                         this.timerLeft -= Constants.POINTS_LADYBUG;

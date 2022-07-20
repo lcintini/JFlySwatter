@@ -1,6 +1,7 @@
 package view;
 
 import constants.Constants;
+import model.Swatter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
 
     public MainView() throws HeadlessException {
         this.layeredPane=new JLayeredPane();
+        Swatter.createSwatter();
         this.initializeView();
     }
 
@@ -60,6 +62,12 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     }
     public void removePausePanel(PausePanel pausePanel){
         this.layeredPane.remove(pausePanel);
+        this.pack();
+    }
+    public void nextCursor(){
+        this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+                Swatter.getImg(),
+                new Point(0,0),"custom cursor"));
         this.pack();
     }
 }

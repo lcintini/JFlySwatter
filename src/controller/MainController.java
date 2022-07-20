@@ -36,10 +36,15 @@ public class MainController {
     }
 
     public void pauseGame(PausePanel pausePanel) {
+
         this.mainView.addPausePanel(pausePanel);
     }
 
     public void resumeGame(PausePanel pausePanel) {
+
         this.mainView.removePausePanel(pausePanel);
+    }
+    public void nextCursor (){
+        this.mainView.nextCursor();
     }
 }
