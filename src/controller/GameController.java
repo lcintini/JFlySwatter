@@ -25,8 +25,7 @@ public class GameController {
     private int count;
     private int difficulty;
     private int level;
-    private Thread flyCreator;
-    private Thread waspCreator;
+    private ArrayList <Thread> threadCreators;
     private Thread butterflyCreator;
     private Thread ladybugCreator;
     private Thread cockroachCreator;
@@ -62,18 +61,13 @@ public class GameController {
         this.createThreads();
         this.startTime = System.currentTimeMillis();
         this.timer.start();
-        this.flyCreator.start();
-        this.waspCreator.start();
-        this.butterflyCreator.start();
-        this.ladybugCreator.start();
-        this.cockroachCreator.start();
-        /*if(this.level > 1){
-            this.butterflyCreator.start();
-        }*/
+        for(Thread t: this.threadCreators){
+            t.start();
+        }
     }
 
     public void createThreads(){
-        this.flyCreator = new Thread(() -> {
+        Thread flyCreator = new Thread(() -> {
             try {
                 Bug b = null;
                 Random r=new Random();
@@ -105,7 +99,7 @@ public class GameController {
                 //
             }
         });
-        this.waspCreator = new Thread(() -> {
+        Thread waspCreator = new Thread(() -> {
             try {
                 Bug b = null;
                 Random r=new Random();
@@ -134,7 +128,7 @@ public class GameController {
                 //
             }
         });
-        this.butterflyCreator = new Thread(() -> {
+        Thread butterflyCreator = new Thread(() -> {
             try {
                 Bug b = null;
                 Random r=new Random();
@@ -167,7 +161,7 @@ public class GameController {
                 //
             }
         });
-        this.ladybugCreator = new Thread(() -> {
+        Thread ladybugCreator = new Thread(() -> {
             try {
                 Bug b = null;
                 Random r=new Random();
@@ -200,7 +194,7 @@ public class GameController {
                 //
             }
         });
-        this.cockroachCreator = new Thread(() -> {
+        Thread cockroachCreator = new Thread(() -> {
             try {
                 Bug b = null;
                 Random r=new Random();
@@ -233,6 +227,17 @@ public class GameController {
                 //
             }
         });
+        this.threadCreators = new ArrayList<>();
+        this.threadCreators.add(flyCreator);
+        this.threadCreators.add(waspCreator);
+        this.threadCreators.add(butterflyCreator);
+        if(this.level >= 3){
+            this.threadCreators.add(ladybugCreator);
+        }
+        if(this.level >= 4 ){
+            this.threadCreators.add(cockroachCreator);
+        }
+
     }
 
     // start update-repaint
@@ -261,10 +266,17 @@ public class GameController {
             this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
             this.startTime = System.currentTimeMillis();
         }
-        if(this.timerLeft == 0){
+        if(this.timerLeft <= 0){
             this.timer.stop();
             System.out.println("il gioco è finito");
             // ferma il thread di creazione mosche
+            this.hudPanel.printGameOver();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            this.hudPanel.hideGameOver();
             this.exitGame();
         }
     }
@@ -302,17 +314,22 @@ public class GameController {
             this.bugs.remove(deadBug);
             this.gamePanel.removeBug(deadBug);
         }
-        if(this.count <= 0){
+        if(this.count <= 0) {
             this.timer.stop();
             this.level++;
             // ferma il thread di creazione mosche
-            this.flyCreator.interrupt();
-            this.waspCreator.interrupt();
-            this.butterflyCreator.interrupt();
-            this.ladybugCreator.interrupt();
-            this.cockroachCreator.interrupt();
+            for(Thread t: this.threadCreators){
+                t.interrupt();
+            }
             this.bugs = new ArrayList<>();
             this.gamePanel.removeAllBugs();
+            this.hudPanel.printVictory();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            this.hudPanel.hideVictory();
             this.initializeGame();
         }
     }
@@ -360,11 +377,9 @@ public class GameController {
 
     }
     private void exitGame() {
-        this.flyCreator.interrupt();
-        this.waspCreator.interrupt();
-        this.butterflyCreator.interrupt();
-        this.ladybugCreator.interrupt();
-        this.cockroachCreator.interrupt();
+        for(Thread t: this.threadCreators){
+            t.interrupt();
+        }
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
         this.mainController.startMenu();

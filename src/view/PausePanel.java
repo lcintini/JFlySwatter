@@ -67,18 +67,22 @@ public class PausePanel extends JPanel {
     }
 
     public JButton getResumeButton() {
+
         return this.resumeButton;
     }
 
     public JButton getExitButton() {
+
         return this.exitButton;
     }
 
     public JButton getMusicButton() {
+
         return this.musicButton;
     }
 
     public JButton getEffectsButton() {
+
         return this.effectsButton;
     }
 

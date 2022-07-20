@@ -13,7 +13,8 @@ public class MenuPanel extends JPanel {
     private JButton leftArrowButton;
     private JButton musicButton;
     private JButton effectsButton;
-
+    private boolean musicEnable;
+    private boolean effectEnable;
 
 
     public MenuPanel() {
@@ -21,6 +22,8 @@ public class MenuPanel extends JPanel {
         this.setBackground(celeste);
         this.setBounds(0,0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
+        this.musicEnable = true;
+        this.effectEnable = true;
         this.drawMenu();
     }
 
@@ -46,14 +49,22 @@ public class MenuPanel extends JPanel {
         this.leftArrowButton.setBounds(100, 290, 200, 50 );
         this.leftArrowButton.setFocusPainted(false);
         this.add(this.leftArrowButton);
-        this.musicButton = new JButton("Music ON/OFF");
+        if(this.musicEnable){
+            this.musicButton = new JButton("Music OFF");
+        }else{
+            this.musicButton = new JButton("Music ON");
+        }
         this.musicButton.setBackground(Color.WHITE);
         this.musicButton.setForeground(Color.BLACK);
         this.musicButton.setBorder(new LineBorder(Color.BLACK));
         this.musicButton.setBounds(100, 350, 200, 50 );
         this.musicButton.setFocusPainted(false);
         this.add(this.musicButton);
-        this.effectsButton = new JButton("Effects ON/OFF");
+        if(this.effectEnable){
+            this.effectsButton = new JButton("Effects OFF");
+        }else{
+            this.effectsButton = new JButton("Effects ON");
+        }
         this.effectsButton.setBackground(Color.WHITE);
         this.effectsButton.setForeground(Color.BLACK);
         this.effectsButton.setBorder(new LineBorder(Color.BLACK));
@@ -80,5 +91,22 @@ public class MenuPanel extends JPanel {
 
     public JButton getEffectsButton() {
         return this.effectsButton;
+    }
+    public void setMusicEnable(boolean musicEnable) {
+        this.musicEnable = musicEnable;
+        if(this.musicEnable){
+            this.musicButton.setText("Music OFF");
+        }else{
+            this.musicButton.setText("Music ON");
+        }
+    }
+
+    public void setEffectEnable(boolean effectEnable) {
+        this.effectEnable = effectEnable;
+        if(this.effectEnable){
+            this.effectsButton.setText("Effects OFF");
+        }else{
+            this.effectsButton.setText("Effects ON");
+        }
     }
 }
