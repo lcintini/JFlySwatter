@@ -37,6 +37,7 @@ public class GameController {
     private boolean musicEnable;
     private boolean effectsEnable;
     private Clip musicClip;
+    private int highScore;
 
 
 
@@ -58,6 +59,8 @@ public class GameController {
         this.count = (this.difficulty+1) * Constants.LOWER_BOUNDS_BUGS;
         this.bugs = new ArrayList<>();
         this.hudPanel.getCount().setText("Count: "+ this.count);
+        this.highScore = this.mainController.getHighScore();
+        this.hudPanel.printHighScore(this.highScore);
         this.timerLeft = (int)((1/((double)(this.difficulty+1)))* Constants.LOWER_BOUNDS_TIMER);
         System.out.println(this.timerLeft);
         this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
@@ -256,8 +259,8 @@ public class GameController {
 
     private void update() {
         Point p = MouseInfo.getPointerInfo().getLocation();
-        int mouseX = (int) p.getX();
-        int mouseY = (int) p.getY();
+        int mouseX = (int)(p.getX() - this.gamePanel.getLocationOnScreen().getX());
+        int mouseY = (int)(p.getY() - this.gamePanel.getLocationOnScreen().getY());
         synchronized (this.bugs){
             for (Bug b:this.bugs) {
                 b.move(mouseX, mouseY);
@@ -400,6 +403,7 @@ public class GameController {
         }
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
+        this.mainController.updateHighScore(this.level);
         this.mainController.startMenu();
     }
     public void playEffects(String sound) {

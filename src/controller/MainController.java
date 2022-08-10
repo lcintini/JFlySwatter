@@ -3,6 +3,8 @@ package controller;
 import constants.Constants;
 import view.*;
 
+import java.io.*;
+
 public class MainController {
 
     private MainView mainView;
@@ -14,10 +16,28 @@ public class MainController {
 
     private HUDPanel hudPanel;
 
+    private int highScore;
+
 
     public MainController() {
         this.mainView = new MainView();
+        this.highScore = 0;
+        this.readRecord();
         this.startMenu();
+    }
+
+    public void readRecord() {
+        BufferedReader in = null;
+        try {
+            in= new BufferedReader(new FileReader(Constants.HIGH_SCORE_PATH));
+            //prende una stringa e la converte in un numero
+            this.highScore = Integer.parseInt(in.readLine());
+            in.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void startMenu(){
@@ -46,5 +66,29 @@ public class MainController {
     }
     public void nextCursor (){
         this.mainView.nextCursor();
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
+    }
+
+    public void updateHighScore(int level) {
+        if(level > this.highScore){
+            this.highScore = level;
+            PrintWriter out = null;
+            //deve sovrascrivere il file
+            try {
+                out = new PrintWriter(new FileOutputStream(Constants.HIGH_SCORE_PATH , false));
+                out.print(this.highScore);
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

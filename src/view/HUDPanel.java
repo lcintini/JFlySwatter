@@ -11,6 +11,7 @@ public class HUDPanel extends JPanel {
     private JLabel timer;
     private JLabel gameOver;
     private JLabel victory;
+    private JLabel highScore;
 
     public HUDPanel() {
         this.setBounds(0, 0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
@@ -76,6 +77,11 @@ public class HUDPanel extends JPanel {
     public void hideVictory() {
         this.victory.setVisible(false);
         this.victory.paintImmediately(this.victory.getVisibleRect());
+    }
+    public void printHighScore(int highScore){
+        this.highScore = new JLabel("HIGHSCORE: "+ highScore);
+        this.highScore.setBounds(285, 400, 200, 50);
+        this.add(this.highScore);
     }
 
 
