@@ -19,25 +19,17 @@ import java.util.Random;
 
 public class GameController {
 
+
     private MainController mainController;
     private GamePanel gamePanel;
     private HUDPanel hudPanel;
     private PausePanel pausePanel;
+    private GameModel gameModel;
     // primo oggetto di Java Swing utilizzato per scandire i cicli ( update-repaint) di chiamata al paint component
     private Timer timer;
     private ArrayList<Bug> bugs;
-    private int count;
-    private int difficulty;
-    private int level;
     private ArrayList <Thread> threadCreators;
-    private int timerLeft;
-    private long startTime;
-    private boolean musicEnable;
-    private boolean effectsEnable;
     private Clip musicClip;
-    private int highScore;
-
-
 
     public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel, int difficulty, int firstLevel, boolean effectsEnable, boolean musicEnable) {
 
@@ -45,26 +37,23 @@ public class GameController {
         this.gamePanel = gamePanel;
         this.hudPanel = hudPanel;
         this.gamePanel.setGameController(this);
-        this.difficulty = difficulty;
-        this.level = firstLevel;
         this.timer = new Timer(Constants.GAME_SPEED, new GameLoop(this));
-        this.musicEnable = musicEnable;
-        this.effectsEnable = effectsEnable;
+        this.gameModel = new GameModel(difficulty, firstLevel, musicEnable, effectsEnable);
         this.initializeGame();
     }
 
     private void initializeGame() {
-        this.count = (this.difficulty+1) * Constants.LOWER_BOUNDS_BUGS;
+        this.gameModel.setCount((this.gameModel.getDifficulty()+1) * Constants.LOWER_BOUNDS_BUGS);
         this.bugs = new ArrayList<>();
-        this.hudPanel.getCount().setText("Count: "+ this.count);
-        this.highScore = this.mainController.getHighScore();
-        this.hudPanel.printHighScore(this.highScore);
-        this.timerLeft = (int)((1/((double)(this.difficulty+1)))* Constants.LOWER_BOUNDS_TIMER);
-        System.out.println(this.timerLeft);
-        this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
+        this.hudPanel.getCount().setText("Count: "+ this.gameModel.getCount());
+        this.gameModel.setHighScore(this.mainController.getHighScore());
+        this.hudPanel.printHighScore(this.gameModel.getHighScore());
+        this.gameModel.setTimerLeft((int) ((1 / ((double) (this.gameModel.getDifficulty() + 1))) * Constants.LOWER_BOUNDS_TIMER));
+        System.out.println(this.gameModel.getTimerLeft());
+        this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
         //viene creato un thread specifico per la creazione di mosche e viene gestito con i semafori di java l'accesso all'array list per evitare collisioni (accesso concorrenziale)
         this.createThreads();
-        this.startTime = System.currentTimeMillis();
+        this.gameModel.setStartTime(System.currentTimeMillis());
         this.timer.start();
         for(Thread t: this.threadCreators){
             t.start();
@@ -82,11 +71,11 @@ public class GameController {
                     synchronized (this.bugs) {
                         size = this.bugs.size();
                     }
-                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                    if ((size <= 10 * (this.gameModel.getDifficulty() + 1)-2) && (timer.isRunning())) {
                         int randX = r.nextInt(640);
                         int randY = r.nextInt(30);
                         synchronized (this.bugs) {
-                            b = new Fly(randX, randY, Direction.SOUTH, difficulty);
+                            b = new Fly(randX, randY, Direction.SOUTH, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -94,7 +83,7 @@ public class GameController {
                         randX = r.nextInt(640);
                         randY = r.nextInt(30);
                         synchronized (this.bugs) {
-                            b = new Fly(randX, 350 + randY, Direction.NORTH, difficulty);
+                            b = new Fly(randX, 350 + randY, Direction.NORTH, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -115,15 +104,15 @@ public class GameController {
                     synchronized (this.bugs) {
                         size = this.bugs.size();
                     }
-                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                    if ((size <= 10 * (this.gameModel.getDifficulty() + 1)-2) && (timer.isRunning())) {
                         synchronized (this.bugs) {
-                            b = new Wasp(0, Constants.BORDER_Y1, Direction.EAST, difficulty);
+                            b = new Wasp(0, Constants.BORDER_Y1, Direction.EAST, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
                         Thread.sleep(5000);
                         synchronized (this.bugs) {
-                            b = new Wasp(Constants.BOARD_WIDTH, Constants.BORDER_Y2-Constants.WASP_HEIGHT, Direction.WEST, difficulty);
+                            b = new Wasp(Constants.BOARD_WIDTH, Constants.BORDER_Y2-Constants.WASP_HEIGHT, Direction.WEST, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -144,11 +133,11 @@ public class GameController {
                     synchronized (this.bugs) {
                         size = this.bugs.size();
                     }
-                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                    if ((size <= 10 * (this.gameModel.getDifficulty() + 1)-2) && (timer.isRunning())) {
                         int randX = r.nextInt(640);
                         int randY = r.nextInt(30);
                         synchronized (this.bugs) {
-                            b = new Butterfly(randX, randY, Direction.SOUTH, difficulty);
+                            b = new Butterfly(randX, randY, Direction.SOUTH, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -156,7 +145,7 @@ public class GameController {
                         randX = r.nextInt(640);
                         randY = r.nextInt(30);
                         synchronized (this.bugs) {
-                            b = new Butterfly(randX, 350 + randY, Direction.NORTH, difficulty);
+                            b = new Butterfly(randX, 350 + randY, Direction.NORTH, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -177,11 +166,11 @@ public class GameController {
                     synchronized (this.bugs) {
                         size = this.bugs.size();
                     }
-                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                    if ((size <= 10 * (this.gameModel.getDifficulty() + 1)-2) && (timer.isRunning())) {
                         int randX = r.nextInt(640);
                         int randY = r.nextInt(30);
                         synchronized (this.bugs) {
-                            b = new Ladybug(randX, randY, Direction.SOUTH, difficulty);
+                            b = new Ladybug(randX, randY, Direction.SOUTH, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -189,7 +178,7 @@ public class GameController {
                         randX = r.nextInt(640);
                         randY = r.nextInt(30);
                         synchronized (this.bugs) {
-                            b = new Ladybug(randX, 350 + randY, Direction.NORTH, difficulty);
+                            b = new Ladybug(randX, 350 + randY, Direction.NORTH, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -210,11 +199,11 @@ public class GameController {
                     synchronized (this.bugs) {
                         size = this.bugs.size();
                     }
-                    if ((size <= 10 * (difficulty + 1)-2) && (timer.isRunning())) {
+                    if ((size <= 10 * (this.gameModel.getDifficulty() + 1)-2) && (timer.isRunning())) {
                         int randX = r.nextInt(640);
                         int randY = r.nextInt(30);
                         synchronized (this.bugs) {
-                            b = new Cockroach(randX, randY, Direction.SOUTH, difficulty);
+                            b = new Cockroach(randX, randY, Direction.SOUTH, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -222,7 +211,7 @@ public class GameController {
                         randX = r.nextInt(640);
                         randY = r.nextInt(30);
                         synchronized (this.bugs) {
-                            b = new Cockroach(randX, 350 + randY, Direction.NORTH, difficulty);
+                            b = new Cockroach(randX, 350 + randY, Direction.NORTH, this.gameModel.getDifficulty());
                             bugs.add(b);
                             gamePanel.addBug(b);
                         }
@@ -237,10 +226,10 @@ public class GameController {
         this.threadCreators.add(flyCreator);
         this.threadCreators.add(waspCreator);
         this.threadCreators.add(butterflyCreator);
-        if(this.level >= 3){
+        if(this.gameModel.getLevel() >= 3){
             this.threadCreators.add(ladybugCreator);
         }
-        if(this.level >= 4 ){
+        if(this.gameModel.getLevel() >= 4 ){
             this.threadCreators.add(cockroachCreator);
         }
 
@@ -331,7 +320,7 @@ public class GameController {
         if(this.count <= 0) {
             this.stopMusic();
             this.timer.stop();
-            this.level++;
+            this.gameModel.setLevel(this.gameModel.getLevel()+1);
             // ferma il thread di creazione mosche
             for(Thread t: this.threadCreators){
                 t.interrupt();
@@ -403,17 +392,17 @@ public class GameController {
         }
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
-        this.mainController.updateHighScore(this.level, this.difficulty);
+        this.mainController.updateHighScore(this.gameModel.getLevel(), this.gameModel.getDifficulty());
         this.mainController.startMenu();
     }
     public void playEffects(String sound) {
-        if (this.effectsEnable) {
+        if (this.gameModel.isEffectsEnable()) {
             Utilities.playEffects(sound);
         }
     }
     public void playMusic(String music) {
         this.musicClip = null;
-        if (this.musicEnable) {
+        if (this.gameModel.isMusicEnable()) {
             this.musicClip = Utilities.playMusic(music);
         }
     }
