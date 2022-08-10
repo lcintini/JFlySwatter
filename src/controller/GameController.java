@@ -259,13 +259,13 @@ public class GameController {
     }
 
     private void handleTimer() {
-        if(System.currentTimeMillis() >= this.startTime +1000){
-            this.timerLeft--;
-            this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
-            this.startTime = System.currentTimeMillis();
+        if(System.currentTimeMillis() >= this.gameModel.getStartTime() +1000){
+            this.gameModel.setTimerLeft(this.gameModel.getTimerLeft() - 1);
+            this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
+            this.gameModel.setStartTime(System.currentTimeMillis());
         }
         //sconfitta
-        if(this.timerLeft <= 0){
+        if(this.gameModel.getTimerLeft() <= 0){
             this.timer.stop();
             System.out.println("il gioco è finito");
             this.stopMusic();
@@ -291,22 +291,22 @@ public class GameController {
                     Swatter.setSwatAnimation(true);
                     this.playEffects("slap");
                     if(b.getPoints()==Constants.POINTS_LADYBUG){
-                        this.timerLeft -= Constants.POINTS_LADYBUG;
-                        this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
+                        this.gameModel.setTimerLeft(this.gameModel.getTimerLeft() - Constants.POINTS_LADYBUG);
+                        this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
                     }
                     else if(b.getPoints()==Constants.POINTS_COCKROACH){
                         if(y < b.getY()+ Constants.COCKROACH_HEIGHT/2){
-                            this.count -= Constants.POINTS_COCKROACH/2;
-                            this.hudPanel.getCount().setText("Count: "+ this.count);
+                            this.gameModel.setCount(this.gameModel.getCount() - Constants.POINTS_COCKROACH/2);
+                            this.hudPanel.getCount().setText("Count: "+ this.gameModel.getCount());
                         }
                         else{
-                            this.timerLeft -= Constants.POINTS_COCKROACH;
-                            this.hudPanel.getTimer().setText("Timer: "+ this.timerLeft);
+                            this.gameModel.setTimerLeft(this.gameModel.getTimerLeft() - Constants.POINTS_COCKROACH);
+                            this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
                         }
                     }
                     else{
-                        this.count-=b.getPoints();
-                        this.hudPanel.getCount().setText("Count: "+ this.count);
+                        this.gameModel.setCount(this.gameModel.getCount() - b.getPoints());
+                        this.hudPanel.getCount().setText("Count: "+ this.gameModel.getCount());
                     }
                     deadBug = b;
                 }
@@ -317,7 +317,7 @@ public class GameController {
             this.gamePanel.removeBug(deadBug);
         }
         //vincita
-        if(this.count <= 0) {
+        if(this.gameModel.getCount() <= 0) {
             this.stopMusic();
             this.timer.stop();
             this.gameModel.setLevel(this.gameModel.getLevel()+1);
@@ -341,7 +341,7 @@ public class GameController {
     public void pauseGame(){
         this.stopMusic();
         this.timer.stop();
-        this.pausePanel = new PausePanel(musicEnable, effectsEnable);
+        this.pausePanel = new PausePanel(this.gameModel.isMusicEnable(), this.gameModel.isEffectsEnable());
         JButton resumeButton= this.pausePanel.getResumeButton();
         resumeButton.addActionListener(new ActionListener() {
             @Override
@@ -363,17 +363,17 @@ public class GameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 playEffects("slap");
-                musicEnable = !musicEnable;
-                pausePanel.setMusicEnable(musicEnable);
+                gameModel.setMusicEnable(!gameModel.isMusicEnable());
+                pausePanel.setMusicEnable(gameModel.isMusicEnable());
             }
         });
         JButton effectsButton= this.pausePanel.getEffectsButton();
         effectsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                effectsEnable = !effectsEnable;
+                gameModel.setEffectsEnable(!gameModel.isEffectsEnable());
                 playEffects("slap");
-                pausePanel.setEffectEnable(effectsEnable);
+                pausePanel.setEffectEnable(gameModel.isEffectsEnable());
             }
         });
         this.mainController.pauseGame(this.pausePanel);
