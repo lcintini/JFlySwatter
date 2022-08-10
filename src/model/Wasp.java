@@ -26,6 +26,7 @@ public class Wasp extends Bug {
         this.width = Constants.WASP_WIDTH;
     }
 
+    //metodo vuoto in quanto la vespa non cambia mai direzione finchè non raggiunge un bordo
     @Override
     public void changeDirection(int mouseX, int mouseY) {
         //

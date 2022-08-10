@@ -43,7 +43,6 @@ public class HUDPanel extends JPanel {
     }
 
     public void doDrawing(Graphics g) {
-        // Creiamo il menù
         this.drawHUD(g);
         // Metodo che sincronizza tutte le componenti grafiche
         Toolkit.getDefaultToolkit().sync();

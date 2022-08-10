@@ -22,11 +22,11 @@ public class MainController {
     public MainController() {
         this.mainView = new MainView();
         this.highScore = 0;
-        this.readRecord();
+        this.readHighScore();
         this.startMenu();
     }
 
-    public void readRecord() {
+    public void readHighScore() {
         BufferedReader in = null;
         try {
             in= new BufferedReader(new FileReader(Constants.HIGH_SCORE_PATH));
@@ -45,7 +45,6 @@ public class MainController {
         this.mainView.addMenuPanel(this.menuPanel);
         this.menuController = new MenuController(this, this.menuPanel);
     }
-
 
     public void startGame(int difficulty, boolean effectsEnable, boolean musicEnable) {
         this.gamePanel = new GamePanel();

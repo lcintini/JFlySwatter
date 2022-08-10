@@ -35,13 +35,14 @@ public class GamePanel extends JPanel {
     }
 
     //viene richiamato molte volte al secondo dal thread di java che si occupa della grafica (non da noi) e fa apparire sullo schermo le varie componenti grafiche(come un libricino che sfogli velocemnete)
+    //override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g); //override
+        //la classe super è il JPanel
+        super.paintComponent(g);
         doDrawing(g);
     }
-
+    //gestisce l'animazione degli insetti
     public void doDrawing(Graphics g) {
-        // Creiamo il menù
         this.drawGame(g);
         // Metodo che sincronizza tutte le componenti grafiche
         Toolkit.getDefaultToolkit().sync();

@@ -35,25 +35,26 @@ public class Butterfly extends Bug {
         //controlla se un punto è all'interno del cerchio
         boolean checkCircle = Math.pow(this.x - mouseX,2) + Math.pow(this.y - mouseY,2) < Math.pow(100,2);
         if(checkCircle){
-            System.out.println(this.scared);
             if(!this.scared) {
                 this.scared = true;
+                //aumenta la velocita appena spaventata
                 this.dx *= 4;
                 this.dy *= 4;
-                System.out.println(this.dx);
             }
             this.changeDirButterfly(mouseX, mouseY);
         }
         else{
             if(this.scared) {
+                //siamo usciti dal cerchio dello spavento
                 this.scared = false;
                 this.dx = (int) this.dx/4;
-                this.dy = (int) this.dx/4;;
+                this.dy = (int) this.dx/4;
             }
             super.changeDirection(mouseX, mouseY);
         }
     }
 
+    //cambia direzione a seconda di dove è il mouse
     private void changeDirButterfly(int mouseX, int mouseY) {
         if(this.x < mouseX && this.y < mouseY){
             this.direction = Direction.NORTHWEST;

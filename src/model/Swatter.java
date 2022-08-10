@@ -56,6 +56,7 @@ public class Swatter {
     }
 
     public static Image getImg() {
+        //un insetto viene schiacciato
         if (swatAnimation) {
             imgIndex += 0.5;
             if (imgIndex >= imgsSwat.size()) {
@@ -64,6 +65,7 @@ public class Swatter {
                 normalAnimation = false;
             }
             return imgsSwat.get(((int) Math.floor(imgIndex)) - 1);
+            //non si schiaccia niente
         } else if (normalAnimation) {
             imgIndex += 0.5;
             if (imgIndex >= imgsNormal.size()) {
@@ -71,8 +73,8 @@ public class Swatter {
                 normalAnimation = false;
             }
             return imgsNormal.get(((int) Math.floor(imgIndex)) - 1);
-
         }
+        //paletta nel menu
         return imgsSwat.get(1);
     }
     public static void setNormalAnimation(boolean normalAnimation) {

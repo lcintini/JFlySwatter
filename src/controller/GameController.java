@@ -29,9 +29,6 @@ public class GameController {
     private int difficulty;
     private int level;
     private ArrayList <Thread> threadCreators;
-    private Thread butterflyCreator;
-    private Thread ladybugCreator;
-    private Thread cockroachCreator;
     private int timerLeft;
     private long startTime;
     private boolean musicEnable;
@@ -250,13 +247,14 @@ public class GameController {
 
     // start update-repaint
     public void doOneLoop() {
+        //si svegliano gli actionlistener del gamepanel
         this.gamePanel.requestFocus();
         this.update();
         this.mainController.nextCursor();
         this.gamePanel.repaint();
         this.hudPanel.repaint();
     }
-
+    //aggiorna le coordinate degli insetti
     private void update() {
         Point p = MouseInfo.getPointerInfo().getLocation();
         int mouseX = (int)(p.getX() - this.gamePanel.getLocationOnScreen().getX());
@@ -266,6 +264,7 @@ public class GameController {
                 b.move(mouseX, mouseY);
             }
         }
+        //aggiorno la label del tempo e controllo che il tempo non sia finito
         this.handleTimer();
     }
 
