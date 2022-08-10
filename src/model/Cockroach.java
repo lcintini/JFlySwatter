@@ -1,6 +1,7 @@
 package model;
 
 import constants.Constants;
+import utilities.Utilities;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -11,26 +12,26 @@ public class Cockroach extends Bug{
         this.points = Constants.POINTS_COCKROACH;
         this.images = new ArrayList<>();
         //1 2 3 2 1 4 5 6 5 4
-        ImageIcon imageIcon1 = new ImageIcon("resources/images/cockroach1.png");
-        ImageIcon imageIcon2 = new ImageIcon("resources/images/cockroach1.png");
-        ImageIcon imageIcon3 = new ImageIcon("resources/images/cockroach2.png");
-        ImageIcon imageIcon4 = new ImageIcon("resources/images/cockroach2.png");
-        ImageIcon imageIcon5 = new ImageIcon("resources/images/cockroach3.png");
-        ImageIcon imageIcon6 = new ImageIcon("resources/images/cockroach3.png");
-        ImageIcon imageIcon7 = new ImageIcon("resources/images/cockroach2.png");
-        ImageIcon imageIcon8 = new ImageIcon("resources/images/cockroach2.png");
-        ImageIcon imageIcon9 = new ImageIcon("resources/images/cockroach1.png");
-        ImageIcon imageIcon10 = new ImageIcon("resources/images/cockroach1.png");
-        ImageIcon imageIcon11= new ImageIcon("resources/images/cockroach4.png");
-        ImageIcon imageIcon12= new ImageIcon("resources/images/cockroach4.png");
-        ImageIcon imageIcon13= new ImageIcon("resources/images/cockroach5.png");
-        ImageIcon imageIcon14 = new ImageIcon("resources/images/cockroach5.png");
-        ImageIcon imageIcon15 = new ImageIcon("resources/images/cockroach6.png");
-        ImageIcon imageIcon16 = new ImageIcon("resources/images/cockroach6.png");
-        ImageIcon imageIcon17 = new ImageIcon("resources/images/cockroach5.png");
-        ImageIcon imageIcon18 = new ImageIcon("resources/images/cockroach5.png");
-        ImageIcon imageIcon19 = new ImageIcon("resources/images/cockroach4.png");
-        ImageIcon imageIcon20 = new ImageIcon("resources/images/cockroach4.png");
+        ImageIcon imageIcon1 = Utilities.readImage("resources/images/cockroach1.png");
+        ImageIcon imageIcon2 = Utilities.readImage("resources/images/cockroach1.png");
+        ImageIcon imageIcon3 = Utilities.readImage("resources/images/cockroach2.png");
+        ImageIcon imageIcon4 = Utilities.readImage("resources/images/cockroach2.png");
+        ImageIcon imageIcon5 = Utilities.readImage("resources/images/cockroach3.png");
+        ImageIcon imageIcon6 = Utilities.readImage("resources/images/cockroach3.png");
+        ImageIcon imageIcon7 = Utilities.readImage("resources/images/cockroach2.png");
+        ImageIcon imageIcon8 = Utilities.readImage("resources/images/cockroach2.png");
+        ImageIcon imageIcon9 = Utilities.readImage("resources/images/cockroach1.png");
+        ImageIcon imageIcon10 = Utilities.readImage("resources/images/cockroach1.png");
+        ImageIcon imageIcon11= Utilities.readImage("resources/images/cockroach4.png");
+        ImageIcon imageIcon12= Utilities.readImage("resources/images/cockroach4.png");
+        ImageIcon imageIcon13= Utilities.readImage("resources/images/cockroach5.png");
+        ImageIcon imageIcon14 = Utilities.readImage("resources/images/cockroach5.png");
+        ImageIcon imageIcon15 = Utilities.readImage("resources/images/cockroach6.png");
+        ImageIcon imageIcon16 = Utilities.readImage("resources/images/cockroach6.png");
+        ImageIcon imageIcon17 = Utilities.readImage("resources/images/cockroach5.png");
+        ImageIcon imageIcon18 = Utilities.readImage("resources/images/cockroach5.png");
+        ImageIcon imageIcon19 = Utilities.readImage("resources/images/cockroach4.png");
+        ImageIcon imageIcon20 = Utilities.readImage("resources/images/cockroach4.png");
         this.images.add(imageIcon1.getImage());
         this.images.add(imageIcon2.getImage());
         this.images.add(imageIcon3.getImage());

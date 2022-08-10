@@ -1,6 +1,7 @@
 package controller;
 
 import constants.Constants;
+import utilities.Utilities;
 import view.*;
 
 import java.io.*;
@@ -22,22 +23,22 @@ public class MainController {
     public MainController() {
         this.mainView = new MainView();
         this.highScore = 0;
-        this.readHighScore();
         this.startMenu();
     }
 
-    public void readHighScore() {
-        BufferedReader in = null;
-        try {
-            in= new BufferedReader(new FileReader(Constants.HIGH_SCORE_PATH));
-            //prende una stringa e la converte in un numero
-            this.highScore = Integer.parseInt(in.readLine());
-            in.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public void readHighScore(int difficulty) {
+        String fileName = new String();
+        switch (difficulty){
+            case 0:
+                fileName = Constants.EASY_HIGH_SCORE_PATH;
+                break;
+            case 1:
+                fileName = Constants.NORMAL_HIGH_SCORE_PATH;
+                break;
+            case 2:
+                fileName = Constants.HARD_HIGH_SCORE_PATH;
         }
+        this.highScore = Utilities.readNumber(fileName);
     }
 
     public void startMenu(){
@@ -47,6 +48,7 @@ public class MainController {
     }
 
     public void startGame(int difficulty, boolean effectsEnable, boolean musicEnable) {
+        this.readHighScore(difficulty);
         this.gamePanel = new GamePanel();
         this.hudPanel = new HUDPanel();
         this.mainView.addGamePanel(this.gamePanel,this.hudPanel);
@@ -75,19 +77,20 @@ public class MainController {
         this.highScore = highScore;
     }
 
-    public void updateHighScore(int level) {
+    public void updateHighScore(int level, int difficulty) {
         if(level > this.highScore){
-            this.highScore = level;
-            PrintWriter out = null;
-            //deve sovrascrivere il file
-            try {
-                out = new PrintWriter(new FileOutputStream(Constants.HIGH_SCORE_PATH , false));
-                out.print(this.highScore);
-                out.flush();
-                out.close();
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+            String fileName = new String();
+            switch (difficulty){
+                case 0:
+                    fileName = Constants.EASY_HIGH_SCORE_PATH;
+                    break;
+                case 1:
+                    fileName = Constants.NORMAL_HIGH_SCORE_PATH;
+                    break;
+                case 2:
+                    fileName = Constants.HARD_HIGH_SCORE_PATH;
             }
+            Utilities.writeNumber(fileName, level);
         }
     }
 }

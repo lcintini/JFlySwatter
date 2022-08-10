@@ -2,6 +2,7 @@ package controller;
 
 import constants.Constants;
 import model.*;
+import utilities.Utilities;
 import view.GamePanel;
 import view.HUDPanel;
 import view.PausePanel;
@@ -402,42 +403,18 @@ public class GameController {
         }
         this.bugs = new ArrayList<>();
         this.gamePanel.removeAllBugs();
-        this.mainController.updateHighScore(this.level);
+        this.mainController.updateHighScore(this.level, this.difficulty);
         this.mainController.startMenu();
     }
     public void playEffects(String sound) {
         if (this.effectsEnable) {
-            String soundName = "resources/sounds/"+sound+".wav";
-            try {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInputStream);
-                clip.start();
-                //non supporta l'audio
-            } catch (UnsupportedAudioFileException | LineUnavailableException e) {
-                throw new RuntimeException(e);
-                //non legge il file
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            Utilities.playEffects(sound);
         }
     }
     public void playMusic(String music) {
         this.musicClip = null;
         if (this.musicEnable) {
-            String soundName = "resources/music/"+music+".wav";
-            try {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-                this.musicClip = AudioSystem.getClip();
-                this.musicClip.open(audioInputStream);
-                this.musicClip.start();
-                //non supporta l'audio
-            } catch (UnsupportedAudioFileException | LineUnavailableException e) {
-                throw new RuntimeException(e);
-                //non legge il file
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.musicClip = Utilities.playMusic(music);
         }
     }
     public void stopMusic(){

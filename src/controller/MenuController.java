@@ -1,5 +1,6 @@
 package controller;
 
+import utilities.Utilities;
 import view.MenuPanel;
 
 import javax.sound.sampled.*;
@@ -77,19 +78,7 @@ public class MenuController {
     }
     public void playEffects() {
         if (this.effectsEnable) {
-            String soundName = "resources/sounds/slap.wav";
-            try {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInputStream);
-                clip.start();
-                //non supporta l'audio
-            } catch (UnsupportedAudioFileException | LineUnavailableException e) {
-                throw new RuntimeException(e);
-                //non legge il file
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            Utilities.playEffects("slap");
         }
     }
 

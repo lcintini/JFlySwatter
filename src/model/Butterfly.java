@@ -1,6 +1,7 @@
 package model;
 
 import constants.Constants;
+import utilities.Utilities;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,12 +14,12 @@ public class Butterfly extends Bug {
         System.out.println(this.dx);
         this.points = Constants.POINTS_BUTTERFLY;
         this.images = new ArrayList<>();
-        ImageIcon imageIcon1 = new ImageIcon("resources/images/butterfly1.png");
-        ImageIcon imageIcon2 = new ImageIcon("resources/images/butterfly2.png");
-        ImageIcon imageIcon3 = new ImageIcon("resources/images/butterfly3.png");
-        ImageIcon imageIcon4 = new ImageIcon("resources/images/butterfly4.png");
-        ImageIcon imageIcon5 = new ImageIcon("resources/images/butterfly3.png");
-        ImageIcon imageIcon6 = new ImageIcon("resources/images/butterfly2.png");
+        ImageIcon imageIcon1 = Utilities.readImage("resources/images/butterfly1.png");
+        ImageIcon imageIcon2 = Utilities.readImage("resources/images/butterfly2.png");
+        ImageIcon imageIcon3 = Utilities.readImage("resources/images/butterfly3.png");
+        ImageIcon imageIcon4 = Utilities.readImage("resources/images/butterfly4.png");
+        ImageIcon imageIcon5 = Utilities.readImage("resources/images/butterfly3.png");
+        ImageIcon imageIcon6 = Utilities.readImage("resources/images/butterfly2.png");
         this.images.add(imageIcon1.getImage());
         this.images.add(imageIcon2.getImage());
         this.images.add(imageIcon3.getImage());

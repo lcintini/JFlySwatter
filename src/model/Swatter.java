@@ -1,5 +1,7 @@
 package model;
 
+import utilities.Utilities;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,14 +16,14 @@ public class Swatter {
     public static void createSwatter() {
         imgIndex=1;
         imgsNormal = new ArrayList<>();
-        ImageIcon imageIcon1 = new ImageIcon("resources/images/swap1.png");
-        ImageIcon imageIcon2 = new ImageIcon("resources/images/swap1.png");
-        ImageIcon imageIcon3 = new ImageIcon("resources/images/swap2.png");
-        ImageIcon imageIcon4 = new ImageIcon("resources/images/swap2.png");
-        ImageIcon imageIcon5 = new ImageIcon("resources/images/swap3.png");
-        ImageIcon imageIcon6 = new ImageIcon("resources/images/swap3.png");
-        ImageIcon imageIcon7 = new ImageIcon("resources/images/swap2.png");
-        ImageIcon imageIcon8 = new ImageIcon("resources/images/swap2.png");
+        ImageIcon imageIcon1 = Utilities.readImage("resources/images/swap1.png");
+        ImageIcon imageIcon2 = Utilities.readImage("resources/images/swap1.png");
+        ImageIcon imageIcon3 = Utilities.readImage("resources/images/swap2.png");
+        ImageIcon imageIcon4 = Utilities.readImage("resources/images/swap2.png");
+        ImageIcon imageIcon5 = Utilities.readImage("resources/images/swap3.png");
+        ImageIcon imageIcon6 = Utilities.readImage("resources/images/swap3.png");
+        ImageIcon imageIcon7 = Utilities.readImage("resources/images/swap2.png");
+        ImageIcon imageIcon8 = Utilities.readImage("resources/images/swap2.png");
         imgsNormal.add(imageIcon1.getImage());
         imgsNormal.add(imageIcon2.getImage());
         imgsNormal.add(imageIcon3.getImage());
@@ -31,16 +33,16 @@ public class Swatter {
         imgsNormal.add(imageIcon7.getImage());
         imgsNormal.add(imageIcon8.getImage());
         imgsSwat = new ArrayList<>();
-        imageIcon1 = new ImageIcon("resources/images/swap1.png");
-        imageIcon2 = new ImageIcon("resources/images/swap1.png");
-        imageIcon3 = new ImageIcon("resources/images/swap2.png");
-        imageIcon4 = new ImageIcon("resources/images/swap2.png");
-        imageIcon5 = new ImageIcon("resources/images/swap3.png");
-        imageIcon6 = new ImageIcon("resources/images/swap3.png");
-        imageIcon7 = new ImageIcon("resources/images/swap4.png");
-        imageIcon8 = new ImageIcon("resources/images/swap4.png");
-        ImageIcon imageIcon9 = new ImageIcon("resources/images/swap2.png");
-        ImageIcon imageIcon10 = new ImageIcon("resources/images/swap2.png");
+        imageIcon1 = Utilities.readImage("resources/images/swap1.png");
+        imageIcon2 = Utilities.readImage("resources/images/swap1.png");
+        imageIcon3 = Utilities.readImage("resources/images/swap2.png");
+        imageIcon4 = Utilities.readImage("resources/images/swap2.png");
+        imageIcon5 = Utilities.readImage("resources/images/swap3.png");
+        imageIcon6 = Utilities.readImage("resources/images/swap3.png");
+        imageIcon7 = Utilities.readImage("resources/images/swap4.png");
+        imageIcon8 = Utilities.readImage("resources/images/swap4.png");
+        ImageIcon imageIcon9 = Utilities.readImage("resources/images/swap2.png");
+        ImageIcon imageIcon10 = Utilities.readImage("resources/images/swap2.png");
         imgsSwat.add(imageIcon1.getImage());
         imgsSwat.add(imageIcon2.getImage());
         imgsSwat.add(imageIcon3.getImage());

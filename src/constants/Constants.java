@@ -35,5 +35,7 @@ public class Constants {
     public static final int LADYBUG_SPEED = 2;
     public static final int COCKROACH_SPEED = 1;
     public static final int LOWER_BOUNDS_TIMER = 60;
-    public static final String HIGH_SCORE_PATH = "resources/text/highScore.txt";
+    public static final String EASY_HIGH_SCORE_PATH = "resources/text/easyHighScore.txt";
+    public static final String NORMAL_HIGH_SCORE_PATH = "resources/text/normalHighScore.txt";
+    public static final String HARD_HIGH_SCORE_PATH = "resources/text/hardHighScore.txt";
 }
