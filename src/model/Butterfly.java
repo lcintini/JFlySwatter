@@ -14,12 +14,12 @@ public class Butterfly extends Bug {
         System.out.println(this.dx);
         this.points = Constants.POINTS_BUTTERFLY;
         this.images = new ArrayList<>();
-        ImageIcon imageIcon1 = Utilities.readImage("resources/images/butterfly1.png");
-        ImageIcon imageIcon2 = Utilities.readImage("resources/images/butterfly2.png");
-        ImageIcon imageIcon3 = Utilities.readImage("resources/images/butterfly3.png");
-        ImageIcon imageIcon4 = Utilities.readImage("resources/images/butterfly4.png");
-        ImageIcon imageIcon5 = Utilities.readImage("resources/images/butterfly3.png");
-        ImageIcon imageIcon6 = Utilities.readImage("resources/images/butterfly2.png");
+        ImageIcon imageIcon1 = Utilities.readImage(Constants.BUTTERFLY_1_PATH);
+        ImageIcon imageIcon2 = Utilities.readImage(Constants.BUTTERFLY_2_PATH);
+        ImageIcon imageIcon3 = Utilities.readImage(Constants.BUTTERFLY_3_PATH);
+        ImageIcon imageIcon4 = Utilities.readImage(Constants.BUTTERFLY_4_PATH);
+        ImageIcon imageIcon5 = Utilities.readImage(Constants.BUTTERFLY_3_PATH);
+        ImageIcon imageIcon6 = Utilities.readImage(Constants.BUTTERFLY_2_PATH);
         this.images.add(imageIcon1.getImage());
         this.images.add(imageIcon2.getImage());
         this.images.add(imageIcon3.getImage());
@@ -56,7 +56,7 @@ public class Butterfly extends Bug {
     }
 
     //cambia direzione a seconda di dove è il mouse
-    private void changeDirButterfly(int mouseX, int mouseY) {
+    public void changeDirButterfly(int mouseX, int mouseY) {
         if(this.x < mouseX && this.y < mouseY){
             this.direction = Direction.NORTHWEST;
         }

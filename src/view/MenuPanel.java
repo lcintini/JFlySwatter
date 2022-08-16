@@ -27,7 +27,7 @@ public class MenuPanel extends JPanel {
         this.drawMenu();
     }
 
-    private void drawMenu() {
+    public void drawMenu() {
         this.startButton = new JButton("Start Normal Mode");
         this.startButton.setBackground(Color.WHITE);
         this.startButton.setForeground(Color.BLACK);

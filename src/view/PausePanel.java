@@ -27,7 +27,7 @@ public class PausePanel extends JPanel {
 
     }
 
-    private void drawMenu() {
+    public void drawMenu() {
         this.resumeButton = new JButton("Resume Game");
         this.resumeButton.setBackground(Color.WHITE);
         this.resumeButton.setForeground(Color.BLACK);

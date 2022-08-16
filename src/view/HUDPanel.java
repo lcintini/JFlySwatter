@@ -49,7 +49,7 @@ public class HUDPanel extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawHUD(Graphics g) {
+    public void drawHUD(Graphics g) {
         g.drawImage(this.imgHUD,0,0,this);
 
     }

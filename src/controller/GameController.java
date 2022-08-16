@@ -42,7 +42,7 @@ public class GameController {
         this.initializeGame();
     }
 
-    private void initializeGame() {
+    public void initializeGame() {
         this.gameModel.setCount((this.gameModel.getDifficulty()+1) * Constants.LOWER_BOUNDS_BUGS);
         this.bugs = new ArrayList<>();
         this.hudPanel.getCount().setText("Count: "+ this.gameModel.getCount());
@@ -245,7 +245,7 @@ public class GameController {
         this.hudPanel.repaint();
     }
     //aggiorna le coordinate degli insetti
-    private void update() {
+    public void update() {
         Point p = MouseInfo.getPointerInfo().getLocation();
         int mouseX = (int)(p.getX() - this.gamePanel.getLocationOnScreen().getX());
         int mouseY = (int)(p.getY() - this.gamePanel.getLocationOnScreen().getY());
@@ -258,7 +258,7 @@ public class GameController {
         this.handleTimer();
     }
 
-    private void handleTimer() {
+    public void handleTimer() {
         if(System.currentTimeMillis() >= this.gameModel.getStartTime() +1000){
             this.gameModel.setTimerLeft(this.gameModel.getTimerLeft() - 1);
             this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
@@ -380,13 +380,13 @@ public class GameController {
     }
 
 
-    private void resumeGame() {
+    public void resumeGame() {
         this.mainController.resumeGame(this.pausePanel);
         this.playMusic("bumblebee");
         this.timer.start();
 
     }
-    private void exitGame() {
+    public void exitGame() {
         for(Thread t: this.threadCreators){
             t.interrupt();
         }

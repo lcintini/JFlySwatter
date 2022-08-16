@@ -28,7 +28,7 @@ public class MenuController {
         this.initializeMenu();
     }
 
-    private void initializeMenu() {
+    public void initializeMenu() {
         String[] difficulties = {"Easy","Normal","Hard"};
         JButton startButton= this.menuPanel.getStartButton();
         startButton.addActionListener(new ActionListener() {

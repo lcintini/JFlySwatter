@@ -38,4 +38,31 @@ public class Constants {
     public static final String EASY_HIGH_SCORE_PATH = "resources/text/easyHighScore.txt";
     public static final String NORMAL_HIGH_SCORE_PATH = "resources/text/normalHighScore.txt";
     public static final String HARD_HIGH_SCORE_PATH = "resources/text/hardHighScore.txt";
+    public static final String BUTTERFLY_1_PATH = "resources/images/butterfly1.png";
+    public static final String BUTTERFLY_2_PATH = "resources/images/butterfly2.png";
+    public static final String BUTTERFLY_3_PATH = "resources/images/butterfly3.png";
+    public static final String BUTTERFLY_4_PATH = "resources/images/butterfly4.png";
+    public static final String COCKROACH_1_PATH = "resources/images/cockroach1.png" ;
+    public static final String COCKROACH_2_PATH = "resources/images/cockroach2.png";
+    public static final String COCKROACH_3_PATH = "resources/images/cockroach3.png";
+    public static final String COCKROACH_4_PATH = "resources/images/cockroach4.png";
+    public static final String COCKROACH_5_PATH = "resources/images/cockroach5.png";
+    public static final String COCKROACH_6_PATH = "resources/images/cockroach6.png";
+    public static final String FLY_1_PATH = "resources/images/fly1.png";
+    public static final String FLY_2_PATH = "resources/images/fly2.png";
+    public static final String FLY_3_PATH = "resources/images/fly3.png";
+    public static final String LADYBUG_1_PATH = "resources/images/ladybug1.png";
+    public static final String LADYBUG_2_PATH = "resources/images/ladybug2.png";
+    public static final String LADYBUG_3_PATH = "resources/images/ladybug3.png";
+    public static final String LADYBUG_4_PATH = "resources/images/ladybug4.png";
+    public static final String LADYBUG_5_PATH = "resources/images/ladybug5.png";
+    public static final String SWATTER_1_PATH = "resources/images/swap1.png";
+    public static final String SWATTER_2_PATH = "resources/images/swap2.png";
+    public static final String SWATTER_3_PATH = "resources/images/swap3.png";
+    public static final String SWATTER_4_PATH = "resources/images/swap4.png";
+    public static final String WASP_1_PATH = "resources/images/wasp1.png";
+    public static final String WASP_2_PATH = "resources/images/wasp2.png";
+
+
+
 }

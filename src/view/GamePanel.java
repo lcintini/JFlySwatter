@@ -48,7 +48,7 @@ public class GamePanel extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawGame(Graphics g) {
+    public void drawGame(Graphics g) {
         synchronized (this.bugs){
             for (Bug b:this.bugs) {
                 //momento esatto in cui controlliamo il model

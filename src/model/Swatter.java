@@ -1,5 +1,6 @@
 package model;
 
+import constants.Constants;
 import utilities.Utilities;
 
 import javax.swing.*;
@@ -16,14 +17,14 @@ public class Swatter {
     public static void createSwatter() {
         imgIndex=1;
         imgsNormal = new ArrayList<>();
-        ImageIcon imageIcon1 = Utilities.readImage("resources/images/swap1.png");
-        ImageIcon imageIcon2 = Utilities.readImage("resources/images/swap1.png");
-        ImageIcon imageIcon3 = Utilities.readImage("resources/images/swap2.png");
-        ImageIcon imageIcon4 = Utilities.readImage("resources/images/swap2.png");
-        ImageIcon imageIcon5 = Utilities.readImage("resources/images/swap3.png");
-        ImageIcon imageIcon6 = Utilities.readImage("resources/images/swap3.png");
-        ImageIcon imageIcon7 = Utilities.readImage("resources/images/swap2.png");
-        ImageIcon imageIcon8 = Utilities.readImage("resources/images/swap2.png");
+        ImageIcon imageIcon1 = Utilities.readImage(Constants.SWATTER_1_PATH);
+        ImageIcon imageIcon2 = Utilities.readImage(Constants.SWATTER_1_PATH);
+        ImageIcon imageIcon3 = Utilities.readImage(Constants.SWATTER_2_PATH);
+        ImageIcon imageIcon4 = Utilities.readImage(Constants.SWATTER_2_PATH);
+        ImageIcon imageIcon5 = Utilities.readImage(Constants.SWATTER_3_PATH);
+        ImageIcon imageIcon6 = Utilities.readImage(Constants.SWATTER_3_PATH);
+        ImageIcon imageIcon7 = Utilities.readImage(Constants.SWATTER_2_PATH);
+        ImageIcon imageIcon8 = Utilities.readImage(Constants.SWATTER_2_PATH);
         imgsNormal.add(imageIcon1.getImage());
         imgsNormal.add(imageIcon2.getImage());
         imgsNormal.add(imageIcon3.getImage());

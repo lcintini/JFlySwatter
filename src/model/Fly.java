@@ -15,12 +15,12 @@ public class Fly extends Bug{
         super(x, y, Constants.FLY_SPEED * (difficulty +1), Constants.FLY_SPEED * (difficulty +1), direction);
         this.points = Constants.POINTS_FLY;
         this.images = new ArrayList<>();
-        ImageIcon imageIcon1 = Utilities.readImage("resources/images/fly1.png");
-        ImageIcon imageIcon2 = Utilities.readImage("resources/images/fly2.png");
-        ImageIcon imageIcon3 = Utilities.readImage("resources/images/fly1.png");
-        ImageIcon imageIcon4 = Utilities.readImage("resources/images/fly3.png");
-        ImageIcon imageIcon5 = Utilities.readImage("resources/images/fly1.png");
-        ImageIcon imageIcon6 = Utilities.readImage("resources/images/fly2.png");
+        ImageIcon imageIcon1 = Utilities.readImage(Constants.FLY_1_PATH);
+        ImageIcon imageIcon2 = Utilities.readImage(Constants.FLY_2_PATH);
+        ImageIcon imageIcon3 = Utilities.readImage(Constants.FLY_1_PATH);
+        ImageIcon imageIcon4 = Utilities.readImage(Constants.FLY_3_PATH);
+        ImageIcon imageIcon5 = Utilities.readImage(Constants.FLY_1_PATH);
+        ImageIcon imageIcon6 = Utilities.readImage(Constants.FLY_2_PATH);
         this.images.add(imageIcon1.getImage());
         this.images.add(imageIcon2.getImage());
         this.images.add(imageIcon3.getImage());

@@ -15,10 +15,10 @@ public class Wasp extends Bug {
         super(x, y, Constants.WASP_SPEED * (difficulty + 1), Constants.WASP_SPEED * (difficulty + 1), direction);
         this.points = Constants.POINTS_WASP;
         this.images = new ArrayList<>();
-        ImageIcon imageIcon1 = Utilities.readImage("resources/images/wasp1.png");
-        ImageIcon imageIcon2 = Utilities.readImage("resources/images/wasp1.png");
-        ImageIcon imageIcon3 = Utilities.readImage("resources/images/wasp2.png");
-        ImageIcon imageIcon4 = Utilities.readImage("resources/images/wasp2.png");
+        ImageIcon imageIcon1 = Utilities.readImage(Constants.WASP_1_PATH);
+        ImageIcon imageIcon2 = Utilities.readImage(Constants.WASP_1_PATH);
+        ImageIcon imageIcon3 = Utilities.readImage(Constants.WASP_2_PATH);
+        ImageIcon imageIcon4 = Utilities.readImage(Constants.WASP_2_PATH);
         this.images.add(imageIcon1.getImage());
         this.images.add(imageIcon2.getImage());
         this.images.add(imageIcon3.getImage());

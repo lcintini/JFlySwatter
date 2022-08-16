@@ -17,7 +17,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     }
 
     // la finestra
-    private void initializeView() {
+    public void initializeView() {
         //inserisco nel JFrame un nuovo elemento di tipo JPanel
         this.setContentPane(this.layeredPane);
         this.setVisible(true);
