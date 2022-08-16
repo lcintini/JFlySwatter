@@ -17,7 +17,7 @@ public class HUDPanel extends JPanel {
     public HUDPanel() {
         this.setBounds(0, 0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
-        this.imgHUD = (Utilities.readImage("resources/images/hud-flyswatter.png")).getImage();
+        this.imgHUD = (Utilities.readImage(Constants.HUD_FLY_SWATTER_PATH)).getImage();
         this.count = new JLabel();
         this.count.setBounds(30, 370, 200, 50);
         this.add(this.count);

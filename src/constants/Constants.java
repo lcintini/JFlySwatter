@@ -62,6 +62,7 @@ public class Constants {
     public static final String SWATTER_4_PATH = "resources/images/swap4.png";
     public static final String WASP_1_PATH = "resources/images/wasp1.png";
     public static final String WASP_2_PATH = "resources/images/wasp2.png";
+    public static final String HUD_FLY_SWATTER_PATH = "resources/images/hud-flyswatter.png";
 
 
 

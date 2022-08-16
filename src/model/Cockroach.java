@@ -22,9 +22,9 @@ public class Cockroach extends Bug{
         ImageIcon imageIcon8 = Utilities.readImage(Constants.COCKROACH_2_PATH);
         ImageIcon imageIcon9 = Utilities.readImage(Constants.COCKROACH_1_PATH);
         ImageIcon imageIcon10 = Utilities.readImage(Constants.COCKROACH_1_PATH);
-        ImageIcon imageIcon11= Utilities.readImage(Constants.COCKROACH_4_PATH);
-        ImageIcon imageIcon12= Utilities.readImage(Constants.COCKROACH_4_PATH);
-        ImageIcon imageIcon13= Utilities.readImage(Constants.COCKROACH_5_PATH);
+        ImageIcon imageIcon11 = Utilities.readImage(Constants.COCKROACH_4_PATH);
+        ImageIcon imageIcon12 = Utilities.readImage(Constants.COCKROACH_4_PATH);
+        ImageIcon imageIcon13 = Utilities.readImage(Constants.COCKROACH_5_PATH);
         ImageIcon imageIcon14 = Utilities.readImage(Constants.COCKROACH_5_PATH);
         ImageIcon imageIcon15 = Utilities.readImage(Constants.COCKROACH_6_PATH);
         ImageIcon imageIcon16 = Utilities.readImage(Constants.COCKROACH_6_PATH);
