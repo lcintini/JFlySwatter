@@ -14,10 +14,11 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     private JLayeredPane layeredPane;
     private MenuController menuController;
     private GameController gameController;
+    private Swatter swatter;
 
     public MainView() throws HeadlessException {
         this.layeredPane=new JLayeredPane();
-        Swatter.createSwatter();
+        this.swatter = new Swatter();
         ImagesList.preloadImages();
         this.initializeView();
     }
@@ -39,7 +40,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         //non posso ridimenzionarla
         this.setResizable(false);
         this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-                Swatter.getImg(),
+                this.swatter.getImg(),
                 new Point(0,0),"custom cursor"));
         this.pack();
     }
@@ -152,8 +153,16 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     }
     public void nextCursor(){
         this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-                Swatter.getImg(),
+                this.swatter.getImg(),
                 new Point(0,0),"custom cursor"));
         this.pack();
+    }
+
+    public void setNormalSwatter(){
+        this.swatter.setNormalAnimation(true);
+    }
+
+    public void setSwatSwatter(){
+        this.swatter.setSwatAnimation(true);
     }
 }

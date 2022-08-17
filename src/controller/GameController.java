@@ -9,7 +9,6 @@ import utilities.Utilities;
 import view.GamePanel;
 import view.HUDPanel;
 import view.GameLoop;
-import view.Swatter;
 import javax.swing.Timer;
 import java.util.ArrayList;
 import java.util.Random;
@@ -85,11 +84,11 @@ public class GameController {
             Random r=new Random();
             int size = 0;
             size = bugs.size();
-            int pos = r.nextInt(2);
+            int randPos = r.nextInt(2);
             if ((size <= 10 * (gameModel.getDifficulty() + 1)-2) && (timer.isRunning()) && createNewBug) {
                 Bug b;
                 createNewBug = false;
-                if(pos == 0){
+                if(randPos == 0){
                     b = bugsCreator.createNewWasp(0, Constants.BORDER_Y1, Direction.EAST, gameModel.getDifficulty());
                 } else {
                     b = bugsCreator.createNewWasp(Constants.BOARD_WIDTH, Constants.BORDER_Y2-Constants.WASP_HEIGHT, Direction.WEST, gameModel.getDifficulty());
@@ -103,13 +102,13 @@ public class GameController {
             Random r=new Random();
             int size = 0;
             size = bugs.size();
-            int pos = r.nextInt(2);
+            int randPos = r.nextInt(2);
             if ((size <= 10 * (gameModel.getDifficulty() + 1)-2) && (timer.isRunning()) && createNewBug) {
                 Bug b;
                 createNewBug = false;
                 int randX = r.nextInt(640);
                 int randY = r.nextInt(30);
-                if(pos == 0){
+                if(randPos == 0){
                     b = bugsCreator.createNewButterfly(randX, randY, Direction.SOUTH, gameModel.getDifficulty());
                 } else {
                     b = bugsCreator.createNewButterfly(randX, 350 + randY, Direction.NORTH, gameModel.getDifficulty());
@@ -122,13 +121,13 @@ public class GameController {
             Random r=new Random();
             int size = 0;
             size = bugs.size();
-            int pos = r.nextInt(2);
+            int randPos = r.nextInt(2);
             if ((size <= 10 * (gameModel.getDifficulty() + 1)-2) && (timer.isRunning()) && createNewBug) {
                 Bug b;
                 createNewBug = false;
                 int randX = r.nextInt(640);
                 int randY = r.nextInt(30);
-                if(pos == 0){
+                if(randPos == 0){
                     b = bugsCreator.createNewLadybug(randX, randY, Direction.SOUTH, gameModel.getDifficulty());
                 } else {
                     b = bugsCreator.createNewLadybug(randX, 350 + randY, Direction.NORTH, gameModel.getDifficulty());
@@ -141,13 +140,13 @@ public class GameController {
             Random r=new Random();
             int size = 0;
             size = bugs.size();
-            int pos = r.nextInt(2);
+            int randPos = r.nextInt(2);
             if ((size <= 10 * (gameModel.getDifficulty() + 1)-2) && (timer.isRunning()) && createNewBug) {
                 Bug b;
                 createNewBug = false;
                 int randX = r.nextInt(640);
                 int randY = r.nextInt(30);
-                if(pos == 0){
+                if(randPos == 0){
                     b = bugsCreator.createNewCockroach(randX, randY, Direction.SOUTH, gameModel.getDifficulty());
                 } else {
                     b = bugsCreator.createNewCockroach(randX, 350 + randY, Direction.NORTH, gameModel.getDifficulty());
@@ -220,12 +219,12 @@ public class GameController {
     //tiene la posizione del mouse
     public void handleClick( int x, int y){
         Bug deadBug = null;
-        Swatter.setNormalAnimation(true);
+        this.mainController.setNormalSwatter();
         x += 16;
         y += 7;
         for (Bug b : this.bugs) {
             if (b.isClicked(x, y)) {
-                Swatter.setSwatAnimation(true);
+                this.mainController.setSwatSwatter();
                 this.playEffects("slap");
                 if(b.getPoints()==Constants.POINTS_LADYBUG){
                     this.gameModel.setTimerLeft(this.gameModel.getTimerLeft() - Constants.POINTS_LADYBUG);

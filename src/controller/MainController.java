@@ -91,4 +91,11 @@ public class MainController {
             Utilities.writeNumber(fileName, level);
         }
     }
+    public void setNormalSwatter(){
+        this.mainView.setNormalSwatter();
+    }
+
+    public void setSwatSwatter(){
+        this.mainView.setSwatSwatter();
+    }
 }
