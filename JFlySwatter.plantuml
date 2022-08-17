@@ -1,159 +1,122 @@
 @startuml
 
-title JFLYSWATTER's Class Diagram
 
-
-  
-    namespace controller {
+  namespace controller {
       class controller.GameController {
       }
     }
   
-  
 
-  
-    namespace controller {
-      class controller.GameLoop {
-      }
-    }
-  
-  
-
-  
-    namespace controller {
+  namespace controller {
       class controller.MainController {
       }
     }
   
-  
 
-  
-    namespace controller {
+  namespace controller {
       class controller.MenuController {
       }
     }
   
-  
 
-  
-    namespace model {
+  namespace model {
       abstract class model.Bug {
       }
     }
   
+
+  namespace model {
+      class model.BugsCreator {
+      }
+    }
   
 
-  
-    namespace model {
+  namespace model {
       class model.Butterfly {
       }
     }
   
-  
 
-  
-    namespace model {
+  namespace model {
       class model.Cockroach {
       }
     }
   
-  
 
-  
-    namespace model {
-      enum Direction {
-      }
-    }
-  
-  
-
-  
-    namespace model {
+  namespace model {
       class model.Fly {
       }
     }
   
+
+  namespace model {
+      class model.GameModel {
+      }
+    }
   
 
-  
-    namespace model {
+  namespace model {
       class model.Ladybug {
       }
     }
   
-  
 
-  
-    namespace model {
-      class model.Swatter {
-      }
-    }
-  
-  
-
-  
-    namespace model {
+  namespace model {
       class model.Wasp {
       }
     }
   
-  
 
-  
-    namespace view {
+  namespace view {
       class view.GamePanel {
       }
     }
   
-  
 
-  
-    namespace view {
+ namespace view {
       class view.HUDPanel {
       }
     }
   
-  
 
-  
-    namespace view {
+  namespace view {
       class view.MainView {
       }
     }
   
-  
 
-  
-    namespace view {
+  namespace view {
       class view.MenuPanel {
       }
     }
   
-  
 
-  
-    namespace view {
+  namespace view {
       class view.PausePanel {
       }
     }
   
+
+  namespace view {
+      class view.Swatter {
+      }
+    }
   
 
+  controller.GameController o-- model.BugsCreator : bugsCreator
+  controller.GameController o-- model.Bug : bugs
+  controller.GameController o-- model.GameModel : gameModel
   controller.GameController o-- view.GamePanel : gamePanel
   controller.GameController o-- view.HUDPanel : hudPanel
   controller.GameController o-- controller.MainController : mainController
-  controller.GameController o-- view.PausePanel : pausePanel
-  controller.GameController o-- model.Bug : bugs
-  controller.GameLoop o-- controller.GameController : gameController
   controller.MainController o-- controller.GameController : gameController
   controller.MainController o-- view.GamePanel : gamePanel
   controller.MainController o-- view.HUDPanel : hudPanel
   controller.MainController o-- view.MainView : mainView
   controller.MainController o-- controller.MenuController : menuController
   controller.MainController o-- view.MenuPanel : menuPanel
+  controller.MainController o-- view.PausePanel : pausePanel
   controller.MenuController o-- controller.MainController : mainController
-  controller.MenuController o-- view.MenuPanel : menuPanel
-  model.Bug o-- model.Direction : direction
   model.Butterfly -up-|> model.Bug
   model.Cockroach -up-|> model.Bug
   model.Fly -up-|> model.Bug
@@ -161,7 +124,7 @@ title JFLYSWATTER's Class Diagram
   model.Wasp -up-|> model.Bug
   view.GamePanel o-- controller.GameController : gameController
   view.GamePanel o-- model.Bug : bugs
-
+  view.MainView o-- view.Swatter : swatter
 
 
 @enduml
