@@ -25,12 +25,12 @@ public class HUDPanel extends JPanel {
         this.timer.setBounds(550, 370, 200, 50);
         this.add(this.timer);
         this.gameOver = new JLabel("GAME OVER");
-        this.gameOver.setBounds(300, 370, 200, 50);
+        this.gameOver.setBounds(293, 400, 200, 50);
         this.gameOver.setVisible(false);
         this.gameOver.setForeground(Color.RED);
         this.add(this.gameOver);
         this.victory = new JLabel("YOU WIN");
-        this.victory.setBounds(300, 370, 200, 50);
+        this.victory.setBounds(293, 400, 200, 50);
         this.victory.setVisible(false);
         this.victory.setForeground(Color.GREEN);
         this.add(this.victory);
@@ -79,8 +79,8 @@ public class HUDPanel extends JPanel {
         this.victory.paintImmediately(this.victory.getVisibleRect());
     }
     public void printHighScore(int highScore){
-        this.highScore = new JLabel("HIGHSCORE: "+ highScore);
-        this.highScore.setBounds(285, 400, 200, 50);
+        this.highScore = new JLabel("Highscore: "+ highScore);
+        this.highScore.setBounds(285, 370, 200, 50);
         this.add(this.highScore);
     }
 
