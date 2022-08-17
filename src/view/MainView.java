@@ -2,6 +2,7 @@ package view;
 
 import constants.Constants;
 import controller.GameController;
+import controller.MainController;
 import controller.MenuController;
 import utilities.ImagesList;
 
@@ -14,8 +15,15 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     //gestisce la sovrapposizione di pannelli
     private JLayeredPane layeredPane;
     private Swatter swatter;
+    private MenuPanel menuPanel;
+    private GamePanel gamePanel;
 
-    public MainView() throws HeadlessException {
+    private HUDPanel hudPanel;
+    private PausePanel pausePanel;
+    private MainController mainController;
+
+    public MainView(MainController mainController){
+        this.mainController = mainController;
         this.layeredPane=new JLayeredPane();
         this.swatter = new Swatter();
         ImagesList.preloadImages();
@@ -45,6 +53,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     }
 
     public void addMenuPanel(MenuPanel mp, MenuController menuController){
+        this.menuPanel = mp;
         String[] difficulties = {"Easy","Normal","Hard"};
         JButton startButton= mp.getStartButton();
         startButton.addActionListener(new ActionListener() {
@@ -98,6 +107,8 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     }
 
     public void addGamePanel(GamePanel gp, HUDPanel hp){
+        this.gamePanel = gp;
+        this.hudPanel = hp;
         this.layeredPane.removeAll();
         this.layeredPane.add(gp, JLayeredPane.DEFAULT_LAYER);
         hp.setOpaque(false);
@@ -106,6 +117,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.pack();
     }
     public void addPausePanel(PausePanel pp, GameController gameController) {
+        this.pausePanel = pp;
         JButton resumeButton= pp.getResumeButton();
         resumeButton.addActionListener(new ActionListener() {
             @Override
@@ -144,8 +156,8 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.pack();
     }
 
-    public void removePausePanel(PausePanel pausePanel){
-        this.layeredPane.remove(pausePanel);
+    public void removePausePanel(){
+        this.layeredPane.remove(this.pausePanel);
         this.pack();
     }
     public void nextCursor(){
@@ -161,5 +173,17 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
 
     public void setSwatSwatter(){
         this.swatter.setSwatAnimation(true);
+    }
+
+    public GamePanel getGamePanel() {
+        return this.gamePanel;
+    }
+
+    public HUDPanel getHudPanel() {
+        return this.hudPanel;
+    }
+
+    public MainController getMainController(){
+        return this.mainController;
     }
 }

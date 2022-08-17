@@ -1,6 +1,5 @@
 @startuml
 
-
   namespace utilities {
       enum Direction {
         EAST
@@ -54,9 +53,6 @@
           {static} + writeNumber()
       }
     }
-  
-
-
 
 
 @enduml

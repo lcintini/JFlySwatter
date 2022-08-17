@@ -1,7 +1,7 @@
 package view;
 
 import constants.Constants;
-import controller.GameController;
+import controller.MainController;
 import model.Bug;
 import utilities.ImagesList;
 
@@ -15,15 +15,16 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
     private ArrayList<Bug> bugs;
-    private GameController gameController;
+    private MainView mainView;
 
-    public GamePanel() {
+    public GamePanel(MainView mainView) {
+        this.mainView = mainView;
         this.setBounds(0, 0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
         this.bugs = new ArrayList<>();
         this.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me){
-                gameController.handleClick(me.getX(),me.getY());
+                handleClick(me.getX(),me.getY());
             }
         });
         this.addKeyListener(new KeyAdapter() {
@@ -69,14 +70,14 @@ public class GamePanel extends JPanel {
     public void removeAllBugs(){
         this.bugs = new ArrayList<>();
     }
-
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
     public void enterPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.gameController.pauseGame();
+            this.mainView.getMainController().getGameController().pauseGame();
         }
+    }
+
+    public void handleClick(int x, int y){
+        this.mainView.getMainController().getGameController().handleClick(x,y);
     }
 
     public int getMouseLocationX() {

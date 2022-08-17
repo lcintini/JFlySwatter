@@ -12,24 +12,35 @@ namespace controller {
           + handleClick()
           + handleTimer()
           + initializeGame()
+          + isEffectsEnable()
+          + isMusicEnable()
           + pauseGame()
           + playEffects()
           + playMusic()
           + resumeGame()
+          + setEffectsEnable()
+          + setMusicEnable()
           + stopMusic()
           + update()
       }
     }
   
 
-  namespace controller {
+ namespace controller {
       class controller.MainController {
           - highScore : int
           + MainController()
+          + getGameController()
+          + getGamePanel()
+          + getHighScore()
+          + getHudPanel()
           + nextCursor()
           + pauseGame()
           + readHighScore()
           + resumeGame()
+          + setHighScore()
+          + setNormalSwatter()
+          + setSwatSwatter()
           + startGame()
           + startMenu()
           + updateHighScore()
@@ -43,7 +54,13 @@ namespace controller {
           - effectsEnable : boolean
           - musicEnable : boolean
           + MenuController()
+          + getDifficulty()
+          + isEffectsEnable()
+          + isMusicEnable()
           + playEffects()
+          + setDifficulty()
+          + setEffectsEnable()
+          + setMusicEnable()
           + startGame()
       }
     }
@@ -51,18 +68,12 @@ namespace controller {
 
   controller.GameController o-- model.BugsCreator : bugsCreator
   controller.GameController o-- model.GameModel : gameModel
-  controller.GameController o-- view.GamePanel : gamePanel
-  controller.GameController o-- view.HUDPanel : hudPanel
+  controller.GameController o-- model.Bug : bugs
   controller.GameController o-- controller.MainController : mainController
   controller.MainController o-- controller.GameController : gameController
-  controller.MainController o-- view.GamePanel : gamePanel
-  controller.MainController o-- view.HUDPanel : hudPanel
   controller.MainController o-- view.MainView : mainView
   controller.MainController o-- controller.MenuController : menuController
-  controller.MainController o-- view.MenuPanel : menuPanel
-  controller.MainController o-- view.PausePanel : pausePanel
   controller.MenuController o-- controller.MainController : mainController
-  controller.GameController o-- model.Bug : bugs
 
 
 

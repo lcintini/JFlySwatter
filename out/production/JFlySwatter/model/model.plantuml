@@ -1,6 +1,5 @@
 @startuml
 
-
  namespace model {
       abstract class model.Bug {
           # dx : int
@@ -15,12 +14,25 @@
           + Bug()
           + changeDirection()
           + changeDirectionBorder()
+          + getDirection()
+          + getDx()
+          + getDy()
+          + getImg()
+          + getPoints()
+          + getX()
+          + getY()
           + isClicked()
           + isInBorderX1()
           + isInBorderX2()
           + isInBorderY1()
           + isInBorderY2()
           + move()
+          + setDirection()
+          + setDx()
+          + setDy()
+          + setPoints()
+          + setX()
+          + setY()
       }
     }
   
@@ -53,7 +65,7 @@
     }
   
 
- namespace model {
+  namespace model {
       class model.Fly {
           + Fly()
       }
@@ -71,6 +83,22 @@
           - startTime : long
           - timerLeft : int
           + GameModel()
+          + getCount()
+          + getDifficulty()
+          + getHighScore()
+          + getLevel()
+          + getStartTime()
+          + getTimerLeft()
+          + isEffectsEnable()
+          + isMusicEnable()
+          + setCount()
+          + setDifficulty()
+          + setEffectsEnable()
+          + setHighScore()
+          + setLevel()
+          + setMusicEnable()
+          + setStartTime()
+          + setTimerLeft()
       }
     }
   
@@ -88,10 +116,6 @@
           + changeDirection()
           + changeDirectionBorder()
       }
-    }
-
-    namespace utilities {
-        enum Direction
     }
   
 

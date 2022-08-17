@@ -8,20 +8,15 @@ import view.*;
 public class MainController {
 
     private MainView mainView;
-    private MenuPanel menuPanel;
+
     private MenuController menuController;
-
-    private GamePanel gamePanel;
     private GameController gameController;
-
-    private HUDPanel hudPanel;
-    private PausePanel pausePanel;
 
     private int highScore;
 
 
     public MainController() {
-        this.mainView = new MainView();
+        this.mainView = new MainView(this);
         this.highScore = 0;
         this.startMenu();
     }
@@ -42,26 +37,26 @@ public class MainController {
     }
 
     public void startMenu(){
-        this.menuPanel = new MenuPanel();
-        this.menuController = new MenuController(this, this.menuPanel);
-        this.mainView.addMenuPanel(this.menuPanel, this.menuController);
+        MenuPanel menuPanel = new MenuPanel();
+        this.menuController = new MenuController(this, menuPanel);
+        this.mainView.addMenuPanel(menuPanel, this.menuController);
     }
 
     public void startGame(int difficulty, boolean effectsEnable, boolean musicEnable) {
         this.readHighScore(difficulty);
-        this.gamePanel = new GamePanel();
-        this.hudPanel = new HUDPanel();
-        this.gameController = new GameController(this, this.gamePanel,this.hudPanel, difficulty, Constants.FIRST_LEVEL, effectsEnable, musicEnable);
-        this.mainView.addGamePanel(this.gamePanel, this.hudPanel);
+        HUDPanel hudPanel = new HUDPanel();
+        GamePanel gamePanel = new GamePanel(this.mainView);
+        this.mainView.addGamePanel(gamePanel, hudPanel);
+        this.gameController = new GameController(this, difficulty, Constants.FIRST_LEVEL, effectsEnable, musicEnable);
     }
 
     public void pauseGame() {
-        this.pausePanel = new PausePanel(this.gameController.isMusicEnable(), this.gameController.isEffectsEnable());
-        this.mainView.addPausePanel(this.pausePanel, this.gameController);
+        PausePanel pausePanel = new PausePanel(this.gameController.isMusicEnable(), this.gameController.isEffectsEnable());
+        this.mainView.addPausePanel(pausePanel, this.gameController);
     }
 
     public void resumeGame() {
-        this.mainView.removePausePanel(this.pausePanel);
+        this.mainView.removePausePanel();
     }
     public void nextCursor (){
         this.mainView.nextCursor();
@@ -97,5 +92,17 @@ public class MainController {
 
     public void setSwatSwatter(){
         this.mainView.setSwatSwatter();
+    }
+
+    public GamePanel getGamePanel() {
+        return this.mainView.getGamePanel();
+    }
+
+    public HUDPanel getHudPanel() {
+        return this.mainView.getHudPanel();
+    }
+
+    public GameController getGameController() {
+        return gameController;
     }
 }

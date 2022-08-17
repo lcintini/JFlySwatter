@@ -1,5 +1,5 @@
 @startuml
-
+  left to right direction
 
   namespace controller {
       class controller.GameController {
@@ -106,25 +106,26 @@
   controller.GameController o-- model.BugsCreator : bugsCreator
   controller.GameController o-- model.Bug : bugs
   controller.GameController o-- model.GameModel : gameModel
-  controller.GameController o-- view.GamePanel : gamePanel
-  controller.GameController o-- view.HUDPanel : hudPanel
   controller.GameController o-- controller.MainController : mainController
   controller.MainController o-- controller.GameController : gameController
-  controller.MainController o-- view.GamePanel : gamePanel
-  controller.MainController o-- view.HUDPanel : hudPanel
   controller.MainController o-- view.MainView : mainView
+
   controller.MainController o-- controller.MenuController : menuController
-  controller.MainController o-- view.MenuPanel : menuPanel
-  controller.MainController o-- view.PausePanel : pausePanel
+
+
   controller.MenuController o-- controller.MainController : mainController
   model.Butterfly -up-|> model.Bug
   model.Cockroach -up-|> model.Bug
   model.Fly -up-|> model.Bug
   model.Ladybug -up-|> model.Bug
   model.Wasp -up-|> model.Bug
-  view.GamePanel o-- controller.GameController : gameController
+  view.GamePanel o-- controller.MainController : mainController
   view.GamePanel o-- model.Bug : bugs
   view.MainView o-- view.Swatter : swatter
+  view.MainView o-- view.GamePanel : gamePanel
+  view.MainView o-- view.HUDPanel : hudPanel
+  view.MainView o-- view.MenuPanel : menuPanel
+  view.MainView o-- view.PausePanel : pausePanel
 
 
 @enduml

@@ -6,19 +6,14 @@ import model.BugsCreator;
 import utilities.Direction;
 import model.GameModel;
 import utilities.Utilities;
-import view.GamePanel;
-import view.HUDPanel;
 
 import javax.swing.Timer;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameController {
-
-
+    
     private MainController mainController;
-    private GamePanel gamePanel;
-    private HUDPanel hudPanel;
 
     private GameModel gameModel;
     // primo oggetto di Java Swing utilizzato per scandire i cicli ( update-repaint) di chiamata al paint component
@@ -28,12 +23,10 @@ public class GameController {
     private ArrayList <Timer> timerCreators;
     private boolean createNewBug;
 
-    public GameController(MainController mainController, GamePanel gamePanel, HUDPanel hudPanel, int difficulty, int firstLevel, boolean effectsEnable, boolean musicEnable) {
+
+    public GameController(MainController mainController, int difficulty, int firstLevel, boolean effectsEnable, boolean musicEnable) {
 
         this.mainController = mainController;
-        this.gamePanel = gamePanel;
-        this.hudPanel = hudPanel;
-        this.gamePanel.setGameController(this);
         this.bugsCreator = new BugsCreator();
         this.timer = new Timer(Constants.GAME_SPEED, e -> doOneLoop());
         this.gameModel = new GameModel(difficulty, firstLevel, musicEnable, effectsEnable);
@@ -43,12 +36,12 @@ public class GameController {
     public void initializeGame() {
         this.gameModel.setCount((this.gameModel.getDifficulty()+1) * Constants.LOWER_BOUNDS_BUGS);
         this.bugs = new ArrayList<>();
-        this.hudPanel.getCount().setText("Count: "+ this.gameModel.getCount());
+        this.mainController.getHudPanel().changeCount("Count: "+ this.gameModel.getCount());
         this.gameModel.setHighScore(this.mainController.getHighScore());
-        this.hudPanel.printHighScore(this.gameModel.getHighScore());
+        this.mainController.getHudPanel().printHighScore(this.gameModel.getHighScore());
         this.gameModel.setTimerLeft((int) ((1 / ((double) (this.gameModel.getDifficulty() + 1))) * Constants.LOWER_BOUNDS_TIMER));
         System.out.println(this.gameModel.getTimerLeft());
-        this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
+        this.mainController.getHudPanel().changeTimer("Timer: "+ this.gameModel.getTimerLeft());
         //viene creato un thread specifico per la creazione di mosche e viene gestito con i semafori di java l'accesso all'array list per evitare collisioni (accesso concorrenziale)
         this.createTimers();
         this.gameModel.setStartTime(System.currentTimeMillis());
@@ -76,7 +69,7 @@ public class GameController {
                     b =bugsCreator.createNewFly(randX, 350 + randY, Direction.NORTH, gameModel.getDifficulty());
                 }
                 bugs.add(b);
-                gamePanel.addBug(b);
+                mainController.getGamePanel().addBug(b);
 
             }
         });
@@ -94,7 +87,7 @@ public class GameController {
                     b = bugsCreator.createNewWasp(Constants.BOARD_WIDTH, Constants.BORDER_Y2-Constants.WASP_HEIGHT, Direction.WEST, gameModel.getDifficulty());
                 }
                 bugs.add(b);
-                gamePanel.addBug(b);
+                mainController.getGamePanel().addBug(b);
             }
 
         });
@@ -114,7 +107,7 @@ public class GameController {
                     b = bugsCreator.createNewButterfly(randX, 350 + randY, Direction.NORTH, gameModel.getDifficulty());
                 }
                 bugs.add(b);
-                gamePanel.addBug(b);
+                mainController.getGamePanel().addBug(b);
             }
         });
         Timer ladybugCreator = new Timer(Constants.GAME_SPEED / 2, e -> {
@@ -133,7 +126,7 @@ public class GameController {
                     b = bugsCreator.createNewLadybug(randX, 350 + randY, Direction.NORTH, gameModel.getDifficulty());
                 }
                 bugs.add(b);
-                gamePanel.addBug(b);
+                mainController.getGamePanel().addBug(b);
             }
         });
         Timer cockroachCreator = new Timer(Constants.GAME_SPEED / 2, e -> {
@@ -152,7 +145,7 @@ public class GameController {
                     b = bugsCreator.createNewCockroach(randX, 350 + randY, Direction.NORTH, gameModel.getDifficulty());
                 }
                 bugs.add(b);
-                gamePanel.addBug(b);
+                mainController.getGamePanel().addBug(b);
             }
         });
 
@@ -174,17 +167,17 @@ public class GameController {
 
     // start update-repaint
     public void doOneLoop() {
-        //si svegliano gli actionlistener del gamepanel
-        this.gamePanel.requestFocus();
+        //si svegliano gli actionlistener del mainController.getGamePanel()
+        this.mainController.getGamePanel().requestFocus();
         this.update();
         this.mainController.nextCursor();
-        this.gamePanel.repaint();
-        this.hudPanel.repaint();
+        this.mainController.getGamePanel().repaint();
+        this.mainController.getHudPanel().repaint();
     }
     //aggiorna le coordinate degli insetti
     public void update() {
-        int mouseX = this.gamePanel.getMouseLocationX();
-        int mouseY = this.gamePanel.getMouseLocationY();
+        int mouseX = this.mainController.getGamePanel().getMouseLocationX();
+        int mouseY = this.mainController.getGamePanel().getMouseLocationY();
         for (Bug b:this.bugs) {
             b.move(mouseX, mouseY);
         }
@@ -196,7 +189,7 @@ public class GameController {
         if(System.currentTimeMillis() >= this.gameModel.getStartTime() +1000){
             this.createNewBug = true;
             this.gameModel.setTimerLeft(this.gameModel.getTimerLeft() - 1);
-            this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
+            this.mainController.getHudPanel().changeTimer("Timer: "+ this.gameModel.getTimerLeft());
             this.gameModel.setStartTime(System.currentTimeMillis());
         }
         //sconfitta
@@ -205,13 +198,13 @@ public class GameController {
             System.out.println("il gioco è finito");
             this.stopMusic();
             // ferma il thread di creazione mosche
-            this.hudPanel.printGameOver();
+            this.mainController.getHudPanel().printGameOver();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            this.hudPanel.hideGameOver();
+            this.mainController.getHudPanel().hideGameOver();
             this.exitGame();
         }
     }
@@ -228,21 +221,21 @@ public class GameController {
                 this.playEffects("slap");
                 if(b.getPoints()==Constants.POINTS_LADYBUG){
                     this.gameModel.setTimerLeft(this.gameModel.getTimerLeft() - Constants.POINTS_LADYBUG);
-                    this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
+                    this.mainController.getHudPanel().changeTimer("Timer: "+ this.gameModel.getTimerLeft());
                 }
                 else if(b.getPoints()==Constants.POINTS_COCKROACH){
                     if(y < b.getY()+ Constants.COCKROACH_HEIGHT/2){
                         this.gameModel.setCount(this.gameModel.getCount() - Constants.POINTS_COCKROACH/2);
-                        this.hudPanel.getCount().setText("Count: "+ this.gameModel.getCount());
+                        this.mainController.getHudPanel().changeCount("Count: "+ this.gameModel.getCount());
                     }
                     else{
                         this.gameModel.setTimerLeft(this.gameModel.getTimerLeft() - Constants.POINTS_COCKROACH);
-                        this.hudPanel.getTimer().setText("Timer: "+ this.gameModel.getTimerLeft());
+                        this.mainController.getHudPanel().changeTimer("Timer: "+ this.gameModel.getTimerLeft());
                     }
                 }
                 else{
                     this.gameModel.setCount(this.gameModel.getCount() - b.getPoints());
-                    this.hudPanel.getCount().setText("Count: "+ this.gameModel.getCount());
+                    this.mainController.getHudPanel().changeCount("Count: "+ this.gameModel.getCount());
                 }
                 deadBug = b;
             }
@@ -250,26 +243,26 @@ public class GameController {
 
         if(deadBug != null){
             this.bugs.remove(deadBug);
-            this.gamePanel.removeBug(deadBug);
+            this.mainController.getGamePanel().removeBug(deadBug);
         }
         //vincita
         if(this.gameModel.getCount() <= 0) {
             this.stopMusic();
             this.timer.stop();
             this.gameModel.setLevel(this.gameModel.getLevel()+1);
-            // ferma il timer di creazione mosche
+            // ferma il thread di creazione mosche
             for(Timer t: this.timerCreators){
                 t.stop();
             }
             this.bugs = new ArrayList<>();
-            this.gamePanel.removeAllBugs();
-            this.hudPanel.printVictory();
+            this.mainController.getGamePanel().removeAllBugs();
+            this.mainController.getHudPanel().printVictory();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            this.hudPanel.hideVictory();
+            this.mainController.getHudPanel().hideVictory();
             this.initializeGame();
         }
     }
@@ -292,7 +285,7 @@ public class GameController {
             t.stop();
         }
         this.bugs = new ArrayList<>();
-        this.gamePanel.removeAllBugs();
+        this.mainController.getGamePanel().removeAllBugs();
         this.mainController.updateHighScore(this.gameModel.getLevel(), this.gameModel.getDifficulty());
         this.mainController.startMenu();
     }

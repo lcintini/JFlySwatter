@@ -54,11 +54,12 @@ public class HUDPanel extends JPanel {
 
     }
 
-    public JLabel getCount() {
-        return count;
+
+    public void changeCount(String s) {
+        this.count.setText(s);
     }
-    public JLabel getTimer() {
-        return timer;
+    public void changeTimer(String s) {
+        this.timer.setText(s);
     }
 
     public void printGameOver() {
@@ -83,6 +84,7 @@ public class HUDPanel extends JPanel {
         this.highScore.setBounds(285, 370, 200, 50);
         this.add(this.highScore);
     }
+
 
 
 }

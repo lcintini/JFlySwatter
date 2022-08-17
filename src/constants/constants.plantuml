@@ -1,7 +1,8 @@
 @startuml
 
+title __CONSTANTS's Class Diagram__\n
 
-    namespace onstants {
+  namespace constants {
       class constants.Constants {
           {static} + BOARD_HEIGHT : int
           {static} + BOARD_WIDTH : int
@@ -64,6 +65,7 @@
           {static} + WASP_WIDTH : int
       }
     }
+  
 
 
 @enduml

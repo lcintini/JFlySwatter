@@ -1,9 +1,9 @@
 @startuml
 
+title __VIEW's Class Diagram__\n
 
- namespace view {
+  namespace view {
       class view.GamePanel {
-          - bugs : ArrayList<Bug>
           + GamePanel()
           + addBug()
           + doDrawing()
@@ -11,10 +11,10 @@
           + enterPressed()
           + getMouseLocationX()
           + getMouseLocationY()
+          + handleClick()
           + paintComponent()
           + removeAllBugs()
           + removeBug()
-          + setGameController()
       }
     }
   
@@ -28,10 +28,10 @@
           - timer : JLabel
           - victory : JLabel
           + HUDPanel()
+          + changeCount()
+          + changeTimer()
           + doDrawing()
           + drawHUD()
-          + getCount()
-          + getTimer()
           + hideGameOver()
           + hideVictory()
           + paintComponent()
@@ -42,13 +42,16 @@
     }
   
 
-  namespace view {
+ namespace view {
       class view.MainView {
           - layeredPane : JLayeredPane
           + MainView()
           + addGamePanel()
           + addMenuPanel()
           + addPausePanel()
+          + getGamePanel()
+          + getHudPanel()
+          + getMainController()
           + initializeView()
           + nextCursor()
           + removePausePanel()
@@ -69,6 +72,13 @@
           - startButton : JButton
           + MenuPanel()
           + drawMenu()
+          + getEffectsButton()
+          + getLeftArrowButton()
+          + getMusicButton()
+          + getRightArrowButton()
+          + getStartButton()
+          + setEffectEnable()
+          + setMusicEnable()
       }
     }
   
@@ -83,6 +93,12 @@
           - resumeButton : JButton
           + PausePanel()
           + drawMenu()
+          + getEffectsButton()
+          + getExitButton()
+          + getMusicButton()
+          + getResumeButton()
+          + setEffectEnable()
+          + setMusicEnable()
       }
     }
   
@@ -103,13 +119,18 @@
   
 
   view.GamePanel -up-|> javax.swing.JPanel
-  view.GamePanel o-- controller.GameController : gameController
+  view.GamePanel o-- view.MainView : mainView
   view.HUDPanel -up-|> javax.swing.JPanel
   view.MainView -up-|> javax.swing.JFrame
+  view.MainView o-- view.GamePanel : gamePanel
+  view.MainView o-- view.HUDPanel : hudPanel
+  view.MainView o-- controller.MainController : mainController
+  view.MainView o-- view.MenuPanel : menuPanel
+  view.MainView o-- view.PausePanel : pausePanel
   view.MainView o-- view.Swatter : swatter
   view.MenuPanel -up-|> javax.swing.JPanel
   view.PausePanel -up-|> javax.swing.JPanel
-  view.GamePanel o-- model.Bug : bugs
+    view.GamePanel o-- model.Bug : bugs
 
 
 
