@@ -8,7 +8,7 @@ import model.GameModel;
 import utilities.Utilities;
 import view.GamePanel;
 import view.HUDPanel;
-import view.GameLoop;
+
 import javax.swing.Timer;
 import java.util.ArrayList;
 import java.util.Random;
@@ -35,7 +35,7 @@ public class GameController {
         this.hudPanel = hudPanel;
         this.gamePanel.setGameController(this);
         this.bugsCreator = new BugsCreator();
-        this.timer = new Timer(Constants.GAME_SPEED, new GameLoop(this));
+        this.timer = new Timer(Constants.GAME_SPEED, e -> doOneLoop());
         this.gameModel = new GameModel(difficulty, firstLevel, musicEnable, effectsEnable);
         this.initializeGame();
     }
@@ -257,7 +257,7 @@ public class GameController {
             this.stopMusic();
             this.timer.stop();
             this.gameModel.setLevel(this.gameModel.getLevel()+1);
-            // ferma il thread di creazione mosche
+            // ferma il timer di creazione mosche
             for(Timer t: this.timerCreators){
                 t.stop();
             }

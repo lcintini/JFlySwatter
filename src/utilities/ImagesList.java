@@ -1,4 +1,4 @@
-package view;
+package utilities;
 
 import constants.Constants;
 import utilities.Direction;

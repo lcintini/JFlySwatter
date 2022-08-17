@@ -6,7 +6,6 @@ import view.MenuPanel;
 public class MenuController {
 
     private MainController mainController;
-    private MenuPanel menuPanel;
     private int difficulty;
     private boolean musicEnable;
     private boolean effectsEnable;
@@ -14,7 +13,6 @@ public class MenuController {
 
     public MenuController(MainController mainController, MenuPanel menuPanel) {
         this.mainController = mainController;
-        this.menuPanel = menuPanel;
         this.difficulty = 1;
         this.musicEnable = true;
         this.effectsEnable = true;

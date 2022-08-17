@@ -3,7 +3,7 @@ package view;
 import constants.Constants;
 import controller.GameController;
 import model.Bug;
-import utilities.Utilities;
+import utilities.ImagesList;
 
 import javax.swing.*;
 import java.awt.*;

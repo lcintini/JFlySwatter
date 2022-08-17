@@ -3,6 +3,7 @@ package view;
 import constants.Constants;
 import controller.GameController;
 import controller.MenuController;
+import utilities.ImagesList;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +13,6 @@ import java.awt.event.ActionListener;
 public class MainView extends JFrame {  //posso ereditare tutti i metodi della classe JFrame che non sono private
     //gestisce la sovrapposizione di pannelli
     private JLayeredPane layeredPane;
-    private MenuController menuController;
-    private GameController gameController;
     private Swatter swatter;
 
     public MainView() throws HeadlessException {
@@ -46,7 +45,6 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     }
 
     public void addMenuPanel(MenuPanel mp, MenuController menuController){
-        this.menuController = menuController;
         String[] difficulties = {"Easy","Normal","Hard"};
         JButton startButton= mp.getStartButton();
         startButton.addActionListener(new ActionListener() {
@@ -99,16 +97,15 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.pack();
     }
 
-    public void addGamePanel(GamePanel gp, HUDPanel hp, GameController gameController){
+    public void addGamePanel(GamePanel gp, HUDPanel hp){
         this.layeredPane.removeAll();
         this.layeredPane.add(gp, JLayeredPane.DEFAULT_LAYER);
         hp.setOpaque(false);
         this.layeredPane.add(hp, JLayeredPane.PALETTE_LAYER);
         this.layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         this.pack();
-        this.gameController = gameController;
     }
-    public void addPausePanel(PausePanel pp) {
+    public void addPausePanel(PausePanel pp, GameController gameController) {
         JButton resumeButton= pp.getResumeButton();
         resumeButton.addActionListener(new ActionListener() {
             @Override

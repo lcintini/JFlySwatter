@@ -1,0 +1,107 @@
+@startuml
+
+
+ namespace model {
+      abstract class model.Bug {
+          # dx : int
+          # dy : int
+          # height : int
+          # images : ArrayList<String>
+          # imgIndex : double
+          # points : int
+          # width : int
+          # x : int
+          # y : int
+          + Bug()
+          + changeDirection()
+          + changeDirectionBorder()
+          + isClicked()
+          + isInBorderX1()
+          + isInBorderX2()
+          + isInBorderY1()
+          + isInBorderY2()
+          + move()
+      }
+    }
+  
+
+  namespace model {
+      class model.BugsCreator {
+          + createNewButterfly()
+          + createNewCockroach()
+          + createNewFly()
+          + createNewLadybug()
+          + createNewWasp()
+      }
+    }
+  
+
+  namespace model {
+      class model.Butterfly {
+          - scared : boolean
+          + Butterfly()
+          + changeDirButterfly()
+          + changeDirection()
+      }
+    }
+  
+
+  namespace model {
+      class model.Cockroach {
+          + Cockroach()
+      }
+    }
+  
+
+ namespace model {
+      class model.Fly {
+          + Fly()
+      }
+    }
+  
+
+  namespace model {
+      class model.GameModel {
+          - count : int
+          - difficulty : int
+          - effectsEnable : boolean
+          - highScore : int
+          - level : int
+          - musicEnable : boolean
+          - startTime : long
+          - timerLeft : int
+          + GameModel()
+      }
+    }
+  
+
+  namespace model {
+      class model.Ladybug {
+          + Ladybug()
+      }
+    }
+  
+
+  namespace model {
+      class model.Wasp {
+          + Wasp()
+          + changeDirection()
+          + changeDirectionBorder()
+      }
+    }
+
+    namespace utilities {
+        enum Direction
+    }
+  
+
+  model.Bug o-- utilities.Direction : direction
+  model.Butterfly -up-|> model.Bug
+  model.Cockroach -up-|> model.Bug
+  model.Fly -up-|> model.Bug
+  model.Ladybug -up-|> model.Bug
+  model.Wasp -up-|> model.Bug
+
+
+
+@enduml

@@ -1,0 +1,116 @@
+@startuml
+
+
+ namespace view {
+      class view.GamePanel {
+          - bugs : ArrayList<Bug>
+          + GamePanel()
+          + addBug()
+          + doDrawing()
+          + drawGame()
+          + enterPressed()
+          + getMouseLocationX()
+          + getMouseLocationY()
+          + paintComponent()
+          + removeAllBugs()
+          + removeBug()
+          + setGameController()
+      }
+    }
+  
+
+  namespace view {
+      class view.HUDPanel {
+          - count : JLabel
+          - gameOver : JLabel
+          - highScore : JLabel
+          - imgHUD : Image
+          - timer : JLabel
+          - victory : JLabel
+          + HUDPanel()
+          + doDrawing()
+          + drawHUD()
+          + getCount()
+          + getTimer()
+          + hideGameOver()
+          + hideVictory()
+          + paintComponent()
+          + printGameOver()
+          + printHighScore()
+          + printVictory()
+      }
+    }
+  
+
+  namespace view {
+      class view.MainView {
+          - layeredPane : JLayeredPane
+          + MainView()
+          + addGamePanel()
+          + addMenuPanel()
+          + addPausePanel()
+          + initializeView()
+          + nextCursor()
+          + removePausePanel()
+          + setNormalSwatter()
+          + setSwatSwatter()
+      }
+    }
+  
+
+  namespace view {
+      class view.MenuPanel {
+          - effectEnable : boolean
+          - effectsButton : JButton
+          - leftArrowButton : JButton
+          - musicButton : JButton
+          - musicEnable : boolean
+          - rightArrowButton : JButton
+          - startButton : JButton
+          + MenuPanel()
+          + drawMenu()
+      }
+    }
+  
+
+  namespace view {
+      class view.PausePanel {
+          - effectEnable : boolean
+          - effectsButton : JButton
+          - exitButton : JButton
+          - musicButton : JButton
+          - musicEnable : boolean
+          - resumeButton : JButton
+          + PausePanel()
+          + drawMenu()
+      }
+    }
+  
+
+  namespace view {
+      class view.Swatter {
+          - imgIndex : double
+          - imgsNormal : ArrayList<Image>
+          - imgsSwat : ArrayList<Image>
+          - normalAnimation : boolean
+          - swatAnimation : boolean
+          + Swatter()
+          + getImg()
+          + setNormalAnimation()
+          + setSwatAnimation()
+      }
+    }
+  
+
+  view.GamePanel -up-|> javax.swing.JPanel
+  view.GamePanel o-- controller.GameController : gameController
+  view.HUDPanel -up-|> javax.swing.JPanel
+  view.MainView -up-|> javax.swing.JFrame
+  view.MainView o-- view.Swatter : swatter
+  view.MenuPanel -up-|> javax.swing.JPanel
+  view.PausePanel -up-|> javax.swing.JPanel
+  view.GamePanel o-- model.Bug : bugs
+
+
+
+@enduml

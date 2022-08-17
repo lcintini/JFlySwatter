@@ -1,0 +1,70 @@
+@startuml
+
+namespace controller {
+      class controller.GameController {
+          - createNewBug : boolean
+          - timer : Timer
+          - timerCreators : ArrayList<Timer>
+          + GameController()
+          + createTimers()
+          + doOneLoop()
+          + exitGame()
+          + handleClick()
+          + handleTimer()
+          + initializeGame()
+          + pauseGame()
+          + playEffects()
+          + playMusic()
+          + resumeGame()
+          + stopMusic()
+          + update()
+      }
+    }
+  
+
+  namespace controller {
+      class controller.MainController {
+          - highScore : int
+          + MainController()
+          + nextCursor()
+          + pauseGame()
+          + readHighScore()
+          + resumeGame()
+          + startGame()
+          + startMenu()
+          + updateHighScore()
+      }
+    }
+  
+
+  namespace controller {
+      class controller.MenuController {
+          - difficulty : int
+          - effectsEnable : boolean
+          - musicEnable : boolean
+          + MenuController()
+          + playEffects()
+          + startGame()
+      }
+    }
+  
+
+  controller.GameController o-- model.BugsCreator : bugsCreator
+  controller.GameController o-- model.GameModel : gameModel
+  controller.GameController o-- view.GamePanel : gamePanel
+  controller.GameController o-- view.HUDPanel : hudPanel
+  controller.GameController o-- controller.MainController : mainController
+  controller.MainController o-- controller.GameController : gameController
+  controller.MainController o-- view.GamePanel : gamePanel
+  controller.MainController o-- view.HUDPanel : hudPanel
+  controller.MainController o-- view.MainView : mainView
+  controller.MainController o-- controller.MenuController : menuController
+  controller.MainController o-- view.MenuPanel : menuPanel
+  controller.MainController o-- view.PausePanel : pausePanel
+  controller.MenuController o-- controller.MainController : mainController
+  controller.GameController o-- model.Bug : bugs
+
+
+
+
+@enduml

@@ -1,0 +1,69 @@
+@startuml
+
+
+    namespace onstants {
+      class constants.Constants {
+          {static} + BOARD_HEIGHT : int
+          {static} + BOARD_WIDTH : int
+          {static} + BORDER_X1 : int
+          {static} + BORDER_X2 : int
+          {static} + BORDER_Y1 : int
+          {static} + BORDER_Y2 : int
+          {static} + BUTTERFLY_1_PATH : String
+          {static} + BUTTERFLY_2_PATH : String
+          {static} + BUTTERFLY_3_PATH : String
+          {static} + BUTTERFLY_4_PATH : String
+          {static} + BUTTERFLY_HEIGHT : int
+          {static} + BUTTERFLY_SPEED : int
+          {static} + BUTTERFLY_WIDTH : int
+          {static} + COCKROACH_1_PATH : String
+          {static} + COCKROACH_2_PATH : String
+          {static} + COCKROACH_3_PATH : String
+          {static} + COCKROACH_4_PATH : String
+          {static} + COCKROACH_5_PATH : String
+          {static} + COCKROACH_6_PATH : String
+          {static} + COCKROACH_HEIGHT : int
+          {static} + COCKROACH_SPEED : int
+          {static} + COCKROACH_WIDTH : int
+          {static} + EASY_HIGH_SCORE_PATH : String
+          {static} + FIRST_LEVEL : int
+          {static} + FLY_1_PATH : String
+          {static} + FLY_2_PATH : String
+          {static} + FLY_3_PATH : String
+          {static} + FLY_HEIGHT : int
+          {static} + FLY_SPEED : int
+          {static} + FLY_WIDTH : int
+          {static} + GAME_SPEED : int
+          {static} + HARD_HIGH_SCORE_PATH : String
+          {static} + HUD_FLY_SWATTER_PATH : String
+          {static} + LADYBUG_1_PATH : String
+          {static} + LADYBUG_2_PATH : String
+          {static} + LADYBUG_3_PATH : String
+          {static} + LADYBUG_4_PATH : String
+          {static} + LADYBUG_5_PATH : String
+          {static} + LADYBUG_HEIGHT : int
+          {static} + LADYBUG_SPEED : int
+          {static} + LADYBUG_WIDTH : int
+          {static} + LOWER_BOUNDS_BUGS : int
+          {static} + LOWER_BOUNDS_TIMER : int
+          {static} + NORMAL_HIGH_SCORE_PATH : String
+          {static} + POINTS_BUTTERFLY : int
+          {static} + POINTS_COCKROACH : int
+          {static} + POINTS_FLY : int
+          {static} + POINTS_LADYBUG : int
+          {static} + POINTS_WASP : int
+          {static} + SWATTER_1_PATH : String
+          {static} + SWATTER_2_PATH : String
+          {static} + SWATTER_3_PATH : String
+          {static} + SWATTER_4_PATH : String
+          {static} + TITLE : String
+          {static} + WASP_1_PATH : String
+          {static} + WASP_2_PATH : String
+          {static} + WASP_HEIGHT : int
+          {static} + WASP_SPEED : int
+          {static} + WASP_WIDTH : int
+      }
+    }
+
+
+@enduml

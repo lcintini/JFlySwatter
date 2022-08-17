@@ -52,12 +52,12 @@ public class MainController {
         this.gamePanel = new GamePanel();
         this.hudPanel = new HUDPanel();
         this.gameController = new GameController(this, this.gamePanel,this.hudPanel, difficulty, Constants.FIRST_LEVEL, effectsEnable, musicEnable);
-        this.mainView.addGamePanel(this.gamePanel, this.hudPanel, this.gameController);
+        this.mainView.addGamePanel(this.gamePanel, this.hudPanel);
     }
 
     public void pauseGame() {
         this.pausePanel = new PausePanel(this.gameController.isMusicEnable(), this.gameController.isEffectsEnable());
-        this.mainView.addPausePanel(pausePanel);
+        this.mainView.addPausePanel(this.pausePanel, this.gameController);
     }
 
     public void resumeGame() {
