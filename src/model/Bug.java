@@ -143,7 +143,7 @@ public abstract class Bug {
         return (y+Constants.BORDER_X1>= Constants.BORDER_Y2 && y<= Constants.BOARD_HEIGHT);
     }
     public String getImg() {
-        imgIndex+=1;
+        imgIndex+=0.5;
         if(imgIndex >= images.size()){
             imgIndex = 1;
         }

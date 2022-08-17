@@ -18,6 +18,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     public MainView() throws HeadlessException {
         this.layeredPane=new JLayeredPane();
         Swatter.createSwatter();
+        ImagesList.preloadImages();
         this.initializeView();
     }
 

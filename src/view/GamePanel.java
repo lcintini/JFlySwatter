@@ -52,7 +52,7 @@ public class GamePanel extends JPanel {
     public void drawGame(Graphics g) {
         for (Bug b:this.bugs) {
             // modo per estrarre una Image prima da una stringa e poi da una ImageIcon
-            Image img = (Utilities.readImage(b.getImg())).getImage();
+            Image img = ImagesList.getImage(b.getImg());
             //momento esatto in cui controlliamo il model
             g.drawImage(img, b.getX(), b.getY(), this);
         }
