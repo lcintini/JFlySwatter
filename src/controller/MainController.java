@@ -4,7 +4,6 @@ import constants.Constants;
 import utilities.Utilities;
 import view.*;
 
-import java.io.*;
 
 public class MainController {
 
@@ -16,6 +15,7 @@ public class MainController {
     private GameController gameController;
 
     private HUDPanel hudPanel;
+    private PausePanel pausePanel;
 
     private int highScore;
 
@@ -43,27 +43,25 @@ public class MainController {
 
     public void startMenu(){
         this.menuPanel = new MenuPanel();
-        this.mainView.addMenuPanel(this.menuPanel);
         this.menuController = new MenuController(this, this.menuPanel);
+        this.mainView.addMenuPanel(this.menuPanel, this.menuController);
     }
 
     public void startGame(int difficulty, boolean effectsEnable, boolean musicEnable) {
         this.readHighScore(difficulty);
         this.gamePanel = new GamePanel();
         this.hudPanel = new HUDPanel();
-        this.mainView.addGamePanel(this.gamePanel,this.hudPanel);
         this.gameController = new GameController(this, this.gamePanel,this.hudPanel, difficulty, Constants.FIRST_LEVEL, effectsEnable, musicEnable);
-
+        this.mainView.addGamePanel(this.gamePanel, this.hudPanel, this.gameController);
     }
 
-    public void pauseGame(PausePanel pausePanel) {
-
+    public void pauseGame() {
+        this.pausePanel = new PausePanel(this.gameController.isMusicEnable(), this.gameController.isEffectsEnable());
         this.mainView.addPausePanel(pausePanel);
     }
 
-    public void resumeGame(PausePanel pausePanel) {
-
-        this.mainView.removePausePanel(pausePanel);
+    public void resumeGame() {
+        this.mainView.removePausePanel(this.pausePanel);
     }
     public void nextCursor (){
         this.mainView.nextCursor();

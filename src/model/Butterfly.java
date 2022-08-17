@@ -1,6 +1,7 @@
 package model;
 
 import constants.Constants;
+import utilities.Direction;
 import utilities.Utilities;
 
 import javax.swing.*;
@@ -14,18 +15,18 @@ public class Butterfly extends Bug {
         System.out.println(this.dx);
         this.points = Constants.POINTS_BUTTERFLY;
         this.images = new ArrayList<>();
-        ImageIcon imageIcon1 = Utilities.readImage(Constants.BUTTERFLY_1_PATH);
-        ImageIcon imageIcon2 = Utilities.readImage(Constants.BUTTERFLY_2_PATH);
-        ImageIcon imageIcon3 = Utilities.readImage(Constants.BUTTERFLY_3_PATH);
-        ImageIcon imageIcon4 = Utilities.readImage(Constants.BUTTERFLY_4_PATH);
-        ImageIcon imageIcon5 = Utilities.readImage(Constants.BUTTERFLY_3_PATH);
-        ImageIcon imageIcon6 = Utilities.readImage(Constants.BUTTERFLY_2_PATH);
-        this.images.add(imageIcon1.getImage());
-        this.images.add(imageIcon2.getImage());
-        this.images.add(imageIcon3.getImage());
-        this.images.add(imageIcon4.getImage());
-        this.images.add(imageIcon5.getImage());
-        this.images.add(imageIcon6.getImage());
+        String imageString1 = Constants.BUTTERFLY_1_PATH;
+        String imageString2 = Constants.BUTTERFLY_2_PATH;
+        String imageString3 = Constants.BUTTERFLY_3_PATH;
+        String imageString4 = Constants.BUTTERFLY_4_PATH;
+        String imageString5 = Constants.BUTTERFLY_3_PATH;
+        String imageString6 = Constants.BUTTERFLY_2_PATH;
+        this.images.add(imageString1);
+        this.images.add(imageString2);
+        this.images.add(imageString3);
+        this.images.add(imageString4);
+        this.images.add(imageString5);
+        this.images.add(imageString6);
         this.height = Constants.BUTTERFLY_HEIGHT;
         this.width = Constants.BUTTERFLY_WIDTH;
         this.scared = false;

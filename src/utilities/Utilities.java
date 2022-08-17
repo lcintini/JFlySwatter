@@ -8,6 +8,7 @@ import java.io.*;
 
 public class Utilities {
 
+    private static Clip musicClip;
     public static int readNumber(String fileName){
         BufferedReader in = null;
         try {
@@ -60,23 +61,29 @@ public class Utilities {
             throw new RuntimeException(e);
         }
     }
-    public static Clip playMusic(String music) {
+    public static void playMusic(String music) {
+        musicClip = null;
         String soundName = "resources/music/"+music+".wav";
         try {
             // IDE
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
             // JAR
             // AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(soundName));
-            Clip musicClip = AudioSystem.getClip();
+            musicClip = AudioSystem.getClip();
             musicClip.open(audioInputStream);
             musicClip.start();
-            return musicClip;
             //non supporta l'audio
         } catch (UnsupportedAudioFileException | LineUnavailableException e) {
             throw new RuntimeException(e);
             //non legge il file
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void stopMusic() {
+        if(musicClip!=null){
+            musicClip.stop();
         }
     }
 }

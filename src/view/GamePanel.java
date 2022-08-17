@@ -3,6 +3,7 @@ package view;
 import constants.Constants;
 import controller.GameController;
 import model.Bug;
+import utilities.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,29 +50,24 @@ public class GamePanel extends JPanel {
     }
 
     public void drawGame(Graphics g) {
-        synchronized (this.bugs){
-            for (Bug b:this.bugs) {
-                //momento esatto in cui controlliamo il model
-                g.drawImage(b.getImg(), b.getX(), b.getY(), this);
-            }
+        for (Bug b:this.bugs) {
+            // modo per estrarre una Image prima da una stringa e poi da una ImageIcon
+            Image img = (Utilities.readImage(b.getImg())).getImage();
+            //momento esatto in cui controlliamo il model
+            g.drawImage(img, b.getX(), b.getY(), this);
         }
     }
 
     public void addBug(Bug bug) {
-        synchronized (this.bugs){
-            this.bugs.add(bug);
-        }
+        this.bugs.add(bug);
     }
+
     public void removeBug(Bug bug) {
-        synchronized (this.bugs){
-            this.bugs.remove(bug);
-        };
+        this.bugs.remove(bug);
     }
 
     public void removeAllBugs(){
-        synchronized (this.bugs){
-            this.bugs = new ArrayList<>();
-        }
+        this.bugs = new ArrayList<>();
     }
 
     public void setGameController(GameController gameController) {
@@ -81,5 +77,17 @@ public class GamePanel extends JPanel {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             this.gameController.pauseGame();
         }
+    }
+
+    public int getMouseLocationX() {
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        int mouseX = (int)(p.getX() - this.getLocationOnScreen().getX());
+        return mouseX;
+    }
+
+    public int getMouseLocationY() {
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        int mouseY = (int)(p.getY() - this.getLocationOnScreen().getY());
+        return mouseY;
     }
 }

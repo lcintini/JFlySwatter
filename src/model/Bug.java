@@ -1,16 +1,13 @@
 package model;
 
 import constants.Constants;
-
-import java.awt.*;
+import utilities.Direction;
 import java.util.ArrayList;
 import java.util.Random;
-
-import static model.Direction.*;
-import static model.Direction.NORTH;
+import static utilities.Direction.*;
 
 public abstract class Bug {
-    protected ArrayList<Image> images;
+    protected ArrayList<String> images;
     protected double imgIndex;
     protected int x;
     protected int y;
@@ -145,8 +142,8 @@ public abstract class Bug {
     public boolean isInBorderY2(){
         return (y+Constants.BORDER_X1>= Constants.BORDER_Y2 && y<= Constants.BOARD_HEIGHT);
     }
-    public Image getImg() {
-        imgIndex+=0.25;
+    public String getImg() {
+        imgIndex+=1;
         if(imgIndex >= images.size()){
             imgIndex = 1;
         }

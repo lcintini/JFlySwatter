@@ -1,13 +1,14 @@
 package model;
 
 import constants.Constants;
+import utilities.Direction;
 import utilities.Utilities;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
-import static model.Direction.EAST;
-import static model.Direction.WEST;
+import static utilities.Direction.EAST;
+import static utilities.Direction.WEST;
 
 public class Wasp extends Bug {
 
@@ -15,14 +16,14 @@ public class Wasp extends Bug {
         super(x, y, Constants.WASP_SPEED * (difficulty + 1), Constants.WASP_SPEED * (difficulty + 1), direction);
         this.points = Constants.POINTS_WASP;
         this.images = new ArrayList<>();
-        ImageIcon imageIcon1 = Utilities.readImage(Constants.WASP_1_PATH);
-        ImageIcon imageIcon2 = Utilities.readImage(Constants.WASP_1_PATH);
-        ImageIcon imageIcon3 = Utilities.readImage(Constants.WASP_2_PATH);
-        ImageIcon imageIcon4 = Utilities.readImage(Constants.WASP_2_PATH);
-        this.images.add(imageIcon1.getImage());
-        this.images.add(imageIcon2.getImage());
-        this.images.add(imageIcon3.getImage());
-        this.images.add(imageIcon4.getImage());
+        String imageString1 = Constants.WASP_1_PATH;
+        String imageString2 = Constants.WASP_1_PATH;
+        String imageString3 = Constants.WASP_2_PATH;
+        String imageString4 = Constants.WASP_2_PATH;
+        this.images.add(imageString1);
+        this.images.add(imageString2);
+        this.images.add(imageString3);
+        this.images.add(imageString4);
         this.height = Constants.WASP_HEIGHT;
         this.width = Constants.WASP_WIDTH;
     }

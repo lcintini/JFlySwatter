@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import constants.Constants;
 import utilities.Utilities;
@@ -61,7 +61,7 @@ public class Swatter {
     public static Image getImg() {
         //un insetto viene schiacciato
         if (swatAnimation) {
-            imgIndex += 0.5;
+            imgIndex += 1;
             if (imgIndex >= imgsSwat.size()) {
                 imgIndex = 1;
                 swatAnimation = false;
@@ -70,7 +70,7 @@ public class Swatter {
             return imgsSwat.get(((int) Math.floor(imgIndex)) - 1);
             //non si schiaccia niente
         } else if (normalAnimation) {
-            imgIndex += 0.5;
+            imgIndex += 1;
             if (imgIndex >= imgsNormal.size()) {
                 imgIndex = 1;
                 normalAnimation = false;
