@@ -195,9 +195,8 @@ public class GameController {
         //sconfitta
         if(this.gameModel.getTimerLeft() <= 0){
             this.timer.stop();
-            System.out.println("il gioco è finito");
             this.stopMusic();
-            // ferma il thread di creazione mosche
+            // ferma il timer di creazione mosche
             this.mainController.getHudPanel().printGameOver();
             try {
                 Thread.sleep(2000);
