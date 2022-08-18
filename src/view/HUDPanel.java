@@ -13,6 +13,7 @@ public class HUDPanel extends JPanel {
     private JLabel gameOver;
     private JLabel victory;
     private JLabel highScore;
+    private JLabel level;
 
     public HUDPanel() {
         this.setBounds(0, 0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
@@ -34,6 +35,7 @@ public class HUDPanel extends JPanel {
         this.victory.setVisible(false);
         this.victory.setForeground(Color.GREEN);
         this.add(this.victory);
+
 
 
     }
@@ -61,6 +63,10 @@ public class HUDPanel extends JPanel {
     public void changeTimer(String s) {
         this.timer.setText(s);
     }
+    public void changeLevel(String s) {
+        this.level.setText(s);
+    }
+
 
     public void printGameOver() {
         this.gameOver.setVisible(true);
@@ -84,7 +90,10 @@ public class HUDPanel extends JPanel {
         this.highScore.setBounds(285, 370, 200, 50);
         this.add(this.highScore);
     }
-
-
+    public void printLevel(int level){
+        this.level = new JLabel("Level: "+ level);
+        this.level.setBounds(300, -10, 200, 50);
+        this.add(this.level);
+    }
 
 }

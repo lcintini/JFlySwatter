@@ -13,11 +13,13 @@ public class MainController {
     private GameController gameController;
 
     private int highScore;
+    private int level;
 
 
     public MainController() {
         this.mainView = new MainView(this);
         this.highScore = 0;
+        this.level = 1;
         this.startMenu();
     }
 
@@ -104,5 +106,12 @@ public class MainController {
 
     public GameController getGameController() {
         return gameController;
+    }
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
