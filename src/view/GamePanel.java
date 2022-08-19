@@ -22,6 +22,8 @@ public class GamePanel extends JPanel {
         this.mainView = mainView;
         this.setBounds(0, 0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
+        Color verde= new Color(117, 201, 231, 255);
+        this.setBackground(verde);
         this.bugs = new ArrayList<>();
         this.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me){

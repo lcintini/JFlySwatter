@@ -22,28 +22,29 @@ public class HUDPanel extends JPanel {
         this.count = new JLabel();
         this.count.setBounds(30, 370, 200, 50);
         this.count.setFont(new Font ("The Bomb", Font.BOLD, 13) );
-        this.count.setForeground(Color.WHITE);
+        this.count.setForeground(Color.BLACK);
         this.add(this.count);
         this.timer = new JLabel();
         this.timer.setBounds(511, 370, 200, 50);
         this.timer.setFont(new Font ("The Bomb", Font.BOLD, 13) );
-        this.timer.setForeground(Color.WHITE);
+        this.timer.setForeground(Color.BLACK);
         this.add(this.timer);
         this.gameOver = new JLabel("GAME OVER");
-        this.gameOver.setBounds(293, 400, 200, 50);
+        this.gameOver.setBounds(225, 420, 200, 50);
         this.gameOver.setVisible(false);
         this.gameOver.setForeground(Color.RED);
+        this.gameOver.setFont(new Font ("The Bomb", Font.BOLD, 20) );
         this.add(this.gameOver);
         this.victory = new JLabel("YOU WIN");
         this.victory.setBounds(240, 420, 200, 50);
         this.victory.setVisible(false);
-        this.victory.setForeground(Color.WHITE);
+        this.victory.setForeground(Color.GREEN);
         this.victory.setFont(new Font ("The Bomb", Font.BOLD, 20) );
         this.add(this.victory);
         this.level = new JLabel("Level: "+ level);
         this.level.setBounds(300, -10, 200, 50);
         this.level.setFont(new Font ("The Bomb", Font.BOLD, 10) );
-        this.level.setForeground(Color.WHITE);
+        this.level.setForeground(Color.BLACK);
         this.add(this.level);
 
 
@@ -99,7 +100,7 @@ public class HUDPanel extends JPanel {
         this.highScore = new JLabel("Highscore: "+ highScore);
         this.highScore.setBounds(258, 370, 200, 50);
         this.highScore.setFont(new Font ("The Bomb", Font.BOLD, 13) );
-        this.highScore.setForeground(Color.WHITE);
+        this.highScore.setForeground(Color.BLACK);
         this.add(this.highScore);
     }
 
