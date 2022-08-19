@@ -19,6 +19,7 @@ public class MenuPanel extends JPanel {
     private Image imgMenu;
 
 
+
     public MenuPanel() {
         Color celeste= new Color(0,170,220);
         this.setBackground(celeste);
