@@ -4,6 +4,7 @@ import constants.Constants;
 import controller.MainController;
 import model.Bug;
 import utilities.ImagesList;
+import utilities.Utilities;
 
 import javax.swing.*;
 import java.awt.*;

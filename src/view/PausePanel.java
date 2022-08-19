@@ -1,6 +1,7 @@
 package view;
 
 import constants.Constants;
+import utilities.Utilities;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -13,6 +14,7 @@ public class PausePanel extends JPanel {
     private JButton effectsButton;
     private boolean musicEnable;
     private boolean effectEnable;
+    private Image imgMenu;
 
 
     public PausePanel(boolean musicEnable, boolean effectEnable) {
@@ -20,13 +22,23 @@ public class PausePanel extends JPanel {
         this.setBackground(celeste);
         this.setBounds(0,0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
+        this.imgMenu = (Utilities.readImage(Constants.MENU_GRASS_PATH)).getImage();
         this.musicEnable = musicEnable;
         this.effectEnable = effectEnable;
         this.drawMenu();
 
-
+    }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g); //override
+        doDrawing(g);
     }
 
+    public void doDrawing(Graphics g) {
+        g.drawImage(this.imgMenu,0,0,this);
+        this.drawMenu();
+        // Metodo che sincronizza tutte le componenti grafiche
+        Toolkit.getDefaultToolkit().sync();
+    }
     public void drawMenu() {
         this.resumeButton = new JButton("Resume Game");
         this.resumeButton.setBackground(Color.WHITE);
@@ -64,6 +76,7 @@ public class PausePanel extends JPanel {
         this.effectsButton.setBounds(340, 350, 200, 50 );
         this.effectsButton.setFocusPainted(false);
         this.add(this.effectsButton);
+        this.repaint();
     }
 
     public JButton getResumeButton() {

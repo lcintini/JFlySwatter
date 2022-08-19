@@ -1,6 +1,7 @@
 package view;
 
 import constants.Constants;
+import utilities.Utilities;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -15,6 +16,7 @@ public class MenuPanel extends JPanel {
     private JButton effectsButton;
     private boolean musicEnable;
     private boolean effectEnable;
+    private Image imgMenu;
 
 
     public MenuPanel() {
@@ -24,9 +26,21 @@ public class MenuPanel extends JPanel {
         this.setLayout(null);
         this.musicEnable = true;
         this.effectEnable = true;
+        this.imgMenu = (Utilities.readImage(Constants.MENU_GRASS_PATH)).getImage();
         this.drawMenu();
+
+    }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g); //override
+        doDrawing(g);
     }
 
+    public void doDrawing(Graphics g) {
+        g.drawImage(this.imgMenu,0,0,this);
+        this.drawMenu();
+        // Metodo che sincronizza tutte le componenti grafiche
+        Toolkit.getDefaultToolkit().sync();
+    }
     public void drawMenu() {
         this.startButton = new JButton("Start Normal Mode");
         this.startButton.setBackground(Color.WHITE);
@@ -71,7 +85,9 @@ public class MenuPanel extends JPanel {
         this.effectsButton.setBounds(340, 350, 200, 50 );
         this.effectsButton.setFocusPainted(false);
         this.add(this.effectsButton);
+        this.repaint();
     }
+
 
     public JButton getStartButton() {
         return this.startButton;
