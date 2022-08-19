@@ -5,6 +5,7 @@ import controller.GameController;
 import controller.MainController;
 import controller.MenuController;
 import utilities.ImagesList;
+import utilities.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,10 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.swatter = new Swatter();
         ImagesList.preloadImages();
         this.initializeView();
+        //posiziona il frame al centro dello schermo
+        Dimension screenSize = Toolkit.getDefaultToolkit ( ).getScreenSize ( );
+        this.setLocation ( ( screenSize.width / 2 ) - ( Constants.BOARD_WIDTH/ 2 ), (
+                screenSize.height / 2 ) - ( Constants.BOARD_HEIGHT/ 2 ) );
     }
 
     // la finestra
@@ -36,10 +41,8 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.setContentPane(this.layeredPane);
         this.setVisible(true);
         this.setTitle("JFlySwatter");
-
         //impacchetta tutto
         this.pack();
-
         //cliccata la x, interrompe anche il processo
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //posiziona la finestra al centro dello schermo
@@ -68,9 +71,9 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
             @Override
             public void actionPerformed(ActionEvent e) {
                 menuController.playEffects();
-                menuController.setDifficulty((Math.floorMod(menuController.getDifficulty()+1, 3) + Math.abs(3)) % Math.abs(3)); //modulo per gestire il livello circolarmente
-                startButton.setText("Start "+ difficulties[menuController.getDifficulty()] + " Mode");
-            }
+                menuController.setDifficulty((Math.floorMod(menuController.getDifficulty() + 1, 3) + Math.abs(3)) % Math.abs(3)); //modulo per gestire il livello circolarmente
+
+                    startButton.setText("Start "+ difficulties[menuController.getDifficulty()] + " Mode");}
         });
         JButton leftArrowButton= mp.getLeftArrowButton();
         leftArrowButton.addActionListener(new ActionListener() {
