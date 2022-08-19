@@ -64,7 +64,6 @@ public class Constants {
     public static final String WASP_2_PATH = "resources/images/wasp2.png";
     public static final String HUD_FLY_SWATTER_PATH = "resources/images/hud-flyswatter.png";
     public static final String MENU_GRASS_PATH = "resources/images/menu_grass.png";
-
-
-
+    public static final String  RIGHT_ARROW_PATH = "resources/images/right-arrow.png";
+    public static final String LEFT_ARROW_PATH = "resources/images/left-arrow.png";
 }
