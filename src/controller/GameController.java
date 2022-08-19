@@ -36,7 +36,7 @@ public class GameController {
     public void initializeGame() {
         this.gameModel.setCount((this.gameModel.getDifficulty()+1) * Constants.LOWER_BOUNDS_BUGS);
         this.bugs = new ArrayList<>();
-        this.mainController.getHudPanel().printLevel(this.gameModel.getLevel());
+        this.gameModel.setLevel(this.gameModel.getLevel());
         this.mainController.getHudPanel().changeLevel("Level: "+ this.gameModel.getLevel());
         this.mainController.getHudPanel().changeCount("Count: "+ this.gameModel.getCount());
         this.gameModel.setHighScore(this.mainController.getHighScore());

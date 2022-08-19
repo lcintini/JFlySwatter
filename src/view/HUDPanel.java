@@ -35,6 +35,9 @@ public class HUDPanel extends JPanel {
         this.victory.setVisible(false);
         this.victory.setForeground(Color.GREEN);
         this.add(this.victory);
+        this.level = new JLabel("Level: "+ level);
+        this.level.setBounds(300, -10, 200, 50);
+        this.add(this.level);
 
 
 
@@ -89,11 +92,6 @@ public class HUDPanel extends JPanel {
         this.highScore = new JLabel("Highscore: "+ highScore);
         this.highScore.setBounds(285, 370, 200, 50);
         this.add(this.highScore);
-    }
-    public void printLevel(int level){
-        this.level = new JLabel("Level: "+ level);
-        this.level.setBounds(300, -10, 200, 50);
-        this.add(this.level);
     }
 
 }
