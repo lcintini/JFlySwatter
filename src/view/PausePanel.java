@@ -136,18 +136,27 @@ public class PausePanel extends JPanel {
     public void setMusicEnable(boolean musicEnable) {
         this.musicEnable = musicEnable;
         if(this.musicEnable){
-            this.musicButton.setText("Music OFF");
+            //this.musicButton.setText("Music OFF");
+            ImageIcon imgMusicOff = Utilities.readImage(Constants.MUSIC_OFF_PATH);
+            this.musicButton.setIcon(imgMusicOff);
         }else{
-            this.musicButton.setText("Music ON");
+            //this.musicButton.setText("Music ON");
+            ImageIcon imgMusicOn = Utilities.readImage(Constants.MUSIC_ON_PATH);
+            this.musicButton.setIcon(imgMusicOn);
         }
     }
 
     public void setEffectEnable(boolean effectEnable) {
         this.effectEnable = effectEnable;
         if(this.effectEnable){
-            this.effectsButton.setText("Effects OFF");
+            //this.effectsButton.setText("Effects OFF");
+            ImageIcon imgEffectsOff = Utilities.readImage(Constants.EFFECTS_OFF_PATH);
+            this.musicButton.setIcon(imgEffectsOff);
+
         }else{
-            this.effectsButton.setText("Effects ON");
+            //this.effectsButton.setText("Effects ON");
+            ImageIcon imgEffectsOn = Utilities.readImage(Constants.EFFECTS_ON_PATH);
+            this.musicButton.setIcon(imgEffectsOn);
         }
     }
 }

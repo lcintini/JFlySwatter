@@ -160,9 +160,14 @@ public class MenuPanel extends JPanel {
     public void setEffectEnable(boolean effectEnable) {
         this.effectEnable = effectEnable;
         if(this.effectEnable){
-            this.effectsButton.setText("Effects OFF");
+            //this.effectsButton.setText("Effects OFF");
+            ImageIcon imgEffectsOff = Utilities.readImage(Constants.EFFECTS_OFF_PATH);
+            this.effectsButton.setIcon(imgEffectsOff);
+
         }else{
-            this.effectsButton.setText("Effects ON");
+            //this.effectsButton.setText("Effects ON");
+            ImageIcon imgEffectsOn = Utilities.readImage(Constants.EFFECTS_ON_PATH);
+            this.effectsButton.setIcon(imgEffectsOn);
         }
     }
 }
