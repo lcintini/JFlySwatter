@@ -21,19 +21,21 @@ public class MenuPanel extends JPanel {
 
 
 
+
+
+
     public MenuPanel() {
-        Color celeste= new Color(0,170,220);
-        this.setBackground(celeste);
+        Color celeste= new Color(151, 69, 45, 255);
         this.setBounds(0,0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
-        this.musicEnable = true;
-        this.effectEnable = true;
         this.imgMenu = (Utilities.readImage(Constants.MENU_GRASS_PATH)).getImage();
         this.title = new JLabel("JFlySwatter");
-        this.title.setBounds(158, 80, 400, 70);
-        this.title.setFont(new Font ("The Bomb", Font.BOLD, 30) );
-        this.title.setForeground(Color.WHITE);
+        this.title.setBounds(120, 93, 400, 70);
+        this.title.setFont(new Font ("The Bomb", Font.BOLD, 40) );
+        this.title.setForeground(celeste);
         this.add(this.title);
+        this.musicEnable = true;
+        this.effectEnable = true;
         this.drawMenu();
 
     }
@@ -49,10 +51,16 @@ public class MenuPanel extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
     public void drawMenu() {
-        this.startButton = new JButton("Start Normal Mode");
-        this.startButton.setBackground(Color.WHITE);
-        this.startButton.setForeground(Color.BLACK);
-        this.startButton.setBorder(new LineBorder(Color.BLACK));
+        this.startButton = new JButton("");
+        //this.startButton = new JButton("Start Normal Mode");
+        //this.startButton.setBackground(Color.WHITE);
+        //this.startButton.setForeground(Color.BLACK);
+        ImageIcon imgStartNormal = (Utilities.readImage(Constants.START_NORMAL_BUTTON_PATH));
+        this.startButton.setIcon(imgStartNormal);
+        this.startButton.setMargin(new Insets(0,0,0,0)); //nuova
+        this.startButton.setContentAreaFilled(false); //nuova
+        this.startButton.setBorder(null);
+        //this.startButton.setBorder(new LineBorder(Color.BLACK));
         this.startButton.setBounds(100, 200, 440, 80 );
         this.startButton.setFocusPainted(false);
         this.add(this.startButton);
@@ -62,7 +70,7 @@ public class MenuPanel extends JPanel {
         this.rightArrowButton.setBorder(null);
         this.rightArrowButton.setMargin(new Insets(0,0,0,0));
         this.rightArrowButton.setContentAreaFilled(false);
-        this.rightArrowButton.setBounds(400, 290, 80, 50 );
+        this.rightArrowButton.setBounds(395, 290, 80, 50 );
         this.rightArrowButton.setFocusPainted(false);
         this.add(this.rightArrowButton);
         ImageIcon imgLeftArrow = Utilities.readImage(Constants.LEFT_ARROW_PATH);
@@ -75,25 +83,42 @@ public class MenuPanel extends JPanel {
         this.leftArrowButton.setFocusPainted(false);
         this.add(this.leftArrowButton);
         if(this.musicEnable){
-            this.musicButton = new JButton("Music OFF");
+            //this.musicButton = new JButton("Music OFF");
+            this.musicButton = new JButton("");
+            ImageIcon imgMusicOff = Utilities.readImage(Constants.MUSIC_OFF_PATH);
+            this.musicButton.setIcon(imgMusicOff);
         }else{
-            this.musicButton = new JButton("Music ON");
+            //this.musicButton = new JButton("Music ON");
+            this.musicButton = new JButton("");
+            ImageIcon imgMusicOn = Utilities.readImage(Constants.MUSIC_ON_PATH);
+            this.musicButton.setIcon(imgMusicOn);
         }
-        this.musicButton.setBackground(Color.WHITE);
-        this.musicButton.setForeground(Color.BLACK);
-        this.musicButton.setBorder(new LineBorder(Color.BLACK));
-        this.musicButton.setBounds(100, 350, 200, 50 );
+        this.musicButton.setBorder(null);
+        this.musicButton.setMargin(new Insets(0,0,0,0));
+        this.musicButton.setContentAreaFilled(false);
+        //this.musicButton.setBackground(Color.WHITE);
+        //this.musicButton.setForeground(Color.BLACK);
+        //this.musicButton.setBorder(new LineBorder(Color.BLACK));
+        this.musicButton.setBounds(120, 350, 180, 50 );
         this.musicButton.setFocusPainted(false);
         this.add(this.musicButton);
         if(this.effectEnable){
             this.effectsButton = new JButton("Effects OFF");
+            ImageIcon imgEffectsOff = Utilities.readImage(Constants.EFFECTS_OFF_PATH);
+            this.effectsButton = new JButton("");
+            this.effectsButton.setIcon(imgEffectsOff);
         }else{
             this.effectsButton = new JButton("Effects ON");
+            ImageIcon imgEffectsOn = Utilities.readImage(Constants.EFFECTS_ON_PATH);
+            this.effectsButton.setIcon(imgEffectsOn);
         }
-        this.effectsButton.setBackground(Color.WHITE);
+        this.effectsButton.setBorder(null);
+        this.effectsButton.setMargin(new Insets(0,0,0,0));
+        this.effectsButton.setContentAreaFilled(false);
+        /*this.effectsButton.setBackground(Color.WHITE);
         this.effectsButton.setForeground(Color.BLACK);
-        this.effectsButton.setBorder(new LineBorder(Color.BLACK));
-        this.effectsButton.setBounds(340, 350, 200, 50 );
+        this.effectsButton.setBorder(new LineBorder(Color.BLACK));*/
+        this.effectsButton.setBounds(340, 350, 180, 50 );
         this.effectsButton.setFocusPainted(false);
         this.add(this.effectsButton);
         this.repaint();
@@ -122,9 +147,13 @@ public class MenuPanel extends JPanel {
     public void setMusicEnable(boolean musicEnable) {
         this.musicEnable = musicEnable;
         if(this.musicEnable){
-            this.musicButton.setText("Music OFF");
+            //this.musicButton.setText("Music OFF");
+            ImageIcon imgMusicOff = Utilities.readImage(Constants.MUSIC_OFF_PATH);
+            this.musicButton.setIcon(imgMusicOff);
         }else{
-            this.musicButton.setText("Music ON");
+            //this.musicButton.setText("Music ON");
+            ImageIcon imgMusicOn = Utilities.readImage(Constants.MUSIC_ON_PATH);
+            this.musicButton.setIcon(imgMusicOn);
         }
     }
 

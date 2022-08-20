@@ -67,4 +67,14 @@ public class Constants {
     public static final String  RIGHT_ARROW_PATH = "resources/images/right-arrow.png";
     public static final String LEFT_ARROW_PATH = "resources/images/left-arrow.png";
     public static final String PAUSE_GRASS_PATH ="resources/images/pause_grass.png" ;
+    public static final String START_NORMAL_BUTTON_PATH = "resources/images/StartNormalGame.png";
+    public static final String START_EASY_BUTTON_PATH ="resources/images/StartEasyGame.png" ;
+    public static final String START_HARD_BUTTON_PATH ="resources/images/StartHardGame.png" ;
+    public static final String MUSIC_OFF_PATH ="resources/images/MusicOff.png" ;
+    public static final String MUSIC_ON_PATH ="resources/images/MusicOn.png" ;
+    public static final String EFFECTS_OFF_PATH = "resources/images/EffectsOff.png";
+
+    public static final String EFFECTS_ON_PATH = "resources/images/EffectsOn.png";
+    public static final String RESUM_BUTTON_PATH ="resources/images/ResumeGame.png" ;
+    public static final String EXIT_BUTTON_PATH ="resources/images/ExitGame.png" ;
 }

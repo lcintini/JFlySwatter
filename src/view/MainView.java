@@ -22,6 +22,10 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     private HUDPanel hudPanel;
     private PausePanel pausePanel;
     private MainController mainController;
+    private ImageIcon imgStartNormal;
+    private ImageIcon imgStartEasy;
+    private ImageIcon imgStartHard;
+    private ImageIcon leftArrow;
 
     public MainView(MainController mainController){
         this.mainController = mainController;
@@ -33,6 +37,9 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         Dimension screenSize = Toolkit.getDefaultToolkit ( ).getScreenSize ( );
         this.setLocation ( ( screenSize.width / 2 ) - ( Constants.BOARD_WIDTH/ 2 ), (
                 screenSize.height / 2 ) - ( Constants.BOARD_HEIGHT/ 2 ) );
+        this.imgStartNormal = (Utilities.readImage(Constants.START_NORMAL_BUTTON_PATH));
+        this.imgStartEasy = (Utilities.readImage(Constants.START_EASY_BUTTON_PATH));
+        this.imgStartHard = (Utilities.readImage(Constants.START_HARD_BUTTON_PATH));
     }
 
     // la finestra
@@ -72,17 +79,37 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
             public void actionPerformed(ActionEvent e) {
                 menuController.playEffects();
                 menuController.setDifficulty((Math.floorMod(menuController.getDifficulty() + 1, 3) + Math.abs(3)) % Math.abs(3)); //modulo per gestire il livello circolarmente
-
-                    startButton.setText("Start "+ difficulties[menuController.getDifficulty()] + " Mode");}
+                if (menuController.getDifficulty() == 0) {
+                    //startButton.setText("Start Easy Mode");
+                    startButton.setIcon(imgStartEasy);
+                } else if (menuController.getDifficulty() == 1) {
+                    //startButton.setText("Start Normal Mode");
+                    startButton.setIcon(imgStartNormal);
+                } else {
+                    //startButton.setText("Start Hard Mode");
+                    startButton.setIcon(imgStartHard);
+                    //startButton.setText("Start "+ difficulties[menuController.getDifficulty()] + " Mode");
+                }
+            }
         });
         JButton leftArrowButton= mp.getLeftArrowButton();
         leftArrowButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                menuController.playEffects();
-                menuController.setDifficulty((Math.floorMod(menuController.getDifficulty()-1, 3) + Math.abs(3)) % Math.abs(3)); //modulo per gestire il livello circolarmente
-                startButton.setText("Start "+ difficulties[menuController.getDifficulty()] + " Mode");
-            }
+            public void actionPerformed(ActionEvent e){
+                    menuController.playEffects();
+                    menuController.setDifficulty((Math.floorMod(menuController.getDifficulty() - 1, 3) + Math.abs(3)) % Math.abs(3)); //modulo per gestire il livello circolarmente
+                    if (menuController.getDifficulty() == 0) {
+                        //startButton.setText("Start Easy Mode");
+                        startButton.setIcon(imgStartEasy);
+                    } else if (menuController.getDifficulty() == 1) {
+                        //startButton.setText("Start Normal Mode");
+                        startButton.setIcon(imgStartNormal);
+                    } else {
+                        startButton.setIcon(imgStartHard);
+                        //startButton.setText("Start Hard Mode");
+                        //startButton.setText("Start "+ difficulties[menuController.getDifficulty()] + " Mode");
+                    }
+                }
         });
         JButton musicButton= mp.getMusicButton();
         musicButton.addActionListener(new ActionListener() {
