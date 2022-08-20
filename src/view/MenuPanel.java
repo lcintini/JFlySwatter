@@ -17,6 +17,7 @@ public class MenuPanel extends JPanel {
     private boolean musicEnable;
     private boolean effectEnable;
     private Image imgMenu;
+    private JLabel title;
 
 
 
@@ -28,6 +29,11 @@ public class MenuPanel extends JPanel {
         this.musicEnable = true;
         this.effectEnable = true;
         this.imgMenu = (Utilities.readImage(Constants.MENU_GRASS_PATH)).getImage();
+        this.title = new JLabel("JFlySwatter");
+        this.title.setBounds(158, 80, 400, 70);
+        this.title.setFont(new Font ("The Bomb", Font.BOLD, 30) );
+        this.title.setForeground(Color.WHITE);
+        this.add(this.title);
         this.drawMenu();
 
     }

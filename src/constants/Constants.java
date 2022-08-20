@@ -66,4 +66,5 @@ public class Constants {
     public static final String MENU_GRASS_PATH = "resources/images/menu_grass.png";
     public static final String  RIGHT_ARROW_PATH = "resources/images/right-arrow.png";
     public static final String LEFT_ARROW_PATH = "resources/images/left-arrow.png";
+    public static final String PAUSE_GRASS_PATH ="resources/images/pause_grass.png" ;
 }
