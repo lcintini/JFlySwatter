@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+(*)  --> "Bug.move() è chiamato da\nupdate() di GameController"
+--> "L'insetto si muove aumentando e/o diminuendo le proprie coordinate con la velocità di movimento"
+If "L'insetto si trova sul bordo" then
+--> [Si] "Viene richiamato il metodo changeDirectionBorder()"
+else
+--> [No] "Viene richiamato il metodo changeDirection()"
+Endif
+
+@enduml
