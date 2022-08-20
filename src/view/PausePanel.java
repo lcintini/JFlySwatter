@@ -151,12 +151,12 @@ public class PausePanel extends JPanel {
         if(this.effectEnable){
             //this.effectsButton.setText("Effects OFF");
             ImageIcon imgEffectsOff = Utilities.readImage(Constants.EFFECTS_OFF_PATH);
-            this.musicButton.setIcon(imgEffectsOff);
+            this.effectsButton.setIcon(imgEffectsOff);
 
         }else{
             //this.effectsButton.setText("Effects ON");
             ImageIcon imgEffectsOn = Utilities.readImage(Constants.EFFECTS_ON_PATH);
-            this.musicButton.setIcon(imgEffectsOn);
+            this.effectsButton.setIcon(imgEffectsOn);
         }
     }
 }
