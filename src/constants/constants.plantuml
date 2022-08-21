@@ -27,6 +27,9 @@ title __CONSTANTS's Class Diagram__\n
           {static} + COCKROACH_SPEED : int
           {static} + COCKROACH_WIDTH : int
           {static} + EASY_HIGH_SCORE_PATH : String
+          {static} + EFFECTS_OFF_PATH : String
+          {static} + EFFECTS_ON_PATH : String
+          {static} + EXIT_BUTTON_PATH : String
           {static} + FIRST_LEVEL : int
           {static} + FLY_1_PATH : String
           {static} + FLY_2_PATH : String
@@ -45,14 +48,24 @@ title __CONSTANTS's Class Diagram__\n
           {static} + LADYBUG_HEIGHT : int
           {static} + LADYBUG_SPEED : int
           {static} + LADYBUG_WIDTH : int
+          {static} + LEFT_ARROW_PATH : String
           {static} + LOWER_BOUNDS_BUGS : int
           {static} + LOWER_BOUNDS_TIMER : int
+          {static} + MENU_GRASS_PATH : String
+          {static} + MUSIC_OFF_PATH : String
+          {static} + MUSIC_ON_PATH : String
           {static} + NORMAL_HIGH_SCORE_PATH : String
+          {static} + PAUSE_GRASS_PATH : String
           {static} + POINTS_BUTTERFLY : int
           {static} + POINTS_COCKROACH : int
           {static} + POINTS_FLY : int
           {static} + POINTS_LADYBUG : int
           {static} + POINTS_WASP : int
+          {static} + RESUME_BUTTON_PATH : String
+          {static} + RIGHT_ARROW_PATH : String
+          {static} + START_EASY_BUTTON_PATH : String
+          {static} + START_HARD_BUTTON_PATH : String
+          {static} + START_NORMAL_BUTTON_PATH : String
           {static} + SWATTER_1_PATH : String
           {static} + SWATTER_2_PATH : String
           {static} + SWATTER_3_PATH : String

@@ -4,17 +4,17 @@ title __VIEW's Class Diagram__\n
 
   namespace view {
       class view.GamePanel {
-          + GamePanel()
-          + addBug()
-          + doDrawing()
-          + drawGame()
-          + enterPressed()
-          + getMouseLocationX()
-          + getMouseLocationY()
-          + handleClick()
-          + paintComponent()
+          + GamePanel(mainView: MainView)
+          + addBug(bug: Bug)
+          + doDrawing(g: Graphics)
+          + drawGame(g: Graphics)
+          + enterPressed(e: KeyEvent)
+          + getMouseLocationX(): int
+          + getMouseLocationY(): int
+          + handleClick(x: int, y: int)
+          + paintComponent(g: Graphics)
           + removeAllBugs()
-          + removeBug()
+          + removeBug(bug: Bug)
       }
     }
   
@@ -25,18 +25,20 @@ title __VIEW's Class Diagram__\n
           - gameOver : JLabel
           - highScore : JLabel
           - imgHUD : Image
+          - level : JLabel
           - timer : JLabel
           - victory : JLabel
           + HUDPanel()
-          + changeCount()
-          + changeTimer()
-          + doDrawing()
-          + drawHUD()
+          + changeCount(s: String)
+          + changeLevel(s: String)
+          + changeTimer(s: String)
+          + doDrawing(g: Graphics)
+          + drawHUD(g: Graphics)
           + hideGameOver()
           + hideVictory()
-          + paintComponent()
+          + paintComponent(g: Graphics)
           + printGameOver()
-          + printHighScore()
+          + printHighScore(highScore: int)
           + printVictory()
       }
     }
@@ -44,14 +46,17 @@ title __VIEW's Class Diagram__\n
 
  namespace view {
       class view.MainView {
+          - imgStartEasy : ImageIcon
+          - imgStartHard : ImageIcon
+          - imgStartNormal : ImageIcon
           - layeredPane : JLayeredPane
-          + MainView()
-          + addGamePanel()
-          + addMenuPanel()
-          + addPausePanel()
-          + getGamePanel()
-          + getHudPanel()
-          + getMainController()
+          + MainView(mainController: MainController)
+          + addGamePanel(gp: GamePanel, hp : HUDPanel)
+          + addMenuPanel(mp: MenuPanel, menuController: MenuController)
+          + addPausePanel(pp: PausePanel, gameController : GameController)
+          + getGamePanel() : GamePanel
+          + getHudPanel() : HUDPanel
+          + getMainController(): MainController
           + initializeView()
           + nextCursor()
           + removePausePanel()
@@ -65,20 +70,24 @@ title __VIEW's Class Diagram__\n
       class view.MenuPanel {
           - effectEnable : boolean
           - effectsButton : JButton
+          - imgMenu: Image
           - leftArrowButton : JButton
           - musicButton : JButton
           - musicEnable : boolean
           - rightArrowButton : JButton
           - startButton : JButton
+          - title: JLabel
           + MenuPanel()
+          + doDrawing(g: Graphics)
           + drawMenu()
-          + getEffectsButton()
-          + getLeftArrowButton()
-          + getMusicButton()
-          + getRightArrowButton()
-          + getStartButton()
-          + setEffectEnable()
-          + setMusicEnable()
+          + getEffectsButton() : JButton
+          + getLeftArrowButton() : JButton
+          + getMusicButton() : JButton
+          + getRightArrowButton() : JButton
+          + getStartButton() : JButton
+          + paintComponent(g: Graphics)
+          + setEffectEnable(effectEnable : boolean )
+          + setMusicEnable(musicEnable : boolean)
       }
     }
   
@@ -88,17 +97,21 @@ title __VIEW's Class Diagram__\n
           - effectEnable : boolean
           - effectsButton : JButton
           - exitButton : JButton
+          - imgPause : Image
           - musicButton : JButton
           - musicEnable : boolean
+          - pause : JLabel
           - resumeButton : JButton
           + PausePanel()
+          + doDrawing(g: Graphics)
           + drawMenu()
-          + getEffectsButton()
-          + getExitButton()
-          + getMusicButton()
-          + getResumeButton()
-          + setEffectEnable()
-          + setMusicEnable()
+          + getEffectsButton() : JButton
+          + getExitButton() : JButton
+          + getMusicButton() : JButton
+          + getResumeButton() : JButton
+          + paintComponent(g: Graphics)
+          + setEffectEnable(effectEnable : boolean)
+          + setMusicEnable(musicEnable : boolean)
       }
     }
   
@@ -111,9 +124,9 @@ title __VIEW's Class Diagram__\n
           - normalAnimation : boolean
           - swatAnimation : boolean
           + Swatter()
-          + getImg()
-          + setNormalAnimation()
-          + setSwatAnimation()
+          + getImg() : Image
+          + setNormalAnimation(normalAnimation: boolean)
+          + setSwatAnimation(swatAnimation : boolean)
       }
     }
   

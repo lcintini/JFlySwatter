@@ -4,7 +4,7 @@
 (*)  --> "Si richiede un focus sul GamePanel, svegliando gli ActionListener"
 --> "Si chiama il metodo update()"
 -->"                       Prende le coordinate del mouse \n Aggiorna le coordinate per ogni Bug e la label del tempo"
--->"Richiama il MainController, \nche rivisualizza le nuove modifiche del GamePanel e dell'HUDPanel e gestisce l'animazione della paletta"
+-->"                                       Richiama il MainController, \nche rivisualizza le nuove modifiche del GamePanel e dell'HUDPanel e \n                                gestisce l'animazione della paletta"
 
 
 @enduml

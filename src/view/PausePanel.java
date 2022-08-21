@@ -48,7 +48,7 @@ public class PausePanel extends JPanel {
         this.pause.setForeground(celeste);
         this.add(this.pause);
         this.resumeButton = new JButton("");
-        ImageIcon imgResume = (Utilities.readImage(Constants.RESUM_BUTTON_PATH));
+        ImageIcon imgResume = (Utilities.readImage(Constants.RESUME_BUTTON_PATH));
         this.resumeButton.setIcon(imgResume);
         this.resumeButton.setMargin(new Insets(0,0,0,0)); //nuova
         this.resumeButton.setContentAreaFilled(false); //nuova

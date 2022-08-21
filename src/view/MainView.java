@@ -25,7 +25,6 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     private ImageIcon imgStartNormal;
     private ImageIcon imgStartEasy;
     private ImageIcon imgStartHard;
-    private ImageIcon leftArrow;
 
     public MainView(MainController mainController){
         this.mainController = mainController;

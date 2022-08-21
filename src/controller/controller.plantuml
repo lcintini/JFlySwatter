@@ -5,18 +5,18 @@ namespace controller {
           - createNewBug : boolean
           - timer : Timer
           - timerCreators : ArrayList<Timer>
-          + GameController()
+          + GameController(mainController: MainController, difficulty: int, firstLevel: int, effectsEnable: boolean, musicEnable: boolean)
           + createTimers()
           + doOneLoop()
           + exitGame()
-          + handleClick()
+          + handleClick(x: int, y: int)
           + handleTimer()
           + initializeGame()
-          + isEffectsEnable()
-          + isMusicEnable()
+          + isEffectsEnable(): boolean
+          + isMusicEnable(): boolean
           + pauseGame()
-          + playEffects()
-          + playMusic()
+          + playEffects(sound: String)
+          + playMusic(music: String)
           + resumeGame()
           + setEffectsEnable()
           + setMusicEnable()
@@ -30,20 +30,20 @@ namespace controller {
       class controller.MainController {
           - highScore : int
           + MainController()
-          + getGameController()
-          + getGamePanel()
-          + getHighScore()
-          + getHudPanel()
+          + getGameController(): GameController
+          + getGamePanel(): GamePanel
+          + getHighScore(): int
+          + getHudPanel(): HUDPanel
           + nextCursor()
           + pauseGame()
-          + readHighScore()
+          + readHighScore(difficulty: int)
           + resumeGame()
-          + setHighScore()
+          + setHighScore(highScore: int)
           + setNormalSwatter()
           + setSwatSwatter()
-          + startGame()
+          + startGame(difficulty: int, effectsEnable: boolean, musicEnable: boolean)
           + startMenu()
-          + updateHighScore()
+          + updateHighScore(level: int, difficulty: int)
       }
     }
   
@@ -53,14 +53,14 @@ namespace controller {
           - difficulty : int
           - effectsEnable : boolean
           - musicEnable : boolean
-          + MenuController()
-          + getDifficulty()
-          + isEffectsEnable()
-          + isMusicEnable()
+          + MenuController(mainController: MainController, menuPanel: MenuPanel)
+          + getDifficulty(): int
+          + isEffectsEnable(): boolean
+          + isMusicEnable(): boolean
           + playEffects()
-          + setDifficulty()
-          + setEffectsEnable()
-          + setMusicEnable()
+          + setDifficulty(difficulty: int)
+          + setEffectsEnable(effectsEnable: boolean)
+          + setMusicEnable(musicEnable: boolean)
           + startGame()
       }
     }

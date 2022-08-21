@@ -36,7 +36,7 @@
           {static} - LADYBUG_5 : ImageIcon
           {static} - WASP_1 : ImageIcon
           {static} - WASP_2 : ImageIcon
-          {static} + getImage()
+          {static} + getImage(imagePath: String): Image
           {static} + preloadImages()
       }
     }
@@ -45,12 +45,12 @@
   namespace utilities {
       class utilities.Utilities {
           {static} - musicClip : Clip
-          {static} + playEffects()
-          {static} + playMusic()
-          {static} + readImage()
-          {static} + readNumber()
+          {static} + playEffects(sound: String)
+          {static} + playMusic(music: String)
+          {static} + readImage(fileName: String): ImageIcon
+          {static} + readNumber(fileName: String): int
           {static} + stopMusic()
-          {static} + writeNumber()
+          {static} + writeNumber(fileName: String, number: int)
       }
     }
 

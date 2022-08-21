@@ -75,6 +75,6 @@ public class Constants {
     public static final String EFFECTS_OFF_PATH = "resources/images/EffectsOff.png";
 
     public static final String EFFECTS_ON_PATH = "resources/images/EffectsOn.png";
-    public static final String RESUM_BUTTON_PATH ="resources/images/ResumeGame.png" ;
+    public static final String RESUME_BUTTON_PATH ="resources/images/ResumeGame.png" ;
     public static final String EXIT_BUTTON_PATH ="resources/images/ExitGame.png" ;
 }

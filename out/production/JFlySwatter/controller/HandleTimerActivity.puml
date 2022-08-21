@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 
-(*)  --> "GameController.handleTimer() è chiamato da\nupdate() di GameController"
+(*)  --> "GameController.handleTimer() è chiamato da update() di GameController"
 --> "Aggiorno il timer nell'HUDPanel"
 If "E' finito il tempo" then
 --> [Si] "Si stampa GameOver e si esce dal gioco"
