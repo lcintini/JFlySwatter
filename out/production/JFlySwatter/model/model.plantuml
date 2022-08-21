@@ -11,39 +11,39 @@
           # width : int
           # x : int
           # y : int
-          + Bug()
-          + changeDirection()
+          + Bug(x: int, y: int, dx: int, dy: int, direction: Direction)
+          + changeDirection(mouseX: int, mouseY: int)
           + changeDirectionBorder()
-          + getDirection()
-          + getDx()
-          + getDy()
-          + getImg()
-          + getPoints()
-          + getX()
-          + getY()
-          + isClicked()
-          + isInBorderX1()
-          + isInBorderX2()
-          + isInBorderY1()
-          + isInBorderY2()
-          + move()
-          + setDirection()
-          + setDx()
-          + setDy()
-          + setPoints()
-          + setX()
-          + setY()
+          + getDirection(): Direction
+          + getDx(): int
+          + getDy(): int
+          + getImg():String
+          + getPoints(): int
+          + getX(): int
+          + getY(): int
+          + isClicked(x: int, y: int): boolean
+          + isInBorderX1(): boolean
+          + isInBorderX2(): boolean
+          + isInBorderY1(): boolean
+          + isInBorderY2(): boolean
+          + move(mouseX: int, mouseY: int)
+          + setDirection(direction: Direction)
+          + setDx(dx: int)
+          + setDy(dy: int)
+          + setPoints(points: int)
+          + setX(x: int)
+          + setY(y: int)
       }
     }
   
 
   namespace model {
       class model.BugsCreator {
-          + createNewButterfly()
-          + createNewCockroach()
-          + createNewFly()
-          + createNewLadybug()
-          + createNewWasp()
+          + createNewButterfly(x: int, y:int, direction: Direction, difficulty: int): Butterfly
+          + createNewCockroach(x: int, y:int, direction: Direction, difficulty: int): Cockroach
+          + createNewFly(x: int, y:int, direction: Direction, difficulty: int): Fly
+          + createNewLadybug(x: int, y:int, direction: Direction, difficulty: int): Ladybug
+          + createNewWasp(x: int, y:int, direction: Direction, difficulty: int): Wasp
       }
     }
   
@@ -51,23 +51,23 @@
   namespace model {
       class model.Butterfly {
           - scared : boolean
-          + Butterfly()
-          + changeDirButterfly()
-          + changeDirection()
+          + Butterfly(x: int, y:int, direction: Direction, difficulty: int)
+          + changeDirButterfly(mouseX: int, mouseY: int)
+          + changeDirection(mouseX: int, mouseY: int)
       }
     }
   
 
   namespace model {
       class model.Cockroach {
-          + Cockroach()
+          + Cockroach(x: int, y:int, direction: Direction, difficulty: int)
       }
     }
   
 
   namespace model {
       class model.Fly {
-          + Fly()
+          + Fly(x: int, y:int, direction: Direction, difficulty: int)
       }
     }
   
@@ -82,38 +82,38 @@
           - musicEnable : boolean
           - startTime : long
           - timerLeft : int
-          + GameModel()
-          + getCount()
-          + getDifficulty()
-          + getHighScore()
-          + getLevel()
-          + getStartTime()
-          + getTimerLeft()
-          + isEffectsEnable()
-          + isMusicEnable()
-          + setCount()
-          + setDifficulty()
-          + setEffectsEnable()
-          + setHighScore()
-          + setLevel()
-          + setMusicEnable()
-          + setStartTime()
-          + setTimerLeft()
+          + GameModel(difficulty: int, level: int, musicEnable: boolean, effectsEnable: boolean)
+          + getCount(): int
+          + getDifficulty(): int
+          + getHighScore(): int
+          + getLevel(): int
+          + getStartTime(): long
+          + getTimerLeft(): int
+          + isEffectsEnable(): boolean
+          + isMusicEnable(): boolean
+          + setCount(count: int)
+          + setDifficulty(difficulty: int)
+          + setEffectsEnable(effectsEnable: boolean)
+          + setHighScore(highScore: int)
+          + setLevel(level: int)
+          + setMusicEnable(musicEnable: boolean)
+          + setStartTime(startTime: long)
+          + setTimerLeft(timerLeft: int )
       }
     }
   
 
   namespace model {
       class model.Ladybug {
-          + Ladybug()
+          + Ladybug(x: int, y:int, direction: Direction, difficulty: int)
       }
     }
   
 
   namespace model {
       class model.Wasp {
-          + Wasp()
-          + changeDirection()
+          + Wasp(x: int, y:int, direction: Direction, difficulty: int)
+          + changeDirection(mouseX: int, mouseY: int)
           + changeDirectionBorder()
       }
     }

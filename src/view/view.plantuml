@@ -76,7 +76,6 @@ title __VIEW's Class Diagram__\n
           - musicEnable : boolean
           - rightArrowButton : JButton
           - startButton : JButton
-          - title: JLabel
           + MenuPanel()
           + doDrawing(g: Graphics)
           + drawMenu()
