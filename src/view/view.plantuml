@@ -46,9 +46,6 @@ title __VIEW's Class Diagram__\n
 
  namespace view {
       class view.MainView {
-          - imgStartEasy : ImageIcon
-          - imgStartHard : ImageIcon
-          - imgStartNormal : ImageIcon
           - layeredPane : JLayeredPane
           + MainView(mainController: MainController)
           + addGamePanel(gp: GamePanel, hp : HUDPanel)
