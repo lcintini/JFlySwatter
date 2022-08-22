@@ -30,6 +30,7 @@ public class GameController {
         this.bugsCreator = new BugsCreator();
         this.timer = new Timer(Constants.GAME_SPEED, e -> doOneLoop());
         this.gameModel = new GameModel(difficulty, firstLevel, musicEnable, effectsEnable);
+        Utilities.registerFont();
         this.initializeGame();
     }
 
