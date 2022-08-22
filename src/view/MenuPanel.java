@@ -97,12 +97,12 @@ public class MenuPanel extends JPanel {
         this.musicButton.setFocusPainted(false);
         this.add(this.musicButton);
         if(this.effectEnable){
-            this.effectsButton = new JButton("Effects OFF");
+            this.effectsButton = new JButton("");
             ImageIcon imgEffectsOff = Utilities.readImage(Constants.EFFECTS_OFF_PATH);
             this.effectsButton = new JButton("");
             this.effectsButton.setIcon(imgEffectsOff);
         }else{
-            this.effectsButton = new JButton("Effects ON");
+            this.effectsButton = new JButton("");
             ImageIcon imgEffectsOn = Utilities.readImage(Constants.EFFECTS_ON_PATH);
             this.effectsButton.setIcon(imgEffectsOn);
         }
@@ -157,11 +157,12 @@ public class MenuPanel extends JPanel {
             //this.effectsButton.setText("Effects OFF");
             ImageIcon imgEffectsOff = Utilities.readImage(Constants.EFFECTS_OFF_PATH);
             this.effectsButton.setIcon(imgEffectsOff);
-
+            this.effectsButton.paintImmediately(this.effectsButton.getVisibleRect());
         }else{
             //this.effectsButton.setText("Effects ON");
             ImageIcon imgEffectsOn = Utilities.readImage(Constants.EFFECTS_ON_PATH);
             this.effectsButton.setIcon(imgEffectsOn);
+            this.effectsButton.paintImmediately(this.effectsButton.getVisibleRect());
         }
     }
 }

@@ -11,7 +11,7 @@ public class MenuController {
     private boolean effectsEnable;
 
 
-    public MenuController(MainController mainController, MenuPanel menuPanel) {
+    public MenuController(MainController mainController) {
         this.mainController = mainController;
         this.difficulty = 1;
         this.musicEnable = true;

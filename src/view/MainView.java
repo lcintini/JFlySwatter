@@ -22,9 +22,6 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
     private HUDPanel hudPanel;
     private PausePanel pausePanel;
     private MainController mainController;
-    private ImageIcon imgStartNormal;
-    private ImageIcon imgStartEasy;
-    private ImageIcon imgStartHard;
 
     public MainView(MainController mainController){
         this.mainController = mainController;
@@ -36,9 +33,6 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         Dimension screenSize = Toolkit.getDefaultToolkit ( ).getScreenSize ( );
         this.setLocation ( ( screenSize.width / 2 ) - ( Constants.BOARD_WIDTH/ 2 ), (
                 screenSize.height / 2 ) - ( Constants.BOARD_HEIGHT/ 2 ) );
-        this.imgStartNormal = (Utilities.readImage(Constants.START_NORMAL_BUTTON_PATH));
-        this.imgStartEasy = (Utilities.readImage(Constants.START_EASY_BUTTON_PATH));
-        this.imgStartHard = (Utilities.readImage(Constants.START_HARD_BUTTON_PATH));
     }
 
     // la finestra
@@ -63,7 +57,9 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
 
     public void addMenuPanel(MenuPanel mp, MenuController menuController){
         this.menuPanel = mp;
-        String[] difficulties = {"Easy","Normal","Hard"};
+        ImageIcon imgStartNormal = (Utilities.readImage(Constants.START_NORMAL_BUTTON_PATH));
+        ImageIcon imgStartEasy = (Utilities.readImage(Constants.START_EASY_BUTTON_PATH));
+        ImageIcon imgStartHard = (Utilities.readImage(Constants.START_HARD_BUTTON_PATH));
         JButton startButton= mp.getStartButton();
         startButton.addActionListener(new ActionListener() {
             @Override

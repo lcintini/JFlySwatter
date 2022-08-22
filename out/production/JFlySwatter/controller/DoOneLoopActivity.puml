@@ -1,9 +1,11 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 
-(*)  --> "Si richiede un focus sul GamePanel, svegliando gli ActionListener"
+(*)  --> "Si richiede un focus sul GamePanel"
 --> "Si chiama il metodo update()"
--->"                       Prende le coordinate del mouse \n Aggiorna le coordinate per ogni Bug e la label del tempo"
+-->"Prende le coordinate del mouse"
+-->"Comanda ogni Bug di aggiornare le sue coordinate"
+--> "Viene richiamato il metodo hendleTimer("
 -->"                                       Richiama il MainController, \nche rivisualizza le nuove modifiche del GamePanel e dell'HUDPanel e \n                                gestisce l'animazione della paletta"
 
 

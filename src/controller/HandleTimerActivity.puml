@@ -2,11 +2,17 @@
 'https://plantuml.com/activity-diagram-beta
 
 (*)  --> "GameController.handleTimer() è chiamato da update() di GameController"
---> "Aggiorno il timer nell'HUDPanel"
+If "E' passato un secondo" then
+--> [Si] "Aggiorno la label del timer dell'HUDPanel"
+-->"Decremento il tempo rimasto sulla variabile timerLeft"
+--> "Controlla che il tempo non sia esaurito"
+else
+---> [No] "Controlla che il tempo non sia esaurito"
+Endif
 If "E' finito il tempo" then
 --> [Si] "Si stampa GameOver e si esce dal gioco"
 else
----> [No] "Aggiorno il timer nell'HUDPanel"
+---> [No] "Si continua"
 Endif
 
 @enduml

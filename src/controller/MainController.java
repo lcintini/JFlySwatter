@@ -41,7 +41,7 @@ public class MainController {
 
     public void startMenu(){
         MenuPanel menuPanel = new MenuPanel();
-        this.menuController = new MenuController(this, menuPanel);
+        this.menuController = new MenuController(this);
         this.mainView.addMenuPanel(menuPanel, this.menuController);
     }
 

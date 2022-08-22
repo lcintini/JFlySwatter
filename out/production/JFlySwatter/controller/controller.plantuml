@@ -53,7 +53,7 @@ namespace controller {
           - difficulty : int
           - effectsEnable : boolean
           - musicEnable : boolean
-          + MenuController(mainController: MainController, menuPanel: MenuPanel)
+          + MenuController(mainController: MainController)
           + getDifficulty(): int
           + isEffectsEnable(): boolean
           + isMusicEnable(): boolean
