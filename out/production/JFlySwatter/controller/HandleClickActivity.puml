@@ -1,7 +1,8 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 
-(*)  --> "GameController.handleClick() è chiamato dalla classe GamePanel"
+(*)  --> "L'ActionListener del mouse del GamePanel si accorge che il mouse è stato cliccato"
+--> "GameController.handleClick() è chiamato dalla classe GamePanel"
 --> "Riceve le coordinate del mouse"
 If "E' stato colpito un insetto" then
 --> [Si] "Il mainController applica allo Swatter la SwatAnimation e aggiorna count e timer"

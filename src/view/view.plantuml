@@ -1,6 +1,6 @@
 @startuml
 
-title __VIEW's Class Diagram__\n
+
 
   namespace view {
       class view.GamePanel {

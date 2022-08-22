@@ -5,8 +5,9 @@
 --> "Si chiama il metodo update()"
 -->"Prende le coordinate del mouse"
 -->"Comanda ogni Bug di aggiornare le sue coordinate"
---> "Viene richiamato il metodo hendleTimer("
--->"                                       Richiama il MainController, \nche rivisualizza le nuove modifiche del GamePanel e dell'HUDPanel e \n                                gestisce l'animazione della paletta"
+-->"Viene richiamato il metodo handleTimer()"
+-->"Viene chiesto alla Swatter di passare al frame successivo"
+-->"Viene richiesto al GamePanel e all'HUDPanel di aggiornarsi"
 
 
 @enduml

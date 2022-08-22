@@ -119,7 +119,6 @@
   model.Fly -up-|> model.Bug
   model.Ladybug -up-|> model.Bug
   model.Wasp -up-|> model.Bug
-  view.GamePanel o-- controller.MainController : mainController
   view.GamePanel o-- model.Bug : bugs
   view.MainView o-- view.Swatter : swatter
   view.MainView o-- view.GamePanel : gamePanel
