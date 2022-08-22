@@ -60,6 +60,10 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         ImageIcon imgStartNormal = (Utilities.readImage(Constants.START_NORMAL_BUTTON_PATH));
         ImageIcon imgStartEasy = (Utilities.readImage(Constants.START_EASY_BUTTON_PATH));
         ImageIcon imgStartHard = (Utilities.readImage(Constants.START_HARD_BUTTON_PATH));
+        ImageIcon imgMusicOn = (Utilities.readImage(Constants.MUSIC_ON_PATH));
+        ImageIcon imgMusicOff = (Utilities.readImage(Constants.MUSIC_OFF_PATH));
+        ImageIcon imgEffectsOn = (Utilities.readImage(Constants.EFFECTS_ON_PATH));
+        ImageIcon imgEffectsOff = (Utilities.readImage(Constants.EFFECTS_OFF_PATH));
         JButton startButton= mp.getStartButton();
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -112,7 +116,12 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
             public void actionPerformed(ActionEvent e) {
                 menuController.playEffects();
                 menuController.setMusicEnable(!menuController.isMusicEnable());
-                mp.setMusicEnable(menuController.isMusicEnable());
+                if (!menuController.isMusicEnable()) {
+                    musicButton.setIcon(imgMusicOn);
+                } else {
+                    musicButton.setIcon(imgMusicOff);
+                }
+                //mp.setMusicEnable(menuController.isMusicEnable());
             }
         });
         JButton effectsButton= mp.getEffectsButton();
@@ -121,7 +130,12 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
             public void actionPerformed(ActionEvent e) {
                 menuController.setEffectsEnable(!menuController.isEffectsEnable());
                 menuController.playEffects();
-                mp.setEffectEnable(menuController.isEffectsEnable());
+                if (!menuController.isEffectsEnable()) {
+                    effectsButton.setIcon(imgEffectsOn);
+                } else {
+                    effectsButton.setIcon(imgEffectsOff);
+                }
+                //mp.setEffectEnable(menuController.isEffectsEnable());
             }
         });
         //quando aggiungo il pannello del menu, prima devo togliere tutti i pannelli precedentemente inseriti
@@ -142,6 +156,10 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.pack();
     }
     public void addPausePanel(PausePanel pp, GameController gameController) {
+        ImageIcon imgMusicOn = (Utilities.readImage(Constants.MUSIC_ON_PATH));
+        ImageIcon imgMusicOff = (Utilities.readImage(Constants.MUSIC_OFF_PATH));
+        ImageIcon imgEffectsOn = (Utilities.readImage(Constants.EFFECTS_ON_PATH));
+        ImageIcon imgEffectsOff = (Utilities.readImage(Constants.EFFECTS_OFF_PATH));
         this.pausePanel = pp;
         JButton resumeButton= pp.getResumeButton();
         resumeButton.addActionListener(new ActionListener() {
@@ -165,7 +183,12 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
             public void actionPerformed(ActionEvent e) {
                 gameController.playEffects("slap");
                 gameController.setMusicEnable(!gameController.isMusicEnable());
-                pp.setMusicEnable(gameController.isMusicEnable());
+                if (!gameController.isMusicEnable()) {
+                    musicButton.setIcon(imgMusicOn);
+                } else {
+                    musicButton.setIcon(imgMusicOff);
+                }
+                //pp.setMusicEnable(gameController.isMusicEnable());
             }
         });
         JButton effectsButton= pp.getEffectsButton();
@@ -174,7 +197,12 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
             public void actionPerformed(ActionEvent e) {
                 gameController.setEffectsEnable(!gameController.isEffectsEnable());
                 gameController.playEffects("slap");
-                pp.setEffectEnable(gameController.isEffectsEnable());
+                if (!gameController.isEffectsEnable()) {
+                    effectsButton.setIcon(imgEffectsOn);
+                } else {
+                    effectsButton.setIcon(imgEffectsOff);
+                }
+                //pp.setEffectEnable(gameController.isEffectsEnable());
             }
         });
         this.layeredPane.add(pp, JLayeredPane.MODAL_LAYER);

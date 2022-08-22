@@ -56,66 +56,46 @@ public class ImagesList {
 
     public static Image getImage(String imagePath) {
         switch (imagePath) {
-            case Constants.FLY_1_PATH -> {
+            case Constants.FLY_1_PATH:
                 return FLY_1.getImage();
-            }
-            case Constants.FLY_2_PATH -> {
+            case Constants.FLY_2_PATH:
                 return FLY_2.getImage();
-            }
-            case Constants.FLY_3_PATH -> {
+            case Constants.FLY_3_PATH:
                 return FLY_3.getImage();
-            }
-            case Constants.BUTTERFLY_1_PATH -> {
+            case Constants.BUTTERFLY_1_PATH:
                 return BUTTERFLY_1.getImage();
-            }
-            case Constants.BUTTERFLY_2_PATH -> {
+            case Constants.BUTTERFLY_2_PATH:
                 return BUTTERFLY_2.getImage();
-            }
-            case Constants.BUTTERFLY_3_PATH -> {
+            case Constants.BUTTERFLY_3_PATH:
                 return BUTTERFLY_3.getImage();
-            }
-            case Constants.BUTTERFLY_4_PATH -> {
+            case Constants.BUTTERFLY_4_PATH:
                 return BUTTERFLY_4.getImage();
-            }
-            case Constants.COCKROACH_1_PATH -> {
+            case Constants.COCKROACH_1_PATH:
                 return COCKROACH_1.getImage();
-            }
-            case Constants.COCKROACH_2_PATH -> {
+            case Constants.COCKROACH_2_PATH:
                 return COCKROACH_2.getImage();
-            }
-            case Constants.COCKROACH_3_PATH -> {
+            case Constants.COCKROACH_3_PATH:
                 return COCKROACH_3.getImage();
-            }
-            case Constants.COCKROACH_4_PATH -> {
+            case Constants.COCKROACH_4_PATH :
                 return COCKROACH_4.getImage();
-            }
-            case Constants.COCKROACH_5_PATH -> {
+            case Constants.COCKROACH_5_PATH :
                 return COCKROACH_5.getImage();
-            }
-            case Constants.COCKROACH_6_PATH -> {
+            case Constants.COCKROACH_6_PATH :
                 return COCKROACH_6.getImage();
-            }
-            case Constants.LADYBUG_1_PATH -> {
+            case Constants.LADYBUG_1_PATH :
                 return LADYBUG_1.getImage();
-            }
-            case Constants.LADYBUG_2_PATH -> {
+            case Constants.LADYBUG_2_PATH :
                 return LADYBUG_2.getImage();
-            }
-            case Constants.LADYBUG_3_PATH -> {
+            case Constants.LADYBUG_3_PATH :
                 return LADYBUG_3.getImage();
-            }
-            case Constants.LADYBUG_4_PATH -> {
+            case Constants.LADYBUG_4_PATH :
                 return LADYBUG_4.getImage();
-            }
-            case Constants.LADYBUG_5_PATH -> {
+            case Constants.LADYBUG_5_PATH :
                 return LADYBUG_5.getImage();
-            }
-            case Constants.WASP_1_PATH -> {
+            case Constants.WASP_1_PATH :
                 return WASP_1.getImage();
-            }
-            case Constants.WASP_2_PATH -> {
+            case Constants.WASP_2_PATH :
                 return WASP_2.getImage();
-            }
         }
         return null;
     }

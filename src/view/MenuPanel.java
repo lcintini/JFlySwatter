@@ -18,11 +18,6 @@ public class MenuPanel extends JPanel {
     private boolean effectEnable;
     private Image imgMenu;
 
-
-
-
-
-
     public MenuPanel() {
         Color celeste= new Color(151, 69, 45, 255);
         this.setBounds(0,0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
