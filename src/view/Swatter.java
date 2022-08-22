@@ -2,7 +2,6 @@ package view;
 
 import constants.Constants;
 import utilities.Utilities;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -62,6 +61,7 @@ public class Swatter {
         //paletta nel menu
         return imgsSwat.get(0);
     }
+    
     public void setNormalAnimation(boolean normalAnimation) {
         this.normalAnimation = normalAnimation;
     }

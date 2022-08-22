@@ -6,7 +6,6 @@ import model.BugsCreator;
 import utilities.Direction;
 import model.GameModel;
 import utilities.Utilities;
-
 import javax.swing.Timer;
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,7 +13,6 @@ import java.util.Random;
 public class GameController {
     
     private MainController mainController;
-
     private GameModel gameModel;
     // primo oggetto di Java Swing utilizzato per scandire i cicli ( update-repaint) di chiamata al paint component
     private Timer timer;
@@ -45,7 +43,7 @@ public class GameController {
         this.gameModel.setTimerLeft((int) ((1 / ((double) (this.gameModel.getDifficulty() + 1))) * Constants.LOWER_BOUNDS_TIMER));
         System.out.println(this.gameModel.getTimerLeft());
         this.mainController.getHudPanel().changeTimer("Timer: "+ this.gameModel.getTimerLeft());
-        //viene creato un thread specifico per la creazione di mosche e viene gestito con i semafori di java l'accesso all'array list per evitare collisioni (accesso concorrenziale)
+        //vengono greati dei timer specifici per la creazione degli insetti
         this.createTimers();
         this.gameModel.setStartTime(System.currentTimeMillis());
         this.createNewBug = true;
@@ -73,7 +71,6 @@ public class GameController {
                 }
                 bugs.add(b);
                 mainController.getGamePanel().addBug(b);
-
             }
         });
         Timer waspCreator = new Timer(Constants.GAME_SPEED / 2, e -> {
@@ -92,7 +89,6 @@ public class GameController {
                 bugs.add(b);
                 mainController.getGamePanel().addBug(b);
             }
-
         });
         Timer butterflyCreator = new Timer(Constants.GAME_SPEED / 2, e -> {
             Random r=new Random();
@@ -151,8 +147,6 @@ public class GameController {
                 mainController.getGamePanel().addBug(b);
             }
         });
-
-
         this.timerCreators = new ArrayList<>();
         this.timerCreators.add(flyCreator);
         this.timerCreators.add(waspCreator);
@@ -165,7 +159,6 @@ public class GameController {
         if(this.gameModel.getLevel() >= 4 ){
             this.timerCreators.add(cockroachCreator);
         }
-
     }
 
     // start update-repaint
@@ -177,6 +170,7 @@ public class GameController {
         this.mainController.getGamePanel().repaint();
         this.mainController.getHudPanel().repaint();
     }
+
     //aggiorna le coordinate degli insetti
     public void update() {
         int mouseX = this.mainController.getGamePanel().getMouseLocationX();
@@ -242,7 +236,6 @@ public class GameController {
                 deadBug = b;
             }
         }
-
         if(deadBug != null){
             this.bugs.remove(deadBug);
             this.mainController.getGamePanel().removeBug(deadBug);
@@ -276,13 +269,12 @@ public class GameController {
         this.mainController.pauseGame();
     }
 
-
     public void resumeGame() {
         this.mainController.resumeGame();
         this.playMusic("bumblebee");
         this.timer.start();
-
     }
+
     public void exitGame() {
         for(Timer t: this.timerCreators){
             t.stop();
@@ -292,19 +284,21 @@ public class GameController {
         this.mainController.updateHighScore(this.gameModel.getLevel(), this.gameModel.getDifficulty());
         this.mainController.startMenu();
     }
+
     public void playEffects(String sound) {
         if (this.gameModel.isEffectsEnable()) {
             Utilities.playEffects(sound);
         }
     }
+
     public void playMusic(String music) {
         if (this.gameModel.isMusicEnable()) {
             Utilities.playMusic(music);
         }
     }
+
     public void stopMusic(){
         Utilities.stopMusic();
-
     }
 
     public void setMusicEnable(boolean b) {

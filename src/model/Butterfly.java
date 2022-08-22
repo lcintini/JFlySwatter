@@ -2,9 +2,6 @@ package model;
 
 import constants.Constants;
 import utilities.Direction;
-import utilities.Utilities;
-
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Butterfly extends Bug {

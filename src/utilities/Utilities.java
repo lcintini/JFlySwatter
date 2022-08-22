@@ -1,7 +1,6 @@
 package utilities;
 
 import constants.Constants;
-
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -42,14 +41,15 @@ public class Utilities {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
     }
+
     public static ImageIcon readImage(String fileName){
         // IDE
         return (new ImageIcon(fileName));
         // JAR
         // return (new ImageIcon(ClassLoader.getSystemResource(fileName)));
     }
+
     public static void playEffects(String sound) {
         String soundName = "resources/sounds/"+sound+".wav";
         try {
@@ -68,6 +68,7 @@ public class Utilities {
             throw new RuntimeException(e);
         }
     }
+
     public static void playMusic(String music) {
         musicClip = null;
         String soundName = "resources/music/"+music+".wav";
@@ -87,6 +88,7 @@ public class Utilities {
             throw new RuntimeException(e);
         }
     }
+
     public static void registerFont(){
         Font f = null;
         try {
@@ -102,6 +104,7 @@ public class Utilities {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(f);
     }
+
     public static void stopMusic() {
         if(musicClip!=null){
             musicClip.stop();

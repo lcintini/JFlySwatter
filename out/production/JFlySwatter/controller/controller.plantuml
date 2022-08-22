@@ -32,15 +32,11 @@ namespace controller {
           + MainController()
           + getGameController(): GameController
           + getGamePanel(): GamePanel
-          + getHighScore(): int
           + getHudPanel(): HUDPanel
           + nextCursor()
           + pauseGame()
           + readHighScore(difficulty: int)
           + resumeGame()
-          + setHighScore(highScore: int)
-          + setNormalSwatter()
-          + setSwatSwatter()
           + startGame(difficulty: int, effectsEnable: boolean, musicEnable: boolean)
           + startMenu()
           + updateHighScore(level: int, difficulty: int)
@@ -54,13 +50,9 @@ namespace controller {
           - effectsEnable : boolean
           - musicEnable : boolean
           + MenuController(mainController: MainController)
-          + getDifficulty(): int
           + isEffectsEnable(): boolean
           + isMusicEnable(): boolean
           + playEffects()
-          + setDifficulty(difficulty: int)
-          + setEffectsEnable(effectsEnable: boolean)
-          + setMusicEnable(musicEnable: boolean)
           + startGame()
       }
     }

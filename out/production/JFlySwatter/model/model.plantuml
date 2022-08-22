@@ -14,25 +14,12 @@
           + Bug(x: int, y: int, dx: int, dy: int, direction: Direction)
           + changeDirection(mouseX: int, mouseY: int)
           + changeDirectionBorder()
-          + getDirection(): Direction
-          + getDx(): int
-          + getDy(): int
-          + getImg():String
-          + getPoints(): int
-          + getX(): int
-          + getY(): int
           + isClicked(x: int, y: int): boolean
           + isInBorderX1(): boolean
           + isInBorderX2(): boolean
           + isInBorderY1(): boolean
           + isInBorderY2(): boolean
           + move(mouseX: int, mouseY: int)
-          + setDirection(direction: Direction)
-          + setDx(dx: int)
-          + setDy(dy: int)
-          + setPoints(points: int)
-          + setX(x: int)
-          + setY(y: int)
       }
     }
   
@@ -83,22 +70,6 @@
           - startTime : long
           - timerLeft : int
           + GameModel(difficulty: int, level: int, musicEnable: boolean, effectsEnable: boolean)
-          + getCount(): int
-          + getDifficulty(): int
-          + getHighScore(): int
-          + getLevel(): int
-          + getStartTime(): long
-          + getTimerLeft(): int
-          + isEffectsEnable(): boolean
-          + isMusicEnable(): boolean
-          + setCount(count: int)
-          + setDifficulty(difficulty: int)
-          + setEffectsEnable(effectsEnable: boolean)
-          + setHighScore(highScore: int)
-          + setLevel(level: int)
-          + setMusicEnable(musicEnable: boolean)
-          + setStartTime(startTime: long)
-          + setTimerLeft(timerLeft: int )
       }
     }
   

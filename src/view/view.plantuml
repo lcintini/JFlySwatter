@@ -57,8 +57,6 @@
           + initializeView()
           + nextCursor()
           + removePausePanel()
-          + setNormalSwatter()
-          + setSwatSwatter()
       }
     }
   
@@ -76,11 +74,6 @@
           + MenuPanel()
           + doDrawing(g: Graphics)
           + drawMenu()
-          + getEffectsButton() : JButton
-          + getLeftArrowButton() : JButton
-          + getMusicButton() : JButton
-          + getRightArrowButton() : JButton
-          + getStartButton() : JButton
           + paintComponent(g: Graphics)
           + setEffectEnable(effectEnable : boolean )
           + setMusicEnable(musicEnable : boolean)
@@ -101,10 +94,6 @@
           + PausePanel()
           + doDrawing(g: Graphics)
           + drawMenu()
-          + getEffectsButton() : JButton
-          + getExitButton() : JButton
-          + getMusicButton() : JButton
-          + getResumeButton() : JButton
           + paintComponent(g: Graphics)
           + setEffectEnable(effectEnable : boolean)
           + setMusicEnable(musicEnable : boolean)
@@ -121,8 +110,6 @@
           - swatAnimation : boolean
           + Swatter()
           + getImg() : Image
-          + setNormalAnimation(normalAnimation: boolean)
-          + setSwatAnimation(swatAnimation : boolean)
       }
     }
   

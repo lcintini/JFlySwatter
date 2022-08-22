@@ -1,13 +1,9 @@
 package utilities;
 
 import constants.Constants;
-import utilities.Direction;
-import utilities.Utilities;
-
 import javax.swing.*;
 import java.awt.*;
 
-import static utilities.Direction.*;
 
 public class ImagesList {
     private static ImageIcon FLY_1;

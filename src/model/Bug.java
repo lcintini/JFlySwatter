@@ -7,6 +7,7 @@ import java.util.Random;
 import static utilities.Direction.*;
 
 public abstract class Bug {
+
     protected ArrayList<String> images;
     protected double imgIndex;
     protected int x;
@@ -15,7 +16,6 @@ public abstract class Bug {
     protected int dy;
     protected int points;
     protected Direction direction;
-
     protected int height;
     protected int width;
 
@@ -30,7 +30,6 @@ public abstract class Bug {
 
     public void move(int mouseX, int mouseY){
         int speed = this.dx;
-
         switch(this.direction){
             case NORTH:
                 y -= speed;
@@ -67,9 +66,9 @@ public abstract class Bug {
             this.changeDirection(mouseX, mouseY);
         }
     }
+
     public void changeDirection(int mouseX, int mouseY){
         Direction[] nextDir = new Direction[3];
-
         switch(this.direction){
             case NORTH:
                 nextDir= new Direction[]{NORTH, NORTHEAST, NORTHWEST};
@@ -99,8 +98,8 @@ public abstract class Bug {
         Random r=new Random();
         int randomNumber=r.nextInt(nextDir.length);
         this.direction = nextDir[randomNumber];
-
     }
+
     public void changeDirectionBorder(){
         if(this.isInBorderX1()){
             if(this.isInBorderY1()){
@@ -128,6 +127,7 @@ public abstract class Bug {
             }
         }
     }
+
     public boolean isInBorderX1(){
         return (x>0 && x <= Constants.BORDER_X1);
     }
@@ -139,9 +139,11 @@ public abstract class Bug {
     public boolean isInBorderY1(){
         return (y>0 && y <= Constants.BORDER_Y1);
     }
+
     public boolean isInBorderY2(){
         return (y+Constants.BORDER_X1>= Constants.BORDER_Y2 && y<= Constants.BOARD_HEIGHT);
     }
+
     public String getImg() {
         imgIndex+=0.5;
         if(imgIndex >= images.size()){
@@ -149,10 +151,11 @@ public abstract class Bug {
         }
         return images.get(((int) Math.floor(imgIndex))-1);
     }
+
     public boolean isClicked(int x, int y){
         return (x>=this.x && x<=this.x+this.width && y>=this.y && y<=this.y+this.height);
-
     }
+
     public int getX() {
         return x;
     }

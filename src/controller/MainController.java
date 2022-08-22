@@ -2,21 +2,18 @@ package controller;
 
 import constants.Constants;
 import utilities.Utilities;
-import view.*;
-
-import java.awt.*;
-
+import view.GamePanel;
+import view.HUDPanel;
+import view.MainView;
+import view.MenuPanel;
+import view.PausePanel;
 
 public class MainController {
 
     private MainView mainView;
-
     private MenuController menuController;
     private GameController gameController;
-
     private int highScore;
-
-
 
     public MainController() {
         this.mainView = new MainView(this);
@@ -89,6 +86,7 @@ public class MainController {
             Utilities.writeNumber(fileName, level);
         }
     }
+
     public void setNormalSwatter(){
         this.mainView.setNormalSwatter();
     }

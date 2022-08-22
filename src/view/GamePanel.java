@@ -1,11 +1,8 @@
 package view;
 
 import constants.Constants;
-import controller.MainController;
 import model.Bug;
 import utilities.ImagesList;
-import utilities.Utilities;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -36,7 +33,6 @@ public class GamePanel extends JPanel {
                 enterPressed(e);
             }
         });
-
     }
 
     //viene richiamato molte volte al secondo dal thread di java che si occupa della grafica (non da noi) e fa apparire sullo schermo le varie componenti grafiche(come un libricino che sfogli velocemnete)
@@ -46,6 +42,7 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         doDrawing(g);
     }
+
     //gestisce l'animazione degli insetti
     public void doDrawing(Graphics g) {
         this.drawGame(g);
@@ -73,6 +70,7 @@ public class GamePanel extends JPanel {
     public void removeAllBugs(){
         this.bugs = new ArrayList<>();
     }
+
     public void enterPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             this.mainView.getMainController().getGameController().pauseGame();

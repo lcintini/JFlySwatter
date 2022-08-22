@@ -2,7 +2,6 @@ package view;
 
 import constants.Constants;
 import utilities.Utilities;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -46,9 +45,6 @@ public class HUDPanel extends JPanel {
         this.level.setFont(new Font ("The Bomb", Font.BOLD, 10) );
         this.level.setForeground(Color.BLACK);
         this.add(this.level);
-
-
-
     }
 
     public void paintComponent(Graphics g) {
@@ -64,29 +60,30 @@ public class HUDPanel extends JPanel {
 
     public void drawHUD(Graphics g) {
         g.drawImage(this.imgHUD,0,0,this);
-
     }
-
 
     public void changeCount(String s) {
         this.count.setText(s);
     }
+
     public void changeTimer(String s) {
         this.timer.setText(s);
     }
+
     public void changeLevel(String s) {
         this.level.setText(s);
     }
-
 
     public void printGameOver() {
         this.gameOver.setVisible(true);
         this.gameOver.paintImmediately(this.gameOver.getVisibleRect());
     }
+
     public void hideGameOver() {
         this.gameOver.setVisible(false);
         this.gameOver.paintImmediately(this.gameOver.getVisibleRect());
     }
+
     public void printVictory() {
         this.victory.setVisible(true);
         this.victory.paintImmediately(this.victory.getVisibleRect());
@@ -96,6 +93,7 @@ public class HUDPanel extends JPanel {
         this.victory.setVisible(false);
         this.victory.paintImmediately(this.victory.getVisibleRect());
     }
+
     public void printHighScore(int highScore){
         this.highScore = new JLabel("Highscore: "+ highScore);
         this.highScore.setBounds(258, 370, 200, 50);
@@ -103,5 +101,4 @@ public class HUDPanel extends JPanel {
         this.highScore.setForeground(Color.BLACK);
         this.add(this.highScore);
     }
-
 }

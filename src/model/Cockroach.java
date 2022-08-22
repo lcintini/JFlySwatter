@@ -2,9 +2,6 @@ package model;
 
 import constants.Constants;
 import utilities.Direction;
-import utilities.Utilities;
-
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Cockroach extends Bug{
@@ -12,7 +9,6 @@ public class Cockroach extends Bug{
         super(x, y, Constants.COCKROACH_SPEED * (difficulty +1), Constants.COCKROACH_SPEED * (difficulty +1), direction);
         this.points = Constants.POINTS_COCKROACH;
         this.images = new ArrayList<>();
-        //1 2 3 2 1 4 5 6 5 4
         String imageString1 = Constants.COCKROACH_1_PATH;
         String imageString2 = Constants.COCKROACH_2_PATH;
         String imageString3 = Constants.COCKROACH_3_PATH;

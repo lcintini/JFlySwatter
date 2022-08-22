@@ -1,7 +1,6 @@
 package controller;
 
 import utilities.Utilities;
-import view.MenuPanel;
 
 public class MenuController {
 
@@ -9,7 +8,6 @@ public class MenuController {
     private int difficulty;
     private boolean musicEnable;
     private boolean effectsEnable;
-
 
     public MenuController(MainController mainController) {
         this.mainController = mainController;
@@ -23,6 +21,7 @@ public class MenuController {
             Utilities.playEffects("slap");
         }
     }
+
     public void startGame(){
         this.mainController.startGame(this.difficulty, this.effectsEnable, this.musicEnable);
     }

@@ -51,6 +51,7 @@
           {static} + readNumber(fileName: String): int
           {static} + stopMusic()
           {static} + writeNumber(fileName: String, number: int)
+          {static} + registerFont()
       }
     }
 

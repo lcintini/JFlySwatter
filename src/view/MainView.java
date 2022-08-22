@@ -6,7 +6,6 @@ import controller.MainController;
 import controller.MenuController;
 import utilities.ImagesList;
 import utilities.Utilities;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -79,15 +78,11 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
                 menuController.playEffects();
                 menuController.setDifficulty((Math.floorMod(menuController.getDifficulty() + 1, 3) + Math.abs(3)) % Math.abs(3)); //modulo per gestire il livello circolarmente
                 if (menuController.getDifficulty() == 0) {
-                    //startButton.setText("Start Easy Mode");
                     startButton.setIcon(imgStartEasy);
                 } else if (menuController.getDifficulty() == 1) {
-                    //startButton.setText("Start Normal Mode");
                     startButton.setIcon(imgStartNormal);
                 } else {
-                    //startButton.setText("Start Hard Mode");
                     startButton.setIcon(imgStartHard);
-                    //startButton.setText("Start "+ difficulties[menuController.getDifficulty()] + " Mode");
                 }
             }
         });
@@ -98,15 +93,11 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
                     menuController.playEffects();
                     menuController.setDifficulty((Math.floorMod(menuController.getDifficulty() - 1, 3) + Math.abs(3)) % Math.abs(3)); //modulo per gestire il livello circolarmente
                     if (menuController.getDifficulty() == 0) {
-                        //startButton.setText("Start Easy Mode");
                         startButton.setIcon(imgStartEasy);
                     } else if (menuController.getDifficulty() == 1) {
-                        //startButton.setText("Start Normal Mode");
                         startButton.setIcon(imgStartNormal);
                     } else {
                         startButton.setIcon(imgStartHard);
-                        //startButton.setText("Start Hard Mode");
-                        //startButton.setText("Start "+ difficulties[menuController.getDifficulty()] + " Mode");
                     }
                 }
         });
@@ -121,7 +112,6 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
                 } else {
                     musicButton.setIcon(imgMusicOff);
                 }
-                //mp.setMusicEnable(menuController.isMusicEnable());
             }
         });
         JButton effectsButton= mp.getEffectsButton();
@@ -135,7 +125,6 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
                 } else {
                     effectsButton.setIcon(imgEffectsOff);
                 }
-                //mp.setEffectEnable(menuController.isEffectsEnable());
             }
         });
         //quando aggiungo il pannello del menu, prima devo togliere tutti i pannelli precedentemente inseriti
@@ -155,6 +144,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         this.pack();
     }
+
     public void addPausePanel(PausePanel pp, GameController gameController) {
         ImageIcon imgMusicOn = (Utilities.readImage(Constants.MUSIC_ON_PATH));
         ImageIcon imgMusicOff = (Utilities.readImage(Constants.MUSIC_OFF_PATH));
@@ -188,7 +178,6 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
                 } else {
                     musicButton.setIcon(imgMusicOff);
                 }
-                //pp.setMusicEnable(gameController.isMusicEnable());
             }
         });
         JButton effectsButton= pp.getEffectsButton();
@@ -202,7 +191,6 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
                 } else {
                     effectsButton.setIcon(imgEffectsOff);
                 }
-                //pp.setEffectEnable(gameController.isEffectsEnable());
             }
         });
         this.layeredPane.add(pp, JLayeredPane.MODAL_LAYER);
@@ -213,6 +201,7 @@ public class MainView extends JFrame {  //posso ereditare tutti i metodi della c
         this.layeredPane.remove(this.pausePanel);
         this.pack();
     }
+
     public void nextCursor(){
         this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
                 this.swatter.getImg(),

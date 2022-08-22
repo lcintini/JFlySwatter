@@ -2,9 +2,7 @@ package view;
 
 import constants.Constants;
 import utilities.Utilities;
-
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class MenuPanel extends JPanel {
@@ -19,15 +17,14 @@ public class MenuPanel extends JPanel {
     private Image imgMenu;
 
     public MenuPanel() {
-        Color celeste= new Color(151, 69, 45, 255);
         this.setBounds(0,0, Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT);
         this.setLayout(null);
         this.imgMenu = (Utilities.readImage(Constants.MENU_GRASS_PATH)).getImage();
         this.musicEnable = true;
         this.effectEnable = true;
         this.drawMenu();
-
     }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g); //override
         doDrawing(g);
@@ -39,17 +36,14 @@ public class MenuPanel extends JPanel {
         // Metodo che sincronizza tutte le componenti grafiche
         Toolkit.getDefaultToolkit().sync();
     }
+
     public void drawMenu() {
         this.startButton = new JButton("");
-        //this.startButton = new JButton("Start Normal Mode");
-        //this.startButton.setBackground(Color.WHITE);
-        //this.startButton.setForeground(Color.BLACK);
         ImageIcon imgStartNormal = (Utilities.readImage(Constants.START_NORMAL_BUTTON_PATH));
         this.startButton.setIcon(imgStartNormal);
-        this.startButton.setMargin(new Insets(0,0,0,0)); //nuova
-        this.startButton.setContentAreaFilled(false); //nuova
+        this.startButton.setMargin(new Insets(0,0,0,0));
+        this.startButton.setContentAreaFilled(false);
         this.startButton.setBorder(null);
-        //this.startButton.setBorder(new LineBorder(Color.BLACK));
         this.startButton.setBounds(100, 200, 440, 80 );
         this.startButton.setFocusPainted(false);
         this.add(this.startButton);
@@ -72,12 +66,10 @@ public class MenuPanel extends JPanel {
         this.leftArrowButton.setFocusPainted(false);
         this.add(this.leftArrowButton);
         if(this.musicEnable){
-            //this.musicButton = new JButton("Music OFF");
             this.musicButton = new JButton("");
             ImageIcon imgMusicOff = Utilities.readImage(Constants.MUSIC_OFF_PATH);
             this.musicButton.setIcon(imgMusicOff);
         }else{
-            //this.musicButton = new JButton("Music ON");
             this.musicButton = new JButton("");
             ImageIcon imgMusicOn = Utilities.readImage(Constants.MUSIC_ON_PATH);
             this.musicButton.setIcon(imgMusicOn);
@@ -85,9 +77,6 @@ public class MenuPanel extends JPanel {
         this.musicButton.setBorder(null);
         this.musicButton.setMargin(new Insets(0,0,0,0));
         this.musicButton.setContentAreaFilled(false);
-        //this.musicButton.setBackground(Color.WHITE);
-        //this.musicButton.setForeground(Color.BLACK);
-        //this.musicButton.setBorder(new LineBorder(Color.BLACK));
         this.musicButton.setBounds(120, 350, 180, 50 );
         this.musicButton.setFocusPainted(false);
         this.add(this.musicButton);
@@ -104,15 +93,11 @@ public class MenuPanel extends JPanel {
         this.effectsButton.setBorder(null);
         this.effectsButton.setMargin(new Insets(0,0,0,0));
         this.effectsButton.setContentAreaFilled(false);
-        /*this.effectsButton.setBackground(Color.WHITE);
-        this.effectsButton.setForeground(Color.BLACK);
-        this.effectsButton.setBorder(new LineBorder(Color.BLACK));*/
         this.effectsButton.setBounds(340, 350, 180, 50 );
         this.effectsButton.setFocusPainted(false);
         this.add(this.effectsButton);
         this.repaint();
     }
-
 
     public JButton getStartButton() {
         return this.startButton;
@@ -133,14 +118,13 @@ public class MenuPanel extends JPanel {
     public JButton getEffectsButton() {
         return this.effectsButton;
     }
+
     public void setMusicEnable(boolean musicEnable) {
         this.musicEnable = musicEnable;
         if(this.musicEnable){
-            //this.musicButton.setText("Music OFF");
             ImageIcon imgMusicOff = Utilities.readImage(Constants.MUSIC_OFF_PATH);
             this.musicButton.setIcon(imgMusicOff);
         }else{
-            //this.musicButton.setText("Music ON");
             ImageIcon imgMusicOn = Utilities.readImage(Constants.MUSIC_ON_PATH);
             this.musicButton.setIcon(imgMusicOn);
         }
@@ -149,12 +133,10 @@ public class MenuPanel extends JPanel {
     public void setEffectEnable(boolean effectEnable) {
         this.effectEnable = effectEnable;
         if(this.effectEnable){
-            //this.effectsButton.setText("Effects OFF");
             ImageIcon imgEffectsOff = Utilities.readImage(Constants.EFFECTS_OFF_PATH);
             this.effectsButton.setIcon(imgEffectsOff);
             this.effectsButton.paintImmediately(this.effectsButton.getVisibleRect());
         }else{
-            //this.effectsButton.setText("Effects ON");
             ImageIcon imgEffectsOn = Utilities.readImage(Constants.EFFECTS_ON_PATH);
             this.effectsButton.setIcon(imgEffectsOn);
             this.effectsButton.paintImmediately(this.effectsButton.getVisibleRect());
