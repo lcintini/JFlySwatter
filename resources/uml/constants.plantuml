@@ -1,6 +1,6 @@
 @startuml
 
-title __CONSTANTS's Class Diagram__\n
+
 
   namespace constants {
       class constants.Constants {
